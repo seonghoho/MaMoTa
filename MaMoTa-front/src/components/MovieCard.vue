@@ -6,6 +6,7 @@
         <h5 class="card-title">{{ movie.tile || movie.name }}</h5>
         <div class="card-title card-overview">{{ movie.overview }}</div>
       </div>
+      <RouterLink :to="{ name: 'movie', params: { id: movie.id } }" class='btn btn-primary router-link'>상세보기</RouterLink>
     </div>
   </div>
 </template>
