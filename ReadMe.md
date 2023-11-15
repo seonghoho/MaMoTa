@@ -9,3 +9,10 @@
    - npm install bootstrap-icons
    - npm install axios
    - npm i pinia-plugin-persistedstate
+
+# 2023-11-15
+
+## 김선욱
+- TMDB 인기순 평점순 HomeView에 분기 나눔
+- TMDB 인기순 평점순 API 따로 받아옴
+- RouterLink로 연결시킴

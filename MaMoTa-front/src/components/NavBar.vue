@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
-      <img :src="logo" alt="Logo" height="50" width="50">
+      <RouterLink :to="{ name: 'home' }" class="router-link" active-class="active-tab">
+        <img :src="logo" alt="Logo" height="50" width="50">
+      </RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,7 +11,7 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-end">
           <li class="nav-item">
-            <RouterLink :to="{ name: 'home' }" class="router-link">Home</RouterLink>
+            <RouterLink :to="{ name: 'home' }" class="router-link" active-class="active-tab">Home</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink :to="{ name: 'community' }" class="router-link" active-class="active-tab">Community</RouterLink>
@@ -29,16 +31,14 @@ const logo = ref(logoSrc)
 </script>
 
 <style scoped>
-
 .router-link {
   text-decoration: none;
   color: white;
-  margin-right: 15px; 
+  margin-right: 15px;
 }
 
 .active-tab {
   color: rgb(174, 219, 250) !important;
   font-weight: bold !important;
 }
-
 </style>
