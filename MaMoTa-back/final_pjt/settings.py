@@ -75,7 +75,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-
+    'allauth.account.middleware.AccountMiddleware',
     # CORS 토큰 관련 코드
     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
