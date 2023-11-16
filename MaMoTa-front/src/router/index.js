@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import PopularMovieView from '@/views/Movies/PopularMovieView.vue'
 import TopRatedMovieView from '@/views/Movies/TopRatedMovieView.vue'
+import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +27,12 @@ const router = createRouter({
       path: '/toprated',
       name: 'TopRatedMovieView',
       component: TopRatedMovieView
-    }
+    },
+    {
+      path: '/:id',
+      name: 'movie',
+      component: MovieDetailView,
+    },
   ]
 })
 

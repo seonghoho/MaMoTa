@@ -9,6 +9,9 @@
    - npm install bootstrap-icons
    - npm install axios
    - npm i pinia-plugin-persistedstate
+   - npm install vue3-youtube
+   - npm install youtube-iframe
+   - npm install -D sass
 
 # 2023-11-15
 
@@ -22,3 +25,8 @@
 - Django project 생성
 - accounts app, movies app 생성
 - back 기본 구조 설정
+
+- 디테일 페이지 작성
+
+# 2023-11-16
+
