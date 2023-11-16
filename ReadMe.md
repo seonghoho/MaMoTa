@@ -9,6 +9,9 @@
    - npm install bootstrap-icons
    - npm install axios
    - npm i pinia-plugin-persistedstate
+   - npm install vue3-youtube
+   - npm install youtube-iframe
+   - npm install -D sass
 
 # 2023-11-15
 
@@ -18,3 +21,5 @@
 - RouterLink로 연결시킴
 - 기선이 사진 누르면 Home으로 감
 - 디테일 페이지 작성
+
+# 2023-11-16

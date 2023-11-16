@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <img :src="getImageUrl(movie.poster_path)" alt="#">
+      <YoutubeTrailer :movieTitle="movie.title" />
     </div>
     <h1>{{ movie.title }}</h1>
     <div>
@@ -29,6 +29,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import YoutubeTrailer from '@/components/YouTube/YoutubeTrailer.vue';
 
 const props = defineProps(["movie"])
 
