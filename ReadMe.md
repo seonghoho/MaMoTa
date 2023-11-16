@@ -20,6 +20,13 @@
 - TMDB 인기순 평점순 API 따로 받아옴
 - RouterLink로 연결시킴
 - 기선이 사진 누르면 Home으로 감
+
+## 최성호
+- Django project 생성
+- accounts app, movies app 생성
+- back 기본 구조 설정
+
 - 디테일 페이지 작성
 
 # 2023-11-16
+
