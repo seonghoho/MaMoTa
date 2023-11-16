@@ -4,7 +4,7 @@ from .models import *
 
 User = get_user_model()
 
-
+# 영화 리스트
 class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
@@ -22,31 +22,6 @@ class TopMovieListSerializer(serializers.ModelSerializer):
             'revenue',
             'runtime',
         )
-
-
-# 평점
-class ArticleSerializer(serializers.ModelSerializer):
-    class UserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = User
-            fields = ('pk', 'username', 'profile_pic')
-
-    user = UserSerializer(read_only=True)
-
-    class LikeUserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = User
-            fields = ('pk',)
-
-    like_users = LikeUserSerializer(read_only=True, many=True)
-    like_user_count = serializers.IntegerField(
-        source='like_users.count', read_only=True
-    )
-
-    class Meta:
-        model = Article
-        fields = '__all__'
-        read_only_fields = ('movie',)
 
 
 # 단일 영화 상세 정보
@@ -71,8 +46,7 @@ class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(read_only=True, many=True)
     actors = ActorSerializer(read_only=True, many=True)
     like_movies = UserSerializer(read_only=True, many=True)
-    articles = ArticleSerializer(many=True)
-
+    
     class Meta:
         model = Movie
         exclude = (
@@ -90,63 +64,59 @@ class MovieGenreSerializer(serializers.ModelSerializer):
         fields = ('pk', 'title', 'overview', 'poster_path', 'release_date')
 
 
-class UserArticleSerializer(serializers.ModelSerializer):
+
+# 명대사
+class FamousLineSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = User
-            fields = ('pk', 'username', 'profile_pic')
-
-    user = UserSerializer(read_only=True)
-
-    class LikeUserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
             fields = ('pk',)
 
-    like_users = LikeUserSerializer(read_only=True)
-    like_user_count = serializers.IntegerField(
-        source='like_users.count', read_only=True
-    )
+    user = UserSerializer(read_only=True)
+
+    class MovieSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Movie
+            # fields = ('pk', 'username', 'profile_pic')
+            fields = ('pk',)
 
     class Meta:
-        model = Article
+        model = FamousLine
         fields = (
             'pk',
             'user',
             'movie',
-            'title',
             'content',
-            'rate',
-            'like_users',
             'created_at',
             'updated_at',
-            'like_user_count',
         )
+        read_only_fields = ('movie',)
 
 
-class CommentSerializer(serializers.ModelSerializer):
+
+# 리뷰
+class ReviewSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('pk', 'username', 'profile_pic')
+            # fields = ('pk', 'username', 'profile_pic')
+            fields = ('pk',)
 
     user = UserSerializer(read_only=True)
 
-    class ArticleSerializer(serializers.ModelSerializer):
+    class MovieSerializer(serializers.ModelSerializer):
         class Meta:
-            model = Article
+            model = Movie
             fields = ('pk',)
 
-    article = ArticleSerializer(read_only=True)
-
     class Meta:
-        model = Comment
+        model = Review
         fields = (
             'pk',
             'user',
-            'article',
+            'movie',
             'content',
             'created_at',
             'updated_at',
         )
-        read_only_fields = ('article',)
+        read_only_fields = ('movie',)
