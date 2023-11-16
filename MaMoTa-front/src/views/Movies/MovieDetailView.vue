@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import MovieDetailInfo from '@/components/MovieDetailInfo.vue';
+import MovieDetailInfo from '@/components/Movies/MovieDetailInfo.vue';
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'

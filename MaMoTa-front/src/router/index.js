@@ -33,6 +33,11 @@ const router = createRouter({
       name: 'movie',
       component: MovieDetailView,
     },
+    {
+      path: "/search",
+      name: "search",
+      component: () => import(/* webpackChunkName: "search" */ "@/components/Movies/SearchMovie.vue")
+    },
   ]
 })
 

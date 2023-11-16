@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <YoutubeTrailer :movieTitle="movie.title" />
+      <!-- <YoutubeTrailer :movieTitle="movie.title" /> -->
     </div>
     <h1>{{ movie.title }}</h1>
     <div>

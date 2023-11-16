@@ -10,12 +10,15 @@
 
     </div>
   </div>
+  <TopButton />
 </template>
 
 <script setup>
-import MovieCard from '@/components/MovieCard.vue'
+import MovieCard from '@/components/Movies/MovieCard.vue'
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import TopButton from '@/components/Common/TopButton.vue';
+
 
 const key = import.meta.env.VITE_TMDB_API_KEY
 

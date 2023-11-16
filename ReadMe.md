@@ -12,6 +12,7 @@
    - npm install vue3-youtube
    - npm install youtube-iframe
    - npm install -D sass
+   - npm install vuex
 
 # 2023-11-15
 
@@ -30,3 +31,9 @@
 
 # 2023-11-16
 
+## 김선욱
+- Movie Detail 페이지 모달로 바로 Movie 전체 페이지에서 출력 가능하게 함
+- 유튜브 트레일러 구현중... (아직 API 할당량 문제 해결 못함)
+- 검색 기능창 구현 중... (아직 Axios 에러)
+- OpenAI 모달 구현 중... (아직 Axios 에러)
+- 스크롤 바 제일 위로 올리기 구현 완료

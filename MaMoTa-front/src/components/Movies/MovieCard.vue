@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import MovieDetailInfo from '@/components/MovieDetailInfo.vue';
+import MovieDetailInfo from '@/components/Movies/MovieDetailInfo.vue';
 
 const props = defineProps(["movie"])
 

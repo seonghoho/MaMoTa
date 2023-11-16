@@ -4,6 +4,9 @@
       <RouterLink :to="{ name: 'home' }" class="router-link" active-class="active-tab">
         <img :src="logo" alt="Logo" height="50" width="50">
       </RouterLink>
+      <RouterLink :to="{ name: 'search' }" class="search">
+        <img :src="search" alt="Logo" height="50" width="50">
+      </RouterLink>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -16,7 +19,6 @@
           <li class="nav-item">
             <RouterLink :to="{ name: 'community' }" class="router-link" active-class="active-tab">Community</RouterLink>
           </li>
-
         </ul>
       </div>
     </nav>
@@ -24,10 +26,14 @@
 </template>
 
 <script setup>
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import logoSrc from '@/assets/logo.png'
+import searchSrc from '@/assets/Search.png'
 
 const logo = ref(logoSrc)
+const search = ref(searchSrc)
+
 </script>
 
 <style scoped>
@@ -41,4 +47,9 @@ const logo = ref(logoSrc)
   color: rgb(174, 219, 250) !important;
   font-weight: bold !important;
 }
+
+.search {
+  margin: auto
+}
+
 </style>
