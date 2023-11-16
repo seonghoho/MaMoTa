@@ -37,3 +37,8 @@
 - 검색 기능창 구현 중... (아직 Axios 에러)
 - OpenAI 모달 구현 중... (아직 Axios 에러)
 - 스크롤 바 제일 위로 올리기 구현 완료
+
+## 최성호
+- movies app model 생성
+- serializers and views 수정
+- community app 수정중..

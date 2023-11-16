@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.conf import settings
 import datetime
 
@@ -42,38 +41,31 @@ class Movie(models.Model):
         return self.title
 
 
-class Article(models.Model):
+# 명대사
+class FamousLine(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='articles',
+        related_name='famous_lines',
     )
     movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name='articles'
+        Movie, on_delete=models.CASCADE, related_name='famous_lines'
     )
-    rate = models.FloatField(
-        validators=[MinValueValidator(0), MaxValueValidator(10)]
-    )
-    title = models.CharField(max_length=100)
-    content = models.TextField(null=False)
+    content = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    like_users = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name='like_articles'
-    )
-
-    # def __str__(self):
-    #     return self.user
 
 
-class Comment(models.Model):
+
+# 한 줄 리뷰
+class Review(models.Model):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='comments',
+        related_name='reviews',
     )
-    article = models.ForeignKey(
-        Article, on_delete=models.CASCADE, related_name='comments'
+    movie = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, related_name='reviews'
     )
     content = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)

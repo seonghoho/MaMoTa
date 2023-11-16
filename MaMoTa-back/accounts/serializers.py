@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from movies.models import Movie, Article
+from movies.models import Movie
+from community.models import Article
 
 User = get_user_model()
 
@@ -20,7 +21,7 @@ class ArticleMovieSerializer(serializers.ModelSerializer):
         )
 
 
-# 영화 제목을 줄러오기위한 Serializer
+# 영화 제목을 불러오기 위한 Serializer
 class SimpleMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie

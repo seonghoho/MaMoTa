@@ -1,16 +1,13 @@
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+# 인증된 사용자만 진행 할 수 있도록 권한 설정 (IsAuthenticated)
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 
-# from django.db.models import Count
-
-from .serializers import (
-    ArticleMovieSerializer,
-    ProfileSerializer,
-    ProfileUpdateSerializer,
-)
+from .serializers import ArticleMovieSerializer, ProfileSerializer, ProfileUpdateSerializer
 
 
 User = get_user_model()
@@ -19,9 +16,7 @@ User = get_user_model()
 @api_view(['GET'])
 def profile(request, user_pk):
     user = get_object_or_404(User, pk=user_pk)
-
     articles = ProfileSerializer(user)
-
     return Response(articles.data)
 
 

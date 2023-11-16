@@ -33,10 +33,11 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # Local apps
     'movies',
+    'community',
     'accounts',
     # CORS policy
     'corsheaders',
-    # Auth
+    # Auth, Rest
     'rest_framework',
     'rest_framework.authtoken',
     'dj_rest_auth',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    
     # OpenAPI 3.0
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,23 +56,25 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
 # 로그인 토큰에서 사용하는 코드
 SITE_ID = 1
 
-# 토큰 관련 코드
-REST_FRAMEWORK = {
-    # Authentication
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    # permission
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-        # 'rest_framework.permissions.IsAuthenticated',
-    ],
-    # spectacular Settings
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
-}
+# # 토큰 관련 코드
+# REST_FRAMEWORK = {
+#     # Authentication
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     # permission
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.AllowAny',
+#         # 'rest_framework.permissions.IsAuthenticated',
+#     ],
+#     # spectacular Settings
+#     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+# }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
