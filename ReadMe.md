@@ -52,3 +52,13 @@
 
 ## 최성호
 - community app 수정
+
+
+## 오기선
+- community 전체 틀 페이지 생성
+- ArticleListView 작성
+- ArticleDetailView 작성
+- CommentList 작성
+- CommentCreate 구현중...(Axios 호출 주석처리)
+- admin 페이지로 들어가 데이터 생성 시 확인가능
+- 

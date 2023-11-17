@@ -1,3 +1,6 @@
+<!-- 삭제예정 페이지 -->
+
+
 <template>
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card h-100 ">
