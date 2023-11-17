@@ -54,6 +54,7 @@ class MovieSerializer(serializers.ModelSerializer):
             'tagline',
             'vote_count',
             'words',
+            'like_users',
         )
 
 
@@ -90,7 +91,7 @@ class FamousLineSerializer(serializers.ModelSerializer):
             'created_at',
             'updated_at',
         )
-        read_only_fields = ('movie',)
+        read_only_fields = ('user','movie',)
 
 
 

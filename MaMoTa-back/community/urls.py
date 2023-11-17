@@ -4,17 +4,12 @@ from . import views
 
 app_name = 'community'
 urlpatterns = [
-    path('<int:movie_pk>/articles/', views.article_list_or_create),
-    path(
-        '<int:movie_pk>/articles/<int:article_pk>/',
-        views.articles_get_or_update_or_delete),
-    path(
-        '<int:movie_pk>/articles/<int:article_pk>/comments/',
-        views.get_create_comment ),
-    path(
-        '<int:movie_pk>/articles/<int:article_pk>/comments/<int:comment_pk>',
-        views.delete_comment ),
-    path(
-        '<int:movie_pk>/articles/<int:article_pk>/comments/like/',
-        views.like_article ),
+    path('', views.article_list),
+    path('artiele/', views.article_create),
+    path('artiele/<int:article_pk>/', views.article_detail),
+    path('<int:article_pk>/like/', views.article_like),
+    
+    path('comments/', views.comment_list),
+    path('article/<int:article_pk>/comments/', views.comment_create),    
+    path('article/<int:article_pk>/comments/<int:comment_pk>', views.comment_delete),
 ]

@@ -42,3 +42,8 @@
 - movies app model 생성
 - serializers and views 수정
 - community app 수정중..
+
+# 2023-11-17
+
+## 최성호
+- community app 수정
