@@ -25,7 +25,7 @@ def article_list(request):
 
 # 게시글 생성
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def article_create(request):
     serializer = ArticleSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -36,7 +36,7 @@ def article_create(request):
 
 # 게시글 디테일페이지, 수정, 삭제
 @api_view(['GET', 'DELETE', 'PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def article_detail(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
 
@@ -69,7 +69,7 @@ def article_detail(request, article_pk):
 
 # 게시글 좋아요 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def article_like(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     
@@ -86,7 +86,7 @@ def article_like(request, article_pk):
         'like_count' : article.like_users.count()
     }
 
-    return JsonResponse(context)
+    return Response(context)
 
 
 
@@ -101,7 +101,7 @@ def comment_list(request):
     
 # 댓글 생성
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def comment_create(request, article_pk):
     article = get_object_or_404(Article, pk=article_pk)
     serializer = CommentSerializer(data=request.data)
@@ -112,7 +112,7 @@ def comment_create(request, article_pk):
 
 # 댓글 삭제
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def comment_delete(request, article_pk, comment_pk):
     article = Article.objects.get(pk=article_pk)
     comment = article.comment_set.get(pk=comment_pk)
