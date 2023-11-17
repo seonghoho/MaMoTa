@@ -3,5 +3,5 @@ venv
 db.sqlite3
 __pycache__
 *.pyc 
-migrations
+
 __init__.py
