@@ -1,6 +1,6 @@
 <template>
   <div class="button-top" v-show="isShow" @click="scrollToTop">
-    <img src="@/assets/UpButton.png" alt="">
+    <img src="@/assets/Images/UpButton.png" alt="">
     <span class="blind">상단으로</span>
   </div>
 </template>
@@ -35,7 +35,7 @@ img {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 50px;
+  width: 55px;
   height: 55px;
   display: flex;
   justify-content: center;

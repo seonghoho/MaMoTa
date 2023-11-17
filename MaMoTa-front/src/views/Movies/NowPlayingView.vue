@@ -1,6 +1,6 @@
 <template>
   <div class="test-content">
-    <h3 class="test-title">인기순</h3>
+    <h3 class="test-title">현재 상영작</h3>
     <div ref="horizontalScrollWrap" class="horizontal-scroll" @mouseover="pauseScroll" @mouseleave="resumeScroll">
       <ul>
         <template v-for="i in 12" :key="i">
@@ -8,7 +8,7 @@
         </template>
       </ul>
       <template v-for="(chunk, chunkIndex) in infiniteChunks" :key="chunkIndex">
-        <MovieCard
+        <NowMovieCard
           v-for="(movie, index) in chunk"
           :key="index + chunkIndex * chunkSize"
           :movie="movie"
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import MovieCard from '@/components/Movies/MovieCard.vue'
+import NowMovieCard from '@/components/Movies/NowMovieCard.vue'
 import { ref, onMounted, watch } from 'vue'
 import axios from 'axios'
 
@@ -65,7 +65,7 @@ const key = import.meta.env.VITE_TMDB_API_KEY;
 const movies = ref([]);
 
 const fetchMovie = () => {
-  const url = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=ko-KR&page=1&sort_by=popularity.desc';
+  const url = 'https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&page=1';
   const headers = {
     Accept: 'application/json',
     Authorization: `Bearer ${key}`,
@@ -84,6 +84,7 @@ onMounted(() => {
   fetchMovie();
 });
 
+console.log(movies)
 
 const chunkedMovies = ref([]);
 
@@ -158,5 +159,4 @@ function resumeScroll() {
 .horizontal-scroll::-webkit-scrollbar-thumb {
   background-color: transparent; /* Safari and Chrome */
 }
-
 </style>

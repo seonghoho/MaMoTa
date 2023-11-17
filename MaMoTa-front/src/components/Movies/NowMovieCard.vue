@@ -3,15 +3,14 @@
     <div class="card h-100 position-relative">
       <div :data-bs-target="'#staticBackdrop' + movie.id" data-bs-toggle="modal">
         <div class="custom-poster-container">
-          <img :src="getImageUrl(movie.backdrop_path)" class="card-img-top custom-poster" alt="#">
-          <div class="title-overlay">
-            <div class="title-text">{{ movie.title || movie.name }}</div>
-          </div>
+          <img :src="getImageUrl(movie.poster_path)" class="card-img-top custom-poster" alt="#">
+          <div class="title-overlay"></div>
+          <div class="title-text">{{ movie.title || movie.name }}</div>
         </div>
       </div>
 
-      <div :id="'staticBackdrop' + movie.id" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div :id="'staticBackdrop' + movie.id" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
@@ -30,6 +29,7 @@
     </div>
   </div>
 </template>
+
 <script setup>
 import MovieDetailInfo from '@/components/Movies/MovieDetailInfo.vue';
 
@@ -50,7 +50,7 @@ const getImageUrl = (path) => {
   position: relative;
   width: 100%;
   height: 0;
-  padding-bottom: 75%; /* 4:3 비율 */
+  padding-bottom: 150%; /* 3:2 비율로 조절, 100% * (2/3) */
   overflow: hidden;
 }
 
@@ -58,7 +58,7 @@ const getImageUrl = (path) => {
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 이미지가 꽉 차게 보이도록 */
 }
 
 .title-overlay {
@@ -67,7 +67,7 @@ const getImageUrl = (path) => {
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7)); /* 그라데이션으로 투명도 조절 가능 */
 }
 
 .title-text {
@@ -79,6 +79,6 @@ const getImageUrl = (path) => {
   color: white;
   font-size: 18px;
   font-weight: bold;
-  text-align: center;
+  text-align: center; /* 가운데 정렬 */
 }
 </style>

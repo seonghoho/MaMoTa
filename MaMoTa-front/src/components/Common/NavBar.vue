@@ -28,8 +28,8 @@
 <script setup>
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { ref } from 'vue'
-import logoSrc from '@/assets/logo.png'
-import searchSrc from '@/assets/Search.png'
+import logoSrc from '@/assets/Images/logo.png'
+import searchSrc from '@/assets/Images/Search.png'
 
 const logo = ref(logoSrc)
 const search = ref(searchSrc)

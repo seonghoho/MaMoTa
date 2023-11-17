@@ -10,7 +10,7 @@
           <a @click="$store.commit('routerMovieInfo', search[0])">
             <div class="search__thumbnail">
               <img :src="search[1]" alt="포스터" v-if="search[1] !== null">
-              <img src="../assets/img_no_poster.png" alt="No-Data" v-if="search[1] === null">
+              <img src="@/assets/Images/img_no_poster.png" alt="No-Data" v-if="search[1] === null">
             </div>
             <p class="search__title">{{ search[2] }}</p>
             <p class="search__release">{{ search[3] }}</p>

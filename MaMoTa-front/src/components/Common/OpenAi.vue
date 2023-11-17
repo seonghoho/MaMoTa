@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2>🤖️ My ChatGPT</h2>
+    <h3>🍿 찾으시는 영화가 있나요?</h3>
     <div class="chat">
-      <input class="input" placeholder="Ask me about...🌽" v-model="content">
+      <input class="input" placeholder="뭐든지 물어봐주세요! 🌽" v-model="content">
       <div class="button-block">
         <button type="button" @click="askAi" class="btn">
           <strong>{{ btnText }}</strong>
@@ -26,8 +26,8 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
-const OpenAiKey = import.meta.env.VITE_OPEN_API_KEY
-const OrgId = import.meta.env.VITE_ORG_ID
+const OpenAiKey = import.meta.env.VITE_OPEN_API_KEY;
+const OrgId = import.meta.env.VITE_ORG_ID;
 
 const http = axios.create({
   baseURL: 'https://api.openai.com/v1/chat',
@@ -40,32 +40,33 @@ const http = axios.create({
 
 const content = ref('');
 const BTN_TEXT = 'Submit 🚀';
-const res = ref('✅ The answer will be displayed here.');
+const res = ref(' ');
 const btnText = ref(BTN_TEXT);
 
-const askAi = () => {
+const askAi = async () => {
   btnText.value = 'Thinking...🤔';
 
   const tokenCount = content.value.split(' ').length;
 
   if (tokenCount > 20) {
-    alert('Too many tokens! Please keep your input short.');
+    alert('질문이 너무 복잡합니다!');
     btnText.value = BTN_TEXT;
     return;
   }
 
-  http.post('/completions', {
-    "model": "gpt-3.5",
-    "messages": [{"role": "user", "content": content.value}],
-    "temperature": 0.7
-  }).then(function (response) {
-    console.log(response);
+  try {
+    const response = await http.post('/completions', {
+      "model": "gpt-3.5-turbo",
+      "messages": [{"role": "user", "content": content.value}],
+      "temperature": 0.7
+    });
+
     res.value =  response.data.choices[0].message.content;
-  }).catch(function (error) {
+  } catch (error) {
     console.log(error);
-  }).finally(() => {
+  } finally {
     btnText.value = BTN_TEXT;
-  });
+  }
 };
 
 </script>
@@ -74,9 +75,7 @@ const askAi = () => {
 h1 {
   margin-bottom: 64px;
 }
-/* 
-.chat {
-} */
+
 .input {
   width: calc(100% - 20px);
   height: 32px;

@@ -13,6 +13,7 @@
    - npm install youtube-iframe
    - npm install -D sass
    - npm install vuex
+   - npm install vue3-carousel
 
 # 2023-11-15
 
@@ -44,6 +45,10 @@
 - community app 수정중..
 
 # 2023-11-17
+
+## 김선욱
+- 메인 페이지 TMDB API 받아와서 슬라이드 형태로 꾸밈
+- 이것밖에 안함 ㅋ
 
 ## 최성호
 - community app 수정

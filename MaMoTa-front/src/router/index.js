@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import CommunityView from '@/views/CommunityView.vue'
 import PopularMovieView from '@/views/Movies/PopularMovieView.vue'
 import TopRatedMovieView from '@/views/Movies/TopRatedMovieView.vue'
+import NowPlayingView from '@/views/Movies/NowPlayingView.vue'
+import UpComingView from '@/views/Movies/UpComingView.vue'
 import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 
 const router = createRouter({
@@ -27,6 +29,16 @@ const router = createRouter({
       path: '/toprated',
       name: 'TopRatedMovieView',
       component: TopRatedMovieView
+    },
+    {
+      path: '/nowplaying',
+      name: 'NowPlayingView',
+      component: NowPlayingView
+    },
+    {
+      path: '/upcoming',
+      name: 'UpComingView',
+      component: UpComingView
     },
     {
       path: '/:id',

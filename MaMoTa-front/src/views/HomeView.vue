@@ -1,23 +1,25 @@
 <template>
   <div>
-    <select v-model="selectedOption" @change="navigateToView">
-      <option value="popular">인기순</option>
-      <option value="top_rated">평점순</option>
-    </select>
+    <NowPlayingView />
+    <PopularMovieView />
+    <TopRatedMovieView />
+    <UpComingView />
+    <TopButton />
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { RouterLink } from 'vue-router';
+import UpComingView from '@/views/Movies/UpComingView.vue';
+import TopRatedMovieView from '@/views/Movies/TopRatedMovieView.vue';
+import PopularMovieView from '@/views/Movies/PopularMovieView.vue';
+import NowPlayingView from '@/views/Movies/NowPlayingView.vue';
+import TopButton from '@/components/Common/TopButton.vue';
 
-const selectedOption = ref()
-const router = useRouter()
 
-const navigateToView = () => {
-  const viewName = selectedOption.value === 'popular' ? 'PopularMovieView' : 'TopRatedMovieView'
-  router.push({ name: viewName })
-}
 </script>
 
 <style scoped>
