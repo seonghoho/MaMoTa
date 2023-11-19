@@ -5,7 +5,7 @@
 
   <div>
     <h1>게시물 리스트 뷰</h1>
-    <h2>게시글 생성 링크작성 예정</h2>
+    <!-- <RouterLink :to="{name:'articleCreate'}"> 게시글 생성</RouterLink> -->
     <ul>
       <div
       v-for="article in store.articleList.article"
@@ -25,6 +25,8 @@
 </template>
 
 <script setup>
+// import { RouterLink } from 'vue-router'
+
 import { onMounted } from 'vue';
 import { useArticleStore } from '@/stores/article';
 import { useRouter } from 'vue-router'

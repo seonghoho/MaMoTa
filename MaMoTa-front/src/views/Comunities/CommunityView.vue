@@ -2,12 +2,12 @@
 
 <template>
   <div>
-    <ArticleListView />
+    <ArticleList />
   </div>
 </template>
 
 <script setup>
-import ArticleListView from '@/components/Comunities/ArticleListView.vue'
+import ArticleList from '@/components/Comunities/ArticleList.vue'
 </script>
 
 <style  scoped>
