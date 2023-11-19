@@ -3,22 +3,62 @@ from django.contrib.auth import get_user_model
 from movies.models import Movie
 from community.models import Article
 
-User = get_user_model()
+# 로그인 커스터마이저
+from allauth.account import app_settings as allauth_settings
+from allauth.account.adapter import get_adapter
+from .models import User
+from dj_rest_auth.registration.serializers import RegisterSerializer
+
+class CustomRegisterSerializer(RegisterSerializer):
+# 추가할 필드들을 정의합니다.
+    nickname = serializers.CharField(
+        required=True,
+        allow_blank=False,
+        max_length=255
+    )
+    first_name = serializers.CharField(
+        required=True,
+        max_length=255
+    )    
+    last_name = serializers.CharField(
+        required=True,
+        max_length=255
+    )
+    profile_pic = serializers.ImageField(
+        max_length=None,  
+        use_url=True,
+        required=True,  
+        allow_null=False,  
+    )
+    
+    def get_cleaned_data(self):
+        return {
+            'username': self.validated_data.get('username', ''),
+            'password1': self.validated_data.get('password1', ''),
+            'nickname': self.validated_data.get('nickname', ''),
+            'email': self.validated_data.get('email', ''),
+
+        }
+    def save(self, request):
+        adapter = get_adapter()
+        user = adapter.new_user(request)
+        self.cleaned_data = self.get_cleaned_data()
+        adapter.save_user(request, user, self)
+        self.custom_signup(request, user)
+        return user
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('pk', 'username', 'profile_pic')
+        fields = '__all__'
+
 
 
 class ArticleMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = (
-            'pk',
-            'title',
-        )
+        fields = ('pk', 'title',)
 
 
 # 영화 제목을 불러오기 위한 Serializer
