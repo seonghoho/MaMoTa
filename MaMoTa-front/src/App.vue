@@ -54,4 +54,9 @@ h2 {
   text-align: center;
   margin-top: 15px;
 }
+.app {
+  background-color: black;
+}
+
+
 </style>

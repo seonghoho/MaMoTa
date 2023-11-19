@@ -131,6 +131,10 @@ function resumeScroll() {
 <style scoped>
 .test-title {
   margin-left: 20px;
+  color: white;
+}
+.test-title {
+  margin-left: 20px;
 }
 .horizontal-scroll {
   display: flex;

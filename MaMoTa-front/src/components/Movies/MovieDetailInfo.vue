@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div>
-      <!-- <YoutubeTrailer :movieTitle="movie.title" /> -->
-    </div>
+
     <div class="poster-container">
       <img :src="getImageUrl(movie.poster_path)" class="card-img-top poster" alt="#">
       <div class="movie-info">
@@ -11,11 +9,11 @@
           <p>개봉일 : {{ movie.release_date }}</p>
           <p>TMDB 평점 : {{ movie.vote_average }}</p>
         </div>
-        
+
         <h3>장르</h3>
         <ul>
-          <li v-for="genre in movie.genres" :key="genre.name">
-            {{ genre.name }}
+          <li v-for="genreId in movie.genre_ids" :key="genreId">
+            {{ getGenreNameById(genreId) }}
           </li>
         </ul>
 
@@ -24,6 +22,10 @@
           <p>{{ movie.overview }}</p>
         </div>
       </div>
+    </div>    
+    <div class="trailer">
+      <h3>예고편</h3>
+      <!-- <YoutubeTrailer :movieTitle="movie.title" /> -->
     </div>
   </div>
 </template>
@@ -31,6 +33,9 @@
 <script setup>
 import { defineProps } from 'vue';
 import YoutubeTrailer from '@/components/YouTube/YoutubeTrailer.vue';
+import { useMovieStore } from '@/stores/movie'
+
+const store = useMovieStore()
 
 const props = defineProps(["movie"]);
 
@@ -39,6 +44,11 @@ const getImageUrl = (path) => {
     return '';
   }
   return `https://image.tmdb.org/t/p/w300${path}`;
+}
+
+const getGenreNameById = (genreId) => {
+  const foundGenre = store.genre.genres.find(genre => genre.id === genreId);
+  return foundGenre ? foundGenre.name : 'Unknown Genre';
 }
 </script>
 
@@ -67,4 +77,9 @@ const getImageUrl = (path) => {
     margin-top: 20px;
   }
 }
+
+.trailer {
+  margin-top: 15px;
+}
+
 </style>

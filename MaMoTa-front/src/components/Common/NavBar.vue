@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">
       <RouterLink :to="{ name: 'home' }" class="router-link" active-class="active-tab">
         <img :src="logo" alt="Logo" height="50" width="50">
       </RouterLink>
@@ -37,6 +37,10 @@ const search = ref(searchSrc)
 </script>
 
 <style scoped>
+.navbar {
+  border: 2px solid rgb(233, 42, 233);
+}
+
 .router-link {
   text-decoration: none;
   color: white;
@@ -44,7 +48,7 @@ const search = ref(searchSrc)
 }
 
 .active-tab {
-  color: rgb(174, 219, 250) !important;
+  color: rgb(233, 42, 233) !important;
   font-weight: bold !important;
 }
 

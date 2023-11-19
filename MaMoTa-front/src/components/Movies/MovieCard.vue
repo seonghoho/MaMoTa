@@ -1,6 +1,6 @@
 <template>
   <div class="col-lg-3 col-md-6 col-sm-6">
-    <div class="card h-100 position-relative">
+    <div class="card h-100 position-relative movie-card">
       <div :data-bs-target="'#staticBackdrop' + movie.id" data-bs-toggle="modal">
         <div class="custom-poster-container">
           <img :src="getImageUrl(movie.backdrop_path)" class="card-img-top custom-poster" alt="#">
@@ -41,6 +41,11 @@ const getImageUrl = (path) => {
 </script>
 
 <style scoped>
+
+.movie-card {
+  background-color: black;
+}
+
 .card-overview {
   color: black;
   text-decoration: none;
@@ -80,5 +85,18 @@ const getImageUrl = (path) => {
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+}
+
+.modal-content {
+  background-color: black;
+  color: white;
+}
+
+.btn-close {
+  background-color: white;
+}
+
+.modal-header, .modal-footer {
+  border-color: rgb(233, 42, 233);
 }
 </style>
