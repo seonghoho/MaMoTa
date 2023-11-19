@@ -7,6 +7,8 @@ import NowPlayingView from '@/views/Movies/NowPlayingView.vue'
 import UpComingView from '@/views/Movies/UpComingView.vue'
 import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 import ArticleDetailView from '@/views/Comunities/ArticleDetailView.vue'
+// import ArticleCreateView from '@/views/Comunities/ArticleCreateView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +30,13 @@ const router = createRouter({
       name: 'detail',
       component: ArticleDetailView
     },
+    // 아티클 생성페이지
+    // {
+    //   path: '/article',
+    //   name: 'articleCreate',
+    //   component: ArticleCreateView
+    // },
+
     {
       path: '/popular',
       name: 'PopularMovieView',
