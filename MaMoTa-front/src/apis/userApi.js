@@ -52,7 +52,7 @@ export const loginApi = (payload) => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("loginApi 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
@@ -67,7 +67,7 @@ export const logoutApi = () => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("logoutApi 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
@@ -80,7 +80,7 @@ export const userProfileApi = (userPk) => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("userProfileApi 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
@@ -97,7 +97,7 @@ export const fetchCurrentUserApi = (token) => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("fetchCurrentUserApi 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
@@ -118,7 +118,7 @@ export const followApi = (token, userPk) => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("followApi 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
@@ -138,7 +138,7 @@ export const profilePicEdit = (userPk, payload) => {
       return response;
     })
     .catch((error) => {
-      console.error("API 요청 중 에러가 발생했습니다:", error);
+      console.error("profilePicEdit 요청 중 에러가 발생했습니다:", error);
       throw error;
     });
 };
