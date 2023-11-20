@@ -1,9 +1,6 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">
-      <RouterLink :to="{ name: 'home' }" class="router-link" active-class="active-tab">
-        <img :src="logo" alt="Logo" height="50" width="50">
-      </RouterLink>
       <RouterLink :to="{ name: 'search' }" class="search">
         <img :src="search" alt="Logo" height="50" width="50">
       </RouterLink>
