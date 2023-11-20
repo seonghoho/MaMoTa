@@ -22,6 +22,7 @@
         </div>
       </div>
     </div>
+    <div class="separator"></div>
     <div class="trailer">
       <h3>예고편</h3>
       <div class="iframe-container">
