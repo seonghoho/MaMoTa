@@ -3,8 +3,10 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 # 이미지 썸네일 helper인 이미지킷 사용 
 # 
-from imagekit.models import ProcessedImageField
-from imagekit.processors import ResizeToFill
+# from imagekit.models import ProcessedImageField
+# from imagekit.processors import ResizeToFill
+from django_resized import ResizedImageField
+from PIL import Image
 from allauth.account.adapter import DefaultAccountAdapter
 from django.contrib.auth import get_user_model
 
@@ -40,14 +42,20 @@ class User(AbstractBaseUser):
     first_name = models.CharField(blank=False, null=False, max_length=255)    
     last_name = models.CharField(blank=False, null=False, max_length=255)
     
-    # 원본 이미지를 재가공해서 저장함
-    profile_pic = ProcessedImageField(
-    		blank = True,
-        	upload_to = 'profile/images',
-        	processors = [ResizeToFill(300, 300)],
-        	format = 'JPEG',
-        	options = {'quality':90},
-	)
+    # 원본 이미지를 리사이징해서 저장함
+    def resize_image(image):
+        if image:
+            img = Image.open(image)
+            img = img.resize((300, 300), Image.ANTIALIAS)
+            img.save(image.path)
+
+    profile_pic = ResizedImageField(
+        blank=True,
+        upload_to='profile/images',
+        quality=90,
+        force_format='PNG',
+    )
+
 
 
 

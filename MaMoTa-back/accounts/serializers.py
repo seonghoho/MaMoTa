@@ -24,12 +24,12 @@ class CustomRegisterSerializer(RegisterSerializer):
         required=True,
         max_length=255
     )
-    profile_pic = serializers.ImageField(
-        max_length=None,  
-        use_url=True,
-        required=True,  
-        allow_null=False,  
-    )
+    # profile_pic = serializers.ImageField(
+    #     max_length=None,  
+    #     use_url=True,
+    #     required=True,  
+    #     allow_null=False,  
+    # )
     
     def get_cleaned_data(self):
         return {
@@ -39,7 +39,7 @@ class CustomRegisterSerializer(RegisterSerializer):
             'nickname': self.validated_data.get('nickname', ''),
             'first_name': self.validated_data.get('first_name', ''),
             'last_name': self.validated_data.get('last_name', ''),
-            'profile_pic': self.validated_data.get('profile_pic', ''),
+            # 'profile_pic': self.validated_data.get('profile_pic', ''),
             
         }
     def save(self, request):
@@ -54,7 +54,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'profile_pic')
+        fields = '__all__'
 
 
 class ArticleMovieSerializer(serializers.ModelSerializer):
