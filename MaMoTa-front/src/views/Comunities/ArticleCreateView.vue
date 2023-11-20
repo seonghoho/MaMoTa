@@ -1,8 +1,11 @@
-<!-- <template>
-  <div class="create-post-page">
+
+<template>
+  <div class="create-article-page">
     <h1>게시글 생성 페이지</h1>
-    <form @submit.prevent="createArticle" class="post-form">
-      <label for="category" class="form-label">카테고리 선택:</label>
+    <form @submit.prevent="createArticle" class="article-form">
+    <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
+
+      <!-- <label for="category" class="form-label">카테고리 선택:</label>
       <select name="category" id="category" v-model="category" class="form-select">
         <option
           v-for="category in categoryStore.categoryList"
@@ -11,10 +14,23 @@
         >
           {{ category.name }}
         </option>
+      </select> -->
+
+      <label for="title" class="form-label">글 제목:</label>
+      <input type="text" name="title" v-model="title" class="form-input">
+
+      <!-- 평점 추가코드 -->
+      <label for="rate" class="form-label">평점 선택:</label>
+      <select name="rate" id="rate" v-model="rate" class="form-select">
+      <!-- 0.0부터 5.0까지 0.5 단위로 옵션 생성 -->
+        <option v-for="i in 10" :key="i/2" :value="(i/2).toFixed(1)">
+        {{ (i/2).toFixed(1) }}
+        </option>
       </select>
 
-      <label for="title" class="form-label">제목:</label>
-      <input type="text" name="title" v-model="title" class="form-input">
+      <label for="movie" class="form-label">영화:</label>
+      <input type="text" name="movie" v-model="movie" class="form-input">
+
 
       <label for="content" class="form-label">내용:</label>
       <textarea name="content" id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
@@ -26,34 +42,42 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useCategoryStore } from '@/stores/categories'
-import { usePostStore } from '@/stores/posts'
-import { onMounted } from 'vue';
+// 카테고리 부분 데이터 어떻게 땡겨 올지 고민
+// import { useCategoryStore } from '@/stores/categories'
+import { useArticleStore } from '@/stores/article'
+// import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
 const title = ref('')
 const content = ref('')
-const category = ref(1)
-const postStore = usePostStore()
-const categoryStore = useCategoryStore()
-onMounted(() => {
-  categoryStore.getCategoryList()
-})
+// const category = ref(1)
+const rate = ref('')
+const movie = ref('')
+const articleStore = useArticleStore()
+// const categoryStore = useCategoryStore()
 
-const createPost = function () {
-  const post = {
+// onMounted(() => {
+//   categoryStore.getCategoryList()
+// })
+
+// 글 생성 후 다시 커뮤니티로 
+const createArticle = function () {
+  const article = {
     title: title.value,
     content: content.value,
-    category: category.value
+    // category: category.value
+    rate: rate.value,
+    movie: movie.value
+
   }
-  postStore.createPost(post)
-  router.push({name: 'posts'})
+  articleStore.createArticle(article)
+  router.push({name: 'community'})
 }
 </script>
 
 <style scoped>
-.create-post-page {
+.create-article-page {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -64,7 +88,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.post-form {
+.article-form {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -104,4 +128,4 @@ h1 {
 .submit-button:hover {
   background-color: #0056b3;
 }
-</style> -->
+</style>

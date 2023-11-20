@@ -7,7 +7,7 @@ import NowPlayingView from '@/views/Movies/NowPlayingView.vue'
 import UpComingView from '@/views/Movies/UpComingView.vue'
 import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 import ArticleDetailView from '@/views/Comunities/ArticleDetailView.vue'
-// import ArticleCreateView from '@/views/Comunities/ArticleCreateView.vue'
+import ArticleCreateView from '@/views/Comunities/ArticleCreateView.vue'
 
 // 프로필 페이지
 import UserInfo from '@/components/user/UserInfo.vue'
@@ -39,11 +39,11 @@ const router = createRouter({
       component: ArticleDetailView
     },
     // 아티클 생성페이지
-    // {
-    //   path: '/article',
-    //   name: 'articleCreate',
-    //   component: ArticleCreateView
-    // },
+    {
+      path: '/articleCreate',
+      name: 'articleCreate',
+      component: ArticleCreateView
+    },
 
     {
       path: '/popular',
