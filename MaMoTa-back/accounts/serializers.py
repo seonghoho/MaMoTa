@@ -54,7 +54,8 @@ class CustomRegisterSerializer(RegisterSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ('pk', 'username', 'profile_pic')
 
 
 class ArticleMovieSerializer(serializers.ModelSerializer):
