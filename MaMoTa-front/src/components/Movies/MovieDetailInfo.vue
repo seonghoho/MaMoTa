@@ -56,9 +56,9 @@
 </template>
 
 <script setup>
-import { defineProps, ref, onMounted } from 'vue';
-import axios from 'axios';
-import { useMovieStore } from '@/stores/movie';
+import { defineProps } from 'vue';
+import YoutubeTrailer from '@/components/YouTube/YoutubeTrailer.vue';
+import { useMovieStore } from '@/stores/movie'
 
 const store = useMovieStore();
 
