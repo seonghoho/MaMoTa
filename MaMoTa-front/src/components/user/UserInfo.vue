@@ -9,8 +9,11 @@
       />
     </div> -->
     <!-- 사용자 정보 -->
-    <div class="text-center mb-4">
+    <div class="text-center mb-4" v-if="!user.is_superuser">
       <h3 class="mb-0">{{ user.nickname }}</h3>
+    </div>
+    <div class="text-center mb-4" v-else>
+      <h3 class="mb-0">관리자님 환영합니다.</h3>
     </div>
     <div class="user-details border-top pt-3">
       <div class="like-count-info mb-2">
@@ -22,6 +25,9 @@
       <div class="like-count-info mb-2">
         가입일: <strong>{{ formattedDateJoined }}</strong>
       </div>
+      <!-- <div class="like-count-info mb-2">
+        가입일: <strong>{{ formattedDateJoined }}</strong>
+      </div> -->
     </div>
   </div>
 </template>
@@ -50,6 +56,8 @@ const formattedDateJoined = computed(() => {
   max-width: 500px;
   min-width: 300px;
   margin: 0 auto;
+  background-color: red
+
 }
 
 .profile-pic-container {

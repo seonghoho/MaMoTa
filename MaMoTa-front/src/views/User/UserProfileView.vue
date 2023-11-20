@@ -24,7 +24,7 @@
                 'text-secondary': !$route.path.includes(`${user.id}/pick`)
               }"
             >
-              <h3>픽 영화</h3>
+              <h3>좋아하는 영화</h3>
             </RouterLink>
           </li>
           <li class="nav-item">
@@ -48,7 +48,7 @@
                 'text-secondary': !$route.path.includes(`${user.id}/follower`)
               }"
             >
-              <h3>친구목록</h3>
+              <h3>팔로우</h3>
             </RouterLink>
           </li>
         </ul>
