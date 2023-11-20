@@ -9,6 +9,14 @@ import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 import ArticleDetailView from '@/views/Comunities/ArticleDetailView.vue'
 // import ArticleCreateView from '@/views/Comunities/ArticleCreateView.vue'
 
+// 프로필 페이지
+import UserInfo from '@/components/user/UserInfo.vue'
+import UserPick from '@/components/user/UserPick.vue'
+import UserArticle from '@/components/user/UserArticle.vue'
+import UserFollower from '@/components/user/UserFollower.vue'
+
+
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +75,57 @@ const router = createRouter({
       name: "search",
       component: () => import(/* webpackChunkName: "search" */ "@/components/Movies/SearchMovie.vue")
     },
+    
+    // 로그인, 로그아웃 관련
+    {
+      path: '/user/signup',
+      name: 'userSignup',
+      component: () => import('@/views/User/UserSignupView.vue')
+    },
+    {
+      path: '/user/login',
+      name: 'userLogin',
+      component: () => import('@/views/User/UserLoginView.vue')
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: () => import('@/views/User/UserLogoutView.vue')
+    },
+
+    // 유저 프로필
+    {
+      path: '/user/profile/:userId',
+      name: 'userProfile',
+      component: () => import('@/views/User/UserProfileView.vue'),
+      beforeEnter: (to, from, next) => {
+        const isCurrentUser = to.params.userId === window.localStorage.getItem('userPk')
+
+        if (
+          to.path.endsWith('info') ||
+          to.path.endsWith('pick') ||
+          to.path.endsWith('article') ||
+          to.path.endsWith('follower')
+        ) {
+          next()
+          return
+        }
+
+        next(
+          isCurrentUser
+            ? `/user/profile/${to.params.userId}/info`
+            : `/user/profile/${to.params.userId}/pick`
+        )
+      },
+      children: [
+        { path: 'info', name: 'userInfo', component: UserInfo },
+        { path: 'article', name: 'UserArticle', component: UserArticle },
+        { path: 'pick', name: 'UserPick', component: UserPick },
+        { path: 'follower', name: 'UserFollower', component: UserFollower }
+      ]
+    },
+
+
   ]
 })
 

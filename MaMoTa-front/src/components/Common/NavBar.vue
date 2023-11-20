@@ -19,6 +19,36 @@
           <li class="nav-item">
             <RouterLink :to="{ name: 'community' }" class="router-link" active-class="active-tab">Community</RouterLink>
           </li>
+
+          <!-- 로그인 됐으면 -->
+          
+          <li class="nav-item">
+            <RouterLink v-if="userStore.token" :to="`/user/profile/${userStore.userData.pk}`" 
+            class="router-link" active-class="active-tab">
+              Profile
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink v-if="userStore.token" to="/logout"
+            class="router-link" active-class="active-tab">
+              Logout
+            </RouterLink>
+          </li>
+        
+          <!-- 로그인 안 된 상태이면 -->
+
+          <li class="nav-item">
+            <RouterLink v-if="!userStore.token" to="/user/login"
+            class="router-link" active-class="active-tab">
+              Login
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink v-if="!userStore.token" to="/user/signup"
+            class="router-link" active-class="active-tab">
+              Signup
+            </RouterLink>
+          </li>
         </ul>
       </div>
     </nav>
@@ -30,6 +60,10 @@ import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { ref } from 'vue'
 import logoSrc from '@/assets/Images/logo.png'
 import searchSrc from '@/assets/Images/Search.png'
+
+// 로그인 관련 부분
+import { useUserStore } from '@/stores/userStore';
+const userStore = useUserStore()
 
 const logo = ref(logoSrc)
 const search = ref(searchSrc)

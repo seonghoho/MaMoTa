@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import YoutubeTrailer from '@/components/YouTube/YoutubeTrailer.vue';
 import { useMovieStore } from '@/stores/movie'
 
