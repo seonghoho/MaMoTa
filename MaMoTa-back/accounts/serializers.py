@@ -35,9 +35,12 @@ class CustomRegisterSerializer(RegisterSerializer):
         return {
             'username': self.validated_data.get('username', ''),
             'password1': self.validated_data.get('password1', ''),
+            'password2': self.validated_data.get('password1', ''),
             'nickname': self.validated_data.get('nickname', ''),
-            'email': self.validated_data.get('email', ''),
-
+            'first_name': self.validated_data.get('first_name', ''),
+            'last_name': self.validated_data.get('last_name', ''),
+            'profile_pic': self.validated_data.get('profile_pic', ''),
+            
         }
     def save(self, request):
         adapter = get_adapter()
@@ -51,8 +54,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
-
+        fields = ('id', 'username', 'profile_pic')
 
 
 class ArticleMovieSerializer(serializers.ModelSerializer):
