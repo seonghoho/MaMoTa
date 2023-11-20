@@ -55,7 +55,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('pk', 'username', 'profile_pic')
+        fields = ('pk', 'username',)
 
 
 class ArticleMovieSerializer(serializers.ModelSerializer):
@@ -71,11 +71,15 @@ class SimpleMovieSerializer(serializers.ModelSerializer):
         fields = ('pk', 'title', 'poster_path')
 
 
+
+# 프로필 시리얼라이저 수정하는 중
 class ProfileSerializer(serializers.ModelSerializer):
     class FollowFollowingSerializer(serializers.ModelSerializer):
         class Meta:
             model = User
-            fields = ('id', 'username', 'profile_pic')
+            fields = ('id', 'username', )
+            
+            
 
     class ArticleSerializer(serializers.ModelSerializer):
         class LikeUserSerializer(serializers.ModelSerializer):
@@ -132,7 +136,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class ProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'profile_pic')
+        fields = ('id',)
 
 
 class LikeProfileSerializer(serializers.ModelSerializer):
