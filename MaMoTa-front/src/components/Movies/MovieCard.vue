@@ -45,7 +45,6 @@ const getImageUrl = (path) => {
 .movie-card {
   background-color: black;
 }
-
 .card-overview {
   color: black;
   text-decoration: none;

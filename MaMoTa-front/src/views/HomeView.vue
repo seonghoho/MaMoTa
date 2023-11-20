@@ -5,7 +5,6 @@
     <TopRatedMovieView />
     <UpComingView />
     <TopButton />
-
   </div>
 </template>
 
@@ -18,7 +17,6 @@ import TopRatedMovieView from '@/views/Movies/TopRatedMovieView.vue';
 import PopularMovieView from '@/views/Movies/PopularMovieView.vue';
 import NowPlayingView from '@/views/Movies/NowPlayingView.vue';
 import TopButton from '@/components/Common/TopButton.vue';
-
 
 </script>
 

@@ -2,7 +2,6 @@
   <div class="app">
     <NavBar />
     <TopButton />
-
     <RouterView />
 
     <div
@@ -40,7 +39,6 @@ import NavBar from '@/components/Common/NavBar.vue';
 import OpenAi from '@/components/Common/OpenAi.vue';
 import TopButton from '@/components/Common/TopButton.vue';
 import { RouterView } from 'vue-router';
-
 
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ai">
     <h3>🍿 찾으시는 영화가 있나요?</h3>
     <div class="chat">
       <input class="input" placeholder="뭐든지 물어봐주세요! 🌽" v-model="content">
@@ -72,6 +72,7 @@ const askAi = async () => {
 </script>
 
 <style scoped>
+
 h1 {
   margin-bottom: 64px;
 }

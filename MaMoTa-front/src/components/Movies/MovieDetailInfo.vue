@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="poster-container">
       <img :src="getImageUrl(movie.poster_path)" class="card-img-top poster" alt="#">
       <div class="movie-info">
@@ -22,25 +21,57 @@
           <p>{{ movie.overview }}</p>
         </div>
       </div>
-    </div>    
+    </div>
     <div class="trailer">
       <h3>예고편</h3>
-      <!-- <YoutubeTrailer :movieTitle="movie.title" /> -->
+      <div class="iframe-container">
+      <iframe 
+      width="1080" 
+      height="720" 
+      :src="`https://www.youtube.com/embed/${videoKey}`" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div>
+      <h3>감독</h3>
+      <img :src="getImageUrl(directorCredit.profile_path)" class="profile" alt="#">
+      <p>{{ directorCredit.name }}</p>
+
+    </div>
+    <div>
+      <h3>배우</h3>
+      <div class="actors">
+        <div v-for="actor in actorCredit" :key="actor.id" class="actor">
+          <img :src="getImageUrl(actor.profile_path)" class="profile" alt="#">
+          <p>{{ actor.name }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue';
 import YoutubeTrailer from '@/components/YouTube/YoutubeTrailer.vue';
 import { useMovieStore } from '@/stores/movie'
 
-const store = useMovieStore()
+const store = useMovieStore();
 
 const props = defineProps(["movie"]);
+const key = import.meta.env.VITE_TMDB_API_KEY;
+const credits = ref([]);
+const directorCredit = ref({});
+const actorCredit = ref({});
+const videos = ref([]);
+const videoKey = ref('');
 
 const getImageUrl = (path) => {
   if (!path) {
-    return '';
+    return '/src/assets/Images/img_no_poster.png';
   }
   return `https://image.tmdb.org/t/p/w300${path}`;
 }
@@ -49,12 +80,77 @@ const getGenreNameById = (genreId) => {
   const foundGenre = store.genre.genres.find(genre => genre.id === genreId);
   return foundGenre ? foundGenre.name : 'Unknown Genre';
 }
+
+const fetchCredit = () => {
+  const url = `https://api.themoviedb.org/3/movie/${props.movie.id}/credits?language=ko-KR`;
+  const headers = {
+    Accept: 'application/json',
+    Authorization: `Bearer ${key}`,
+  };
+
+  axios.get(url, { headers })
+    .then((response) => {
+      credits.value = response.data || [];
+      directorCredit.value = response.data.crew.find(credit => credit.known_for_department === "Directing") || {};
+      actorCredit.value = response.data.cast.slice(0, 6);
+    })
+    .catch((err) => {
+      console.log('Axios Error: ' + err.message);
+    });
+};
+
+const fetchVideo = () => {
+  const url = `https://api.themoviedb.org/3/movie/${props.movie.id}/videos?language=ko-KR`;
+  const headers = {
+    Accept: 'application/json',
+    Authorization: `Bearer ${key}`,
+  };
+
+  axios.get(url, { headers })
+    .then((response) => {
+      videos.value = response.data.results[0];
+      videoKey.value = videos.value?.key || ''; 
+    })
+    .catch((err) => {
+      console.log('Axios Error: ' + err.message);
+    });
+};
+
+// console.log(credits)
+// console.log(actorCredit)
+// console.log(videos)
+
+
+onMounted(fetchCredit);
+onMounted(fetchVideo);
 </script>
 
 <style>
 .poster {
   max-width: 300px;
   max-height: 450px;
+}
+
+.profile {
+  max-width: 150px;
+  max-height: 275px;
+}
+
+.actors {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+}
+
+.actor {
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.separator {
+  border: none;
+  border-top: 2px solid rgb(233, 42, 233);
+  margin: 20px 0;
 }
 
 .poster-container {
@@ -79,6 +175,20 @@ const getGenreNameById = (genreId) => {
 
 .trailer {
   margin-top: 15px;
+  position: relative;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+}
+
+iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; 
 }
 
 </style>
