@@ -9,6 +9,8 @@
 
   <div v-if="store.detailArticle.data" class="post-details">
     <h1>게시글 상세 정보</h1>
+    <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
+
     <div class="post-info">
       <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p>
       <p class="post-title">글 제목:{{ store.detailArticle.data.title }}</p>
@@ -20,9 +22,20 @@
     </div>
     <hr>
     <p class="post-content">글 내용:{{ store.detailArticle.data.content }}</p>
-    <!-- <CommentCreate 
-      :postPk="store.detailPost.id"
-    /> -->
+    <!-- <p>댓글 개수 {{ store.detailArticle.data.comment_set }}</p> -->
+    
+    <!-- 게시글 수정 및 삭제 부분
+    <span
+      v-if="store.detailPost.data.user?.pk === authStore.user.pk"
+    >
+      <button @click="router.push({name:'articleUpdate', params:{pk:store.detailPost.data.id}})">수정</button>
+      <button @click="store.deletePost(store.detailPost.data.id)">🗑</button>
+    </span> -->
+    
+    <!-- <댓글작성부분 추가 삭제 내용 포함> -->
+    <CommentCreate 
+      :articlePk="store.detailArticle.data.id"
+    />
     <ul class="comment-list">
       <CommentList
         v-for="comment in store.detailArticle.data.comment_set"
@@ -32,14 +45,13 @@
       />
     </ul> 
 
-    <!-- 댓글 작성 및 댓글 출력 부분 추가 예정 -->
 
     <hr>
   </div>
 </template>
 
 <script setup>
-// import CommentCreate from '../components/CommentCreate.vue';
+import CommentCreate from '@/components/Comunities/CommentCreate.vue';
 import CommentList from '@/components/Comunities/CommentList.vue';
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -48,6 +60,20 @@ import { useArticleStore } from '@/stores/article';
 const route = useRoute()
 const store = useArticleStore()
 
+// 수정 및 삭제 태그 추가 부분
+// import CommentCreate from '../components/CommentCreate.vue';
+// import CommentList from '../components/CommentList.vue';
+// import { onMounted } from 'vue';
+// import { useRouter, useRoute } from 'vue-router';
+// import { usePostStore } from '../stores/posts';
+// import { useAuthStore } from '../stores/auth';
+// const authStore = useAuthStore()
+// const router = useRouter()
+// const route = useRoute()
+// const store = usePostStore()
+// onMounted(() => {
+//   store.getDetailPost(route.params.pk)
+// })
 
 
 
