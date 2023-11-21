@@ -3,30 +3,51 @@
 import axios from 'axios'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+// 토큰 부분 임포트 추가
+import { useUserStore } from'./userStore'
+
 
 export const useArticleStore = defineStore('post', () => {
+  // 토큰 불러오기 추가
+  const token = useUserStore().token
   const articleList = ref([])                     
-  const getArticleList = async function () {
-    try {
-      const res = await axios.get('http://127.0.0.1:8000/community/');
-      articleList.value = res.data;
-    } catch (err) {
-      console.log(err);
-    }
+  // const getArticleList = async function () {
+  //   try {
+  //     const res = await axios.get('http://127.0.0.1:8000/community/');
+  //     articleList.value = res.data;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  //  전체 조회 토큰 부분 추가
+  const getArticleList = function () {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:8000/community/',
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+    .then(res => articleList.value = res.data)
+    .catch(err => console.log(err))
   }
 
   const detailArticle = ref([])
-  
+  // 디테일 확인 헤더 토큰 부분 추가
   const getDetailArticle = function (pk) {
     axios({
       method: 'get',
-      url: `http://127.0.0.1:8000/community/article/${pk}`
+      url: `http://127.0.0.1:8000/community/article/${pk}`,
+      headers: {
+        Authorization: `Token ${token}`
+      }
     })
     .then(res => detailArticle.value = res.data)
     .catch(err => console.log(err))
   }
 
-  const createArticle = function ({rate, title, content, movie}) {
+  const createArticle = function ({rate, title, content, movie,view_count}) {
+    console.log(`${token}`)
     axios({
       method: 'post',
       url: 'http://127.0.0.1:8000/community/article/',
@@ -34,14 +55,16 @@ export const useArticleStore = defineStore('post', () => {
         rate,
         title,
         content,
-        movie
-      },
+        movie,
+        view_count
 
-      // headers: { 토큰관련
-      //   Authorization: `Token ${token}`
-      // }
+      },
+      headers: {
+        Authorization: `Token ${token}`
+      }
     })
-    // .then(res => router.push({name: 'detail', params:{pk:res.data.id}})) 그 해당글로 바로가게
+    .then(res => router.push({name: 'detail', params:{pk:res.data.id}}))
+    .catch(err => console.log(err))
   }
 
   // const updatePost = function ({pk, category, title, content}) {
