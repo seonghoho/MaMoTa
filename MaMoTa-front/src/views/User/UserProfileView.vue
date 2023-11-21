@@ -24,7 +24,7 @@
               :to="`/user/profile/${user.id}/article`"
               class="nav-link"
             >
-              <h3>작성리뷰</h3>
+              <h3>작성한 게시글</h3>
             </RouterLink>
           </li>
           <li class="nav-item">
