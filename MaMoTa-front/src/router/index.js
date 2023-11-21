@@ -8,7 +8,9 @@ import UpComingView from '@/views/Movies/UpComingView.vue'
 import MovieDetailView from '@/views/Movies/MovieDetailView.vue'
 import ArticleDetailView from '@/views/Comunities/ArticleDetailView.vue'
 import ArticleCreateView from '@/views/Comunities/ArticleCreateView.vue'
+import ArticleUpdateView from '@/views/Comunities/ArticleUpdateView.vue'
 
+ArticleUpdateView
 // 프로필 페이지
 import UserInfo from '@/components/user/UserInfo.vue'
 import UserPick from '@/components/user/UserPick.vue'
@@ -43,6 +45,12 @@ const router = createRouter({
       path: '/articleCreate',
       name: 'articleCreate',
       component: ArticleCreateView
+    },
+    // 디테일 수정 페이지
+    {
+      path: '/articleUpdate/:id',
+      name: 'articleUpdate',
+      component: ArticleUpdateView
     },
 
     {
