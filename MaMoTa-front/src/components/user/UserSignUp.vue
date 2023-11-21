@@ -4,17 +4,17 @@
       <div class="col-md-6">
         <h2 class="text-center mb-4">회원가입</h2>
         <div class="mb-3">
-          <label for="username" class="form-label">유저네임</label>
+          <label for="username" class="form-label">이메일</label>
           <input
             v-model="username"
             type="username"
             class="form-control"
             id="username"
-            placeholder="이름?"
+            placeholder="이메일을 적어주세요"
           />
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">이메일</label>
+          <label for="email" class="form-label">이메일 확인</label>
           <input
             v-model="email"
             type="email"
@@ -54,7 +54,7 @@
             placeholder="별명"
           />
         </div>
-        <div class="mb-4">
+        <!-- <div class="mb-4">
           <label for="first_name" class="form-label">성</label>
           <input
             v-model="first_name"
@@ -73,7 +73,7 @@
             id="last_name"
             placeholder="이름"
           />
-        </div>
+        </div> -->
         <div class="d-grid">
           <button @click="signUp" class="btn btn-info mt-4">회원가입</button>
         </div>
@@ -93,8 +93,8 @@ const email = ref(null)
 const password1 = ref(null)
 const password2 = ref(null)
 const nickname = ref(null)
-const first_name = ref(null)
-const last_name = ref(null)
+// const first_name = ref(null)
+// const last_name = ref(null)
 
 const userStore = useUserStore();
 
@@ -116,9 +116,20 @@ const signUp = () => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.value)) {
+    alertMessage("이메일을 확인해주세요");
+    return;
+  }  
+
+  if (username.value !== email.value) {
+    alertMessage("비밀번호가 일치하지 않습니다");
+    return;
+  }
+
+  if (!emailRegex.test(username.value)) {
     alertMessage("아이디는 이메일 형식이어야 합니다");
     return;
   }
+
 
   if (!password1.value) {
     alertMessage("비밀번호를 입력해주세요");
@@ -138,14 +149,14 @@ const signUp = () => {
     alertMessage("닉네임을 입력해주세요.");
     return;
   }
-  if (!first_name.value) {
-    alertMessage("성을 입력해주세요.");
-    return;
-  }
-  if (!last_name.value) {
-    alertMessage("이름을 입력해주세요.");
-    return;
-  }
+  // if (!first_name.value) {
+  //   alertMessage("성을 입력해주세요.");
+  //   return;
+  // }
+  // if (!last_name.value) {
+  //   alertMessage("이름을 입력해주세요.");
+  //   return;
+  // }
 
   const payload = {
     username: username.value,
@@ -153,8 +164,8 @@ const signUp = () => {
     password1: password1.value,
     password2: password2.value,
     nickname: nickname.value,
-    first_name: first_name.value,
-    last_name: last_name.value
+    // first_name: first_name.value,
+    // last_name: last_name.value
   };
 
   userStore.signUpUser(payload);

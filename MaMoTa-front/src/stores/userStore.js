@@ -20,32 +20,34 @@ export const useUserStore = defineStore("user", () => {
       userData.value.username = user.username;
     };
     
-    // 회원가입 - 성공
-    const signUpUser = (payload) => {
-      signUpApi(payload)
-      .then((response) => {
-        console.log(response)
-        console.log(response.status)
-        if (response.status == 204) {
-          Swal.fire({
-            title: "회원가입 완료. \n 로그인 하시겠습니까?",
-            icon: "success",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "네",
-            cancelButtonText: "아니요",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              router.push({ name: "userLogin" });
-            } else {
-              router.push({ name: "home" });
-            }
-          });
-        }
-      });
-    };
-
+// 회원가입 - 성공
+const signUpUser = (payload) => {
+  signUpApi(payload)
+    .then((response) => {
+      // response가 존재하고, response.status가 존재하며 204인 경우
+      if (response && response.status === 204) {
+        Swal.fire({
+          title: "회원가입 완료. \n 로그인 하시겠습니까?",
+          icon: "success",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "네",
+          cancelButtonText: "아니요",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push({ name: "userLogin" });
+          } else {
+            router.push({ name: "home" });
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("회원가입 중 에러가 발생했습니다:", error);
+      // 여기서 error에 대한 처리를 추가할 수 있습니다.
+    });
+};
     // 로그인 성공
     const loginUser = (payload) => {
       loginApi(payload)
