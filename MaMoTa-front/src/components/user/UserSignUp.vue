@@ -4,9 +4,19 @@
       <div class="col-md-6">
         <h2 class="text-center mb-4">회원가입</h2>
         <div class="mb-3">
-          <label for="email" class="form-label">이메일</label>
+          <label for="username" class="form-label">유저네임</label>
           <input
             v-model="username"
+            type="username"
+            class="form-control"
+            id="username"
+            placeholder="이름?"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">이메일</label>
+          <input
+            v-model="email"
             type="email"
             class="form-control"
             id="email"
@@ -79,6 +89,7 @@ import Swal from "sweetalert2";
 
 // 회원 가입
 const username = ref(null)
+const email = ref(null)
 const password1 = ref(null)
 const password2 = ref(null)
 const nickname = ref(null)
@@ -104,7 +115,7 @@ const signUp = () => {
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(username.value)) {
+  if (!emailRegex.test(email.value)) {
     alertMessage("아이디는 이메일 형식이어야 합니다");
     return;
   }
@@ -138,6 +149,7 @@ const signUp = () => {
 
   const payload = {
     username: username.value,
+    email: email.value,
     password1: password1.value,
     password2: password2.value,
     nickname: nickname.value,
