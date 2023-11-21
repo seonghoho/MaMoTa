@@ -9,18 +9,26 @@
       v-if="productIsEmpty"
       v-for="article in paginatedArticles"
       :key="article.id"
-      @click="goDetail(article.id)"
       class="article_list"
+      @click="goDetail(article.id)"
       >
-      <!-- {{ article }} -->
+      <!-- {{ article }} 객체확인용 -->
       <!-- <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p> -->
-      <p>글쓴이 아이디 {{ article.username }}  뒤에 이메일 필터링 예정</p>
+      <!-- <RouterLink  :to="`/user/profile/${article.user}`" 
+              class="router-link"
+              >
+              {{ article.username }}
+            
+            </RouterLink> 라우터링크로 유저 프로필가는 부분 구현 삭제예정 -->
+
+      <p></p>
+      <div @click.stop="goProfile(article.user)">{{ article.username }} 이 부분 누르면 유저 프로필로~</div>
+      <p></p>
       <p>글쓴이가 준 평점 {{ article.rate }}</p>
       <p>게시글 생성일{{ article.created_at }}</p>
       <p>게시글 수정일{{ article.updated_at }}</p>
       <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p>
-      <P>좋아요 개수</P>
-      <p>{{ article }} 객체 확인부분</p>
+      <!-- <P>좋아요 개수</P> -->
       <!-- <p>조회수 : {{ article.view_count }}</p> -->
         <hr>
       </div>
@@ -37,11 +45,10 @@
       <button @click="nextPage" :disabled="currentPage == totalPages">다음</button>
     </div> -->
 
-  <!-- 로딩영역 추가 -->
+  <!-- 로딩영역 추가 삭제예정-->
   <div>
       <button @click="prevPage" :disabled="currentPage == 1">이전</button>
       
-      <!-- 페이지 번호 클릭 이벤트 핸들러 추가 -->
       <span v-for="page in totalPages" :key="page">
         <button @click="goToPage(page)" :class="{ 'selected': currentPage === page }">{{ page }}</button>
       </span>
@@ -57,11 +64,29 @@ import { RouterLink } from 'vue-router'
 import { ref,computed,onMounted } from 'vue';
 import { useArticleStore } from '@/stores/article';
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore';
+
 const router = useRouter()
 const store = useArticleStore()
 const itemsPerPage = 10;
 const currentPage = ref(1);
+const userStore = useUserStore()
 // 바로 아티클 리스트 데이터받기
+
+onMounted(() => {
+  store.getArticleList()
+})
+
+// 프로필, 상세페이지 이벤트 함수
+const goDetail = (id) => {
+  router.push({name:'detail', params:{id: id}})
+}
+const goProfile = (userId) => {
+  router.push({name:'userProfile', params:{userId: userId}})
+}
+
+
+// 페이지 처링
 
 const goToPage = (page) => {
   if (page >= 1 && page <= totalPages.value) {
@@ -70,18 +95,10 @@ const goToPage = (page) => {
 };
 
 
-onMounted(() => {
-  store.getArticleList()
-})
-
 const productIsEmpty = computed(() => {
   return paginatedArticles.value.length > 0 ? true : false
 })
 
-
-const goDetail = (id) => {
-  router.push({name:'detail', params:{id: id}})
-}
 
 const paginatedArticles = computed(() => {
   if (!store.articleList.article) {
@@ -103,8 +120,6 @@ const totalPages = computed(() => {
   return Math.ceil(store.articleList.article.length / itemsPerPage);
 });
 
-console.log(totalPages)
-console.log(paginatedArticles)
 
 
 const nextPage = () => {
