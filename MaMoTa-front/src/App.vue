@@ -2,8 +2,8 @@
   <div class="app">
     <NavBar />
     <TopButton />
+    <MusicPlayer />
     <RouterView />
-
     <div
       class="fixed mb-2"
       data-bs-toggle="modal"
@@ -39,6 +39,7 @@ import NavBar from '@/components/Common/NavBar.vue';
 import OpenAi from '@/components/Common/OpenAi.vue';
 import TopButton from '@/components/Common/TopButton.vue';
 import { RouterView } from 'vue-router';
+import MusicPlayer from '@/components/Common/MusicPlayer.vue';
 
 </script>
 
@@ -53,5 +54,7 @@ h2 {
   margin-top: 15px;
 }
 
-
+@font-face{
+font-family:'DNFBitBitv2';
+font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')}
 </style>

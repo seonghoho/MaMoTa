@@ -1,9 +1,19 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">
-      <RouterLink :to="{ name: 'search' }" class="search">
-        <img :src="search" alt="Logo" height="50" width="50">
-      </RouterLink>
+      <div class="left-section">
+        <RouterLink :to="{ name: 'search' }" class="search">
+          <img :src="search" alt="Logo" height="50" width="50">
+        </RouterLink>
+        <div class="weather">
+          <WeatherView />
+        </div>
+      </div>
+      <div class="logo-container">
+        <RouterLink :to="{ name: 'home' }">
+          <img :src="logo" alt="#" class='logo'>
+        </RouterLink>
+      </div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -18,31 +28,28 @@
           </li>
 
           <!-- 로그인 됐으면 -->
-          
+
           <li class="nav-item">
-            <RouterLink v-if="userStore.token" :to="`/user/profile/${userStore.userData.pk}`" 
-            class="router-link" active-class="active-tab">
+            <RouterLink v-if="userStore.token" :to="`/user/profile/${userStore.userData.pk}`" class="router-link"
+              active-class="active-tab">
               Profile
             </RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink v-if="userStore.token" to="/logout"
-            class="router-link" active-class="active-tab">
+            <RouterLink v-if="userStore.token" to="/logout" class="router-link" active-class="active-tab">
               Logout
             </RouterLink>
           </li>
-        
+
           <!-- 로그인 안 된 상태이면 -->
 
           <li class="nav-item">
-            <RouterLink v-if="!userStore.token" to="/user/login"
-            class="router-link" active-class="active-tab">
+            <RouterLink v-if="!userStore.token" to="/user/login" class="router-link" active-class="active-tab">
               Login
             </RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink v-if="!userStore.token" to="/user/signup"
-            class="router-link" active-class="active-tab">
+            <RouterLink v-if="!userStore.token" to="/user/signup" class="router-link" active-class="active-tab">
               Signup
             </RouterLink>
           </li>
@@ -60,6 +67,7 @@ import searchSrc from '@/assets/Images/Search.png'
 
 // 로그인 관련 부분
 import { useUserStore } from '@/stores/userStore';
+import WeatherView from '@/views/Movies/WeatherView.vue';
 const userStore = useUserStore()
 
 const logo = ref(logoSrc)
@@ -78,13 +86,36 @@ const search = ref(searchSrc)
   margin-right: 15px;
 }
 
+.logo {
+  width: 65px;
+}
+
 .active-tab {
   color: rgb(233, 42, 233) !important;
   font-weight: bold !important;
 }
 
+.navbar-toggler {
+  border-color: white;
+  margin-right: 5px;
+}
 .search {
-  margin: auto
+  margin: auto;
+  margin-left: 10px;
+}
+.logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+.left-section {
+  margin-right: auto;
+  display: flex;
+}
+
+.weather {
+  margin: auto;
+  margin-left: 35px;
+}
 </style>

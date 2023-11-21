@@ -7,7 +7,7 @@
         v-on:keyup.enter="searchMovie"
         class="form-control me-2 search-input"
         type="search"
-        placeholder="Search"
+        placeholder="검색어를 입력하세요!"
         aria-label="Search"
       />
       <button @click="searchMovie" class="btn btn-outline-success search-button">Search</button>
@@ -79,6 +79,9 @@ onMounted(fetchMovie)
   border: 1px solid rgb(233, 42, 233);
 }
 
+.search-input::placeholder {
+  color: white;
+}
 .search-button {
   margin-top: 15px;
   background-color: black;

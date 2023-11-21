@@ -36,7 +36,10 @@ import MovieDetailInfo from '@/components/Movies/MovieDetailInfo.vue';
 const props = defineProps(["movie"])
 
 const getImageUrl = (path) => {
-  return path ? `https://image.tmdb.org/t/p/w500${path}` : ""
+  if (!path) {
+    return '/src/assets/Images/img_no_poster.png';
+  }
+  return `https://image.tmdb.org/t/p/w300${path}`;
 }
 </script>
 

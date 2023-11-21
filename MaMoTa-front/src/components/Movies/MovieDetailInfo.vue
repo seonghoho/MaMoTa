@@ -37,18 +37,18 @@
       </div>
     </div>
     <div class="separator"></div>
-    <div>
+    <div class="director">
       <h3>감독</h3>
       <img :src="getImageUrl(directorCredit.profile_path)" class="profile" alt="#">
       <p>{{ directorCredit.name }}</p>
 
     </div>
     <div>
-      <h3>배우</h3>
+      <h3 class="actor-data">배우</h3>
       <div class="actors">
         <div v-for="actor in actorCredit" :key="actor.id" class="actor">
           <img :src="getImageUrl(actor.profile_path)" class="profile" alt="#">
-          <p>{{ actor.name }}</p>
+          <p class="actor-data">{{ actor.name }}</p>
         </div>
       </div>
     </div>
@@ -59,6 +59,7 @@
 import { defineProps, ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useMovieStore } from '@/stores/movie'
+import NowMovieCard from '@/components/Movies/NowMovieCard.vue';
 
 const store = useMovieStore();
 
@@ -117,6 +118,7 @@ const fetchVideo = () => {
     });
 };
 
+
 // console.log(credits)
 // console.log(actorCredit)
 // console.log(videos)
@@ -130,6 +132,13 @@ onMounted(fetchVideo);
 .poster {
   max-width: 300px;
   max-height: 450px;
+}
+
+.detail,
+.movie-info,
+.h3,
+.p {
+  color: white !important;
 }
 
 .profile {
@@ -146,6 +155,15 @@ onMounted(fetchVideo);
 .actor {
   text-align: center;
   flex: 0 0 auto;
+  color: white !important;
+}
+
+.director {
+  color: white !important;
+}
+
+.actor-data {
+  color: white !important;
 }
 
 .separator {
