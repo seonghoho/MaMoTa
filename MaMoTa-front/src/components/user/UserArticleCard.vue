@@ -3,7 +3,6 @@
     <RouterLink
       :to="{ name: 'MovieDetailView', params: { moviePk: article.movie.id || article.movie.pk } }"
     >
-      <img :src="getImageUrl(article.movie.poster_path)" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ getFormattedTitle }}</h5>
         <div class="card-content">
@@ -21,14 +20,10 @@ import { computed } from 'vue'
 const props = defineProps({
   article: Object
 })
+onVnodeUnmounted(() => {
+  console.log('Component unmounted')
+})
 
-const getImageUrl = (path) => {
-  // 이미지가 없는경우 예외처리
-  if (!path) {
-    return
-  }
-  return `https://image.tmdb.org/t/p/w500${path}`
-}
 
 const getFormattedTitle = computed(() => {
   const title = props.article.movie.title || props.article.movie.name

@@ -9,12 +9,9 @@
       </div>
     </div>
     <div v-else class="d-flex justify-content-center align-items-center mt-5">
-      <p>
-        <span
-          style="color: rgb(53, 194, 226); font-weight: bold; margin-right: 0.5rem; font-size: 2rem"
-          >Pick</span
-        >한 영화가 없습니다.
-      </p>
+      <div class="pick-text">
+        ❣️ 좋아요 누른 영화가 없습니다.😥
+      </div>
     </div>
   </div>
 </template>
@@ -29,5 +26,15 @@ const props = defineProps(['user'])
 .like-movie-info {
   width: 80%;
   padding: 20px;
+}
+
+.pick-text {
+  background-color: rgba(0, 0, 0, 0.5); 
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  font-size: 25px;
+  font-weight: 550;
 }
 </style>

@@ -9,8 +9,8 @@
     </div>  
     </div>
     <div v-else class="d-flex justify-content-center align-items-center mt-5">
-  <p class="text-muted">작성한 리뷰가 없습니다.</p>
-</div>
+      <p class="text-muted">작성한 리뷰가 없습니다.</p>
+    </div>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ import UserArticleCard from '@/components/user/UserArticleCard.vue'
 
 const props = defineProps(['user', 'isCurrentUser'])
 
-console.log(user)
+// console.log(user)
 
 
 </script>

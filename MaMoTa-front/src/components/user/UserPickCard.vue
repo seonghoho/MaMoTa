@@ -16,13 +16,13 @@ const props = defineProps({
   movie: Object
 })
 
-const getImageUrl = (path) => {
-  // 이미지가 없는경우 예외처리
-  if (!path) {
-    return
-  }
-  return `https://image.tmdb.org/t/p/w500${path}`
-}
+// const getImageUrl = (path) => {
+//   // 이미지가 없는경우 예외처리
+//   if (!path) {
+//     return
+//   }
+//   return `https://image.tmdb.org/t/p/w500${path}`
+// }
 
 const getFormattedTitle = computed(() => {
   const title = props.movie.title || props.movie.name
