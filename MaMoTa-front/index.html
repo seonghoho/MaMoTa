@@ -7,10 +7,6 @@
     <title>Vite App</title>
     <style>
       body {
-        background-color: black;
-        background-image: url('/src/assets/Images/background.gif');
-        background-size: cover;
-        background-position: center;
         margin: 0;
         height: 100vh;
         overflow: hidden;
@@ -18,11 +14,28 @@
 
       #app {
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: black url('/src/assets/Images/background.gif') repeat-y center top;
+        background-size: cover;
+        overflow-y: auto;
+        animation: animateBackground 20s linear infinite alternate-reverse;
+      }
+
+      @keyframes animateBackground {
+        0% {
+          background-position: center top;
+        }
+        100% {
+          background-position: center bottom;
+        }
       }
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <!-- 여기에 내용 추가 -->
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
