@@ -13,8 +13,12 @@
    - npm install youtube-iframe
    - npm install -D sass
    - npm install vuex
-   - npm install vue3-carousel
-
+   - npm install vue3-carousel-3d
+   - npm i --save @fortawesome/fontawesome-svg-core
+   - npm i --save @fortawesome/free-solid-svg-icons
+   - npm i --save @fortawesome/free-regular-svg-icons
+   - npm i --save @fortawesome/free-brands-svg-icons
+   - npm i --save @fortawesome/vue-fontawesome@3
 
 # 2023-11-15
 
@@ -93,3 +97,9 @@
 - 전체 게시글 조회 페이지 처리 기능 추가
 - 게시글 생성, 수정 추가
 - 뒤로가기 추가
+
+# 2023-11-21
+
+## 김선욱
+- 음악 플레이어 추가
+- 날씨 데이터를 통한 랜덤 영화 추천 구현
