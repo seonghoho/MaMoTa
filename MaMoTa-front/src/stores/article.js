@@ -5,10 +5,11 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 // 토큰 부분 임포트 추가
 import { useUserStore } from'./userStore'
-
+import { useRouter } from 'vue-router'
 
 export const useArticleStore = defineStore('post', () => {
   // 토큰 불러오기 추가
+  const router = useRouter()
   const token = useUserStore().token
   const articleList = ref([])                     
   // const getArticleList = async function () {
@@ -67,61 +68,37 @@ export const useArticleStore = defineStore('post', () => {
     .catch(err => console.log(err))
   }
 
-  // const updatePost = function ({pk, category, title, content}) {
-  //   axios({
-  //     method: 'put',
-  //     url: `http://127.0.0.1:8000/api/v1/posts/${pk}/`,
-  //     data: {
-  //       category,
-  //       title,
-  //       content
-  //     },
-  //     headers: {
-  //       Authorization: `Token ${token}`
-  //     }
-  //   })
-  //   .then(res => router.push({name: 'detail', params:{pk:res.data.id}}))
-  // }
+  const updateArticle = function ({pk, rate, title, content, movie,view_count}) {
+    axios({
+      method: 'put',
+      url: `http://127.0.0.1:8000/community/article/${pk}/`,
+      data: {
+            rate,
+            title,
+            content,
+            movie,
+            view_count
+      },
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+    // .then(res => router.push({name: 'detail', params:{pk:res.data.id}}))
+    .then(res => console.log(`${res}`))
 
-  // const deletePost = function (pk) {
-  //   axios({
-  //     method: 'delete',
-  //     url: `http://127.0.0.1:8000/api/v1/posts/${pk}/`,
-  //     headers: {
-  //       Authorization: `Token ${token}`
-  //     }
-  //   })
-  //   .then(res => router.push({name:'posts'}))
-  // }
-  // const updateArticle = function ({pk, rate, title, content, movie}) {
-  //   axios({
-  //     method: 'put',
-  //     url: `http://127.0.0.1:8000/api/v1/posts/${pk}/`,
-  //     data: {
-  //       rate,
-  //       title,
-  //       content,
-  //       movie
-  //     },
-  //     // headers: {
-  //     //   Authorization: `Token ${token}`
-  //     // }
-  //   })
-  //   .then(res => router.push({name: 'detail', params:{pk:res.data.id}}))
-  // }
-  // const deletePost = function (pk) {
-  //   axios({
-  //     method: 'delete',
-  //     url: `http://127.0.0.1:8000/api/v1/posts/${pk}/`,
-  //     headers: {
-  //       Authorization: `Token ${token}`
-  //     }
-  //   })
-  //   .then(res => router.push({name:'posts'}))
-  // }
+  }
 
+  const deleteArticle = function (pk) {
+    axios({
+      method: 'delete',
+      url: `http://127.0.0.1:8000/community/article/${pk}/`,
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+    .then(res => router.push({name:'community'}))
+  }
+  
 
-
-
-  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle}
+  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle,updateArticle, deleteArticle}
 })
