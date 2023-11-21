@@ -43,24 +43,15 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     objects = UserManager()
-    email = models.EmailField(unique=True)
-    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     
-    # email을 사용자 이름이자 unique한 값으로 설정해 회원가입 받음
+    email = models.EmailField(unique=False)
+    
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     username = models.CharField(max_length=50, unique=True)
     nickname = models.CharField(max_length=255, blank=False, null=False)
-    first_name = models.CharField(blank=False, null=False, max_length=255)    
-    last_name = models.CharField(blank=False, null=False, max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    profile_pic = ProcessedImageField(
-    		blank = True,
-        	upload_to = 'profile/images',
-        	processors = [ResizeToFill(300, 300)],
-        	format = 'JPEG',
-        	options = {'quality':90},
-    		)
     REQUIRED_FIELDS  = ['email']
     
     def has_module_perms(self, app_label):
@@ -82,24 +73,15 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         password1 = data.get("password1")
         password2 = data.get("password2")
         nickname = data.get("nickname")
-        first_name = data.get("first_name")
-        last_name = data.get("last_name")
-        
-        # Remove this line: user_email(user, email)
 
-        # user 객체를 다시 생성하지 않고 이미 생성된 객체를 사용
         user_username(user, username)
-        
+        # user_email(user, email)
         if email:
             user_email(user, "email", email)
         if password1:
             user_field(user, "password1", password1)
         if password2:
             user_field(user, "password2", password2)
-        if first_name:
-            user_field(user, "first_name", first_name)
-        if last_name:
-            user_field(user, "last_name", last_name)
         if nickname:
             user_field(user, "nickname", nickname)
         if "password1" in data:

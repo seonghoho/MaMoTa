@@ -54,7 +54,7 @@
             placeholder="별명"
           />
         </div>
-        <div class="mb-4">
+        <!-- <div class="mb-4">
           <label for="first_name" class="form-label">성</label>
           <input
             v-model="first_name"
@@ -73,7 +73,7 @@
             id="last_name"
             placeholder="이름"
           />
-        </div>
+        </div> -->
         <div class="d-grid">
           <button @click="signUp" class="btn btn-info mt-4">회원가입</button>
         </div>
@@ -93,8 +93,8 @@ const email = ref(null)
 const password1 = ref(null)
 const password2 = ref(null)
 const nickname = ref(null)
-const first_name = ref(null)
-const last_name = ref(null)
+// const first_name = ref(null)
+// const last_name = ref(null)
 
 const userStore = useUserStore();
 
@@ -138,14 +138,14 @@ const signUp = () => {
     alertMessage("닉네임을 입력해주세요.");
     return;
   }
-  if (!first_name.value) {
-    alertMessage("성을 입력해주세요.");
-    return;
-  }
-  if (!last_name.value) {
-    alertMessage("이름을 입력해주세요.");
-    return;
-  }
+  // if (!first_name.value) {
+  //   alertMessage("성을 입력해주세요.");
+  //   return;
+  // }
+  // if (!last_name.value) {
+  //   alertMessage("이름을 입력해주세요.");
+  //   return;
+  // }
 
   const payload = {
     username: username.value,
@@ -153,8 +153,8 @@ const signUp = () => {
     password1: password1.value,
     password2: password2.value,
     nickname: nickname.value,
-    first_name: first_name.value,
-    last_name: last_name.value
+    // first_name: first_name.value,
+    // last_name: last_name.value
   };
 
   userStore.signUpUser(payload);
