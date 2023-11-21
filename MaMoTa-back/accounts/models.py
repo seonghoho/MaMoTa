@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     
     # email을 사용자 이름이자 unique한 값으로 설정해 회원가입 받음
-    username = models.EmailField(unique=True)
+    username = models.CharField(max_length=50, unique=True)
     nickname = models.CharField(max_length=255, blank=False, null=False)
     first_name = models.CharField(blank=False, null=False, max_length=255)    
     last_name = models.CharField(blank=False, null=False, max_length=255)
@@ -89,8 +89,9 @@ class CustomAccountAdapter(DefaultAccountAdapter):
 
         # user 객체를 다시 생성하지 않고 이미 생성된 객체를 사용
         user_username(user, username)
-        # Instead, set the 'email' field directly
-        user.email = email
+        
+        if email:
+            user_email(user, "email", email)
         if password1:
             user_field(user, "password1", password1)
         if password2:
