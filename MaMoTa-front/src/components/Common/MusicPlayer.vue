@@ -42,23 +42,27 @@ const currentVideo = ref(videos[currentIndex]);
 
 const playNext = () => {
   currentIndex = (currentIndex + 1) % videos.length;
+  console.log(currentIndex)
   currentVideo.value = videos[currentIndex];
   isPlaying.value = true;
 };
 
 const playPrevious = () => {
   currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+  console.log(currentIndex)
   currentVideo.value = videos[currentIndex];
   isPlaying.value = true;
 };
 
-watch(currentVideo, () => {
-  isPlaying.value = true;
-});
 
 onMounted(() => {
   // Add event listener for messages from the iframe
   window.addEventListener('message', handleIframeMessages);
+
+  // Add event listener for iframe 'ended' event
+  videoIframe.value.addEventListener('ended', () => {
+    playNext();
+  });
 });
 
 const handleIframeMessages = (event) => {
@@ -122,7 +126,7 @@ const handleIframeMessages = (event) => {
   height: 0;
   padding-bottom: 14.25%; /* 16:9 비율을 유지하기 위한 값 */
   margin: auto;
-  transform: translateY(-50%);
+  transform: translateY(-60%);
 }
 
 .video-iframe {

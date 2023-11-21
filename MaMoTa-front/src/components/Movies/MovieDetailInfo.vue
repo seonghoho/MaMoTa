@@ -6,7 +6,7 @@
         <h1>{{ movie.title }}</h1>
         <div>
           <p>개봉일 : {{ movie.release_date }}</p>
-          <p>TMDB 평점 : {{ movie.vote_average }}</p>
+          <p>🔥 {{ movie.vote_average }} / 10</p>
         </div>
 
         <h3>장르</h3>

@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-3 col-md-6 col-sm-6">
+  <div class="col-lg-2 col-md-4 col-sm-3">
     <div class="card h-100 position-relative movie-card">
       <div :data-bs-target="'#staticBackdrop' + movie.id" data-bs-toggle="modal">
         <div class="custom-poster-container">
