@@ -44,6 +44,7 @@ img {
 }
 .button-top i {
   font-size: 1.5em;
+  z-index: 999;
 }
 
 .button-top:hover {
@@ -56,7 +57,7 @@ img {
   height: 1px;
   margin: -1px;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
