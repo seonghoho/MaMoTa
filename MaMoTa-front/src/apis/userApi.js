@@ -15,11 +15,18 @@ export const signUpApi = (payload) => {
         let errorMessage = "";
 
         Object.values(errorData).forEach((messages) => {
-          const translatedMessages = messages
-            .map(translateMessage)
-            .filter(Boolean);
+          let translatedMessages;  // 변수를 선언하고 초기화
+          if (Array.isArray(messages)) {
+            translatedMessages = messages
+              .map(translateMessage)
+              .filter(Boolean);
+          } else {
+            translatedMessages = [];  // 배열이 아닌 경우 빈 배열로 초기화
+            errorMessage += `${messages}<br>`;
+          }
           errorMessage += `${translatedMessages.join(", ")}<br>`;
         });
+        
 
         if (errorMessage) {
           Swal.fire({

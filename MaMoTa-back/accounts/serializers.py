@@ -16,14 +16,14 @@ class CustomRegisterSerializer(RegisterSerializer):
         allow_blank=False,
         max_length=255
     )
-    first_name = serializers.CharField(
-        required=True,
-        max_length=255
-    )    
-    last_name = serializers.CharField(
-        required=True,
-        max_length=255
-    )
+    # first_name = serializers.CharField(
+    #     required=True,
+    #     max_length=255
+    # )    
+    # last_name = serializers.CharField(
+    #     required=True,
+    #     max_length=255
+    # )
     # profile_pic = serializers.ImageField(
     #     max_length=None,  
     #     use_url=True,
@@ -38,8 +38,8 @@ class CustomRegisterSerializer(RegisterSerializer):
             'password1': self.validated_data.get('password1', ''),
             'password2': self.validated_data.get('password1', ''),
             'nickname': self.validated_data.get('nickname', ''),
-            'first_name': self.validated_data.get('first_name', ''),
-            'last_name': self.validated_data.get('last_name', ''),
+            # 'first_name': self.validated_data.get('first_name', ''),
+            # 'last_name': self.validated_data.get('last_name', ''),
             # 'profile_pic': self.validated_data.get('profile_pic', ''),
             
         }
