@@ -1,12 +1,12 @@
 <template>
   <div class="card h-100 border-dark">
     <RouterLink
-      :to="{ name: 'MovieDetailView', params: { moviePk: article.movie.id || article.movie.pk } }"
+      :to="{name:'detail', params:{id: article.id}}"
     >
       <div class="card-body">
-        <h5 class="card-title">{{ getFormattedTitle }}</h5>
+        <h5 class="card-title">{{ article.title }}</h5>
         <div class="card-content">
-          <div>{{ formatContent(article.title) }}</div>
+          <div>내용 : {{ formatContent(article.content) }}</div>
           <div>{{ article.rate }} / 10</div>
         </div>
       </div>
@@ -20,15 +20,12 @@ import { computed } from 'vue'
 const props = defineProps({
   article: Object
 })
-onVnodeUnmounted(() => {
-  console.log('Component unmounted')
-})
 
 
-const getFormattedTitle = computed(() => {
-  const title = props.article.movie.title || props.article.movie.name
-  return title.length > 15 ? title.slice(0, 15) + '...' : title
-})
+// const getFormattedTitle = computed(() => {
+//   const title = props.article.movie.title || props.article.movie.name
+//   return title.length > 15 ? title.slice(0, 15) + '...' : title
+// })
 
 const formatContent = (content) => {
   const cont = content.length > 13 ? content.slice(0, 13) + '...' : content
@@ -38,7 +35,22 @@ const formatContent = (content) => {
 
 <style scoped>
 .card {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: calc(50% - 10px); /* 10px은 카드 사이의 간격으로 조절 가능 */
+  height: 560px;
+  width: 200px;
+  margin: 0 5px; /* 왼쪽 오른쪽 여백으로 간격을 조절할 수 있습니다. */
+  color: rgb(221, 179, 245);
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1.5px solid white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* 너비와 높이에 padding과 border를 포함시킵니다. */
+  display: inline-block; /* 인라인 블록 요소로 배치합니다. */
+  vertical-align: top; /* 맨 위에 정렬합니다. */
+}
+
+.card:hover {
+  transform: translateY(-15px); /* 왼쪽 위 대각선으로 -5px만큼 이동하여 튀어나오는 효과 생성 */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3); /* 테두리에 그림자 추가 */
 }
 
 
