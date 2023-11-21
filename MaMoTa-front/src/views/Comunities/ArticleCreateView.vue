@@ -18,7 +18,6 @@
 
       <label for="title" class="form-label">글 제목:</label>
       <input type="text" name="title" v-model="title" class="form-input">
-
       <!-- 평점 추가코드 -->
       <label for="rate" class="form-label">평점 선택:</label>
       <select name="rate" id="rate" v-model="rate" class="form-select">
@@ -48,7 +47,6 @@ import { useArticleStore } from '@/stores/article'
 // import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
-
 const title = ref('')
 const content = ref('')
 // const category = ref(1)
@@ -69,7 +67,6 @@ const createArticle = function () {
     // category: category.value
     rate: rate.value,
     movie: movie.value
-
   }
   articleStore.createArticle(article)
   router.push({name: 'community'})
