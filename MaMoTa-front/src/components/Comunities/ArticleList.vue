@@ -13,7 +13,7 @@
       class="article_list"
       >
       <!-- {{ article }} -->
-      <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p>
+      <!-- <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p> -->
       <p>글쓴이 아이디 {{ article.username }}  뒤에 이메일 필터링 예정</p>
       <p>글쓴이가 준 평점 {{ article.rate }}</p>
       <p>게시글 생성일{{ article.created_at }}</p>
@@ -21,7 +21,7 @@
       <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p>
       <P>좋아요 개수</P>
       <p>{{ article }} 객체 확인부분</p>
-      <p>조회수 : {{ article.view_count }}</p>
+      <!-- <p>조회수 : {{ article.view_count }}</p> -->
         <hr>
       </div>
       <div v-else>
@@ -71,9 +71,7 @@ const goToPage = (page) => {
 
 
 onMounted(() => {
-  console.log(1)
   store.getArticleList()
-  console.log(store)
 })
 
 const productIsEmpty = computed(() => {
@@ -87,10 +85,8 @@ const goDetail = (id) => {
 
 const paginatedArticles = computed(() => {
   if (!store.articleList.article) {
-    console.log(2)
     return [];
   }
-  console.log(3)
 
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
@@ -100,11 +96,9 @@ const paginatedArticles = computed(() => {
 
 const totalPages = computed(() => {
   if (!store.articleList.article) {
-    console.log(4)
 
     return 0;
   }
-  console.log(5)
 
   return Math.ceil(store.articleList.article.length / itemsPerPage);
 });
