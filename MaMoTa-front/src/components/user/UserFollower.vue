@@ -5,12 +5,12 @@
         <h6 class="text-center mb-3">팔로워: {{ user.follower_count }}</h6>
         <ul class="list-group mb-4" v-if="user.followers && user.followers.length">
           <li v-for="follower in user.followers" :key="follower.id" class="list-group-item">
-            <RouterLink :to="`/user/profile/${follower.id}`">
-              <img
+            <RouterLink :to="`/user/profile/${follower.id}/info`">
+              <!-- <img
                 :src="follower.profile_pic ? userProfilePic(follower.profile_pic) : AvatarSrc"
                 class="profile-pic"
                 alt="Profile Picture"
-              />
+              /> -->
               <span class="follower-following-name">
                 {{ follower.username.split('@')[0] }}
               </span>
@@ -22,12 +22,12 @@
         <h6 class="text-center mb-3">팔로잉: {{ user.following_count }}</h6>
         <ul class="list-group mb-4" v-if="user.followings && user.followings.length">
           <li v-for="following in user.followings" :key="following.id" class="list-group-item">
-            <RouterLink :to="`/user/profile/${following.id}`">
-              <img
+            <RouterLink :to="`/user/profile/${following.id}/info`">
+              <!-- <img
                 :src="following.profile_pic ? userProfilePic(following.profile_pic) : AvatarSrc"
                 class="profile-pic"
                 alt="Profile Picture"
-              />
+              /> -->
               <span class="follower-following-name"> {{ following.username.split('@')[0] }} </span>
             </RouterLink>
           </li>
@@ -36,9 +36,9 @@
     </div>
     <button
       v-show="!isCurrentUser"
-      :class="isFollowing ? 'btn btn-outline-info mb-5' : 'btn btn-info mb-5'"
+      :class="isFollowing ? 'btn btn-outline-info mb-5 unfollow_button' : 'btn btn-info mb-5 follow_button'"
       @click="followUnfollow"
-      style="width: 130px"
+      style="width: 140px"
     >
       <i
         :class="isFollowing ? 'bi bi-person-dash' : 'bi bi-person-plus'"
@@ -65,7 +65,7 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const userId = route.params.userId
-const userProfilePic = (path) => `http://localhost:8000${path}`
+// const userProfilePic = (path) => `http://localhost:8000${path}`
 const loggedInUserId = parseInt(localStorage.getItem('userPk'))
 
 // following logic
@@ -124,16 +124,35 @@ const followUnfollow = () => {
   padding: 1rem;
 }
 
+/* 팔로우버튼 색상 설정 */
+.follow_button {
+  background-color: rgb(200, 161, 237); 
+  color: black; 
+  font-weight: 600;
+  border: none;
+  
+}
+/* 언팔로우버튼 색상 설정 */
+.unfollow_button {
+  background-color: blueviolet; 
+  color: white; 
+  font-weight: 600;
+  border: none;
+}
+
 .follow-info .col-md-5 {
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.4); 
+  margin: 0 auto;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border:1.5px solid white;
+
 }
 
 .text-center {
-  font-weight: 700;
-  color: #333;
+  font-weight: 550;
+  color: rgb(221, 179, 245);
   margin-bottom: 1.5rem;
   font-size: 1.2em;
 }
@@ -147,6 +166,7 @@ const followUnfollow = () => {
   align-items: center;
   transition: background-color 0.3s;
   padding: 10px 20px;
+  background-color: rgba(255, 166, 255, 0.8);
   border-bottom: 1px solid #ececec;
 }
 
@@ -154,13 +174,13 @@ const followUnfollow = () => {
   background-color: #e6e6e6;
 }
 
-.profile-pic {
+/* .profile-pic {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 15px;
-}
+} */
 
 .router-link-exact-active,
 .router-link-active {

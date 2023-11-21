@@ -1,45 +1,35 @@
 <template>
-  <div class="profile-container bg-light text-dark rounded mt-5 p-4">
-    <!-- 프로필 사진
-    <div class="profile-pic-container mb-4 text-center">
-      <img
-        :src="user.profile_pic ? userProfilePic : AvatarSrc"
-        alt="No Image"
-        class="profile-pic rounded-circle shadow"
-      />
-    </div> -->
-    <!-- 사용자 정보 -->
+  <div class="profile-container rounded mt-5 p-4" style="background-color: rgba(0, 0, 0, 0.4); border:1.5px solid white">
+
     <div class="text-center mb-4" v-if="!user.is_superuser">
-      <h3 class="mb-0">{{ user.nickname }}</h3>
+      <h3 class="nickname mb-0">{{ user.nickname }}</h3>
     </div>
     <div class="text-center mb-4" v-else>
-      <h3 class="mb-0">관리자님 환영합니다.</h3>
+      <h3 class="nickname mb-0">관리자님 환영합니다.</h3>
     </div>
-    <div class="user-details border-top pt-3">
+    <div class="user-details border-top pt-4">
       <div class="like-count-info mb-2">
-        리뷰 수: <strong>{{ user.articles_count }}</strong>
+        <strong>리뷰 수: {{ user.articles_count }}</strong>
       </div>
       <div class="like-count-info mb-2">
-        좋아요 수: <strong>{{ user.like_count }}</strong>
+        <strong>좋아요 수: {{ user.like_count }}</strong>
       </div>
       <div class="like-count-info mb-2">
-        가입일: <strong>{{ formattedDateJoined }}</strong>
+        <strong>팔로워 수: {{ user.follower_count }}</strong>
       </div>
-      <!-- <div class="like-count-info mb-2">
-        가입일: <strong>{{ formattedDateJoined }}</strong>
-      </div> -->
+
     </div>
   </div>
 </template>
 
 <script setup>
 import { defineProps, computed } from 'vue'
-import AvatarSrc from '@/assets/avatar.png'
+// import AvatarSrc from '@/assets/avatar.png'
 
 const props = defineProps(['user'])
 
-const username = computed(() => props.user.username.split('@')[0])
-const userProfilePic = computed(() => `http://localhost:8000${props.user.profile_pic}`)
+// const username = computed(() => props.user.username.split('@')[0])
+// const userProfilePic = computed(() => `http://localhost:8000${props.user.profile_pic}`)
 
 const formattedDateJoined = computed(() => {
   const date = props.user.date_joined ? new Date(props.user.date_joined) : null;
@@ -53,15 +43,26 @@ const formattedDateJoined = computed(() => {
 
 <style scoped>
 .profile-container {
-  max-width: 500px;
+  max-width: 400px;
   min-width: 300px;
+  height: 280px;
   margin: 0 auto;
-  background-color: red
-
+  color: rgb(221, 179, 245);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.profile-pic-container {
-  position: relative;
+.profile-container:hover {
+  transform: translateY(-5px); /* 왼쪽 위 대각선으로 -5px만큼 이동하여 튀어나오는 효과 생성 */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3); /* 테두리에 그림자 추가 */
+}
+
+
+.nickname {
+  font-size: 30px;
+}
+
+.like-count-info {
+  font-size: 30px;
 }
 
 .profile-pic {

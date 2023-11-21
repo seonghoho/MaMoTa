@@ -3,14 +3,10 @@
     <div class="profile-container">
       <div>
         <ul class="nav justify-content-center">
-          <li v-if="isCurrentUser" class="nav-item">
+          <li class="nav-item linkname">
             <RouterLink
               :to="`/user/profile/${user.id}/info`"
               class="nav-link"
-              :class="{
-                'text-info': $route.path.includes(`${user.id}/info`),
-                'text-secondary': !$route.path.includes(`${user.id}/info`)
-              }"
             >
               <h3>회원정보</h3>
             </RouterLink>
@@ -19,10 +15,6 @@
             <RouterLink
               :to="`/user/profile/${user.id}/pick`"
               class="nav-link"
-              :class="{
-                'text-info': $route.path.includes(`${user.id}/pick`),
-                'text-secondary': !$route.path.includes(`${user.id}/pick`)
-              }"
             >
               <h3>좋아하는 영화</h3>
             </RouterLink>
@@ -31,10 +23,6 @@
             <RouterLink
               :to="`/user/profile/${user.id}/article`"
               class="nav-link"
-              :class="{
-                'text-info': $route.path.includes(`${user.id}/article`),
-                'text-secondary': !$route.path.includes(`${user.id}/article`)
-              }"
             >
               <h3>작성리뷰</h3>
             </RouterLink>
@@ -43,10 +31,6 @@
             <RouterLink
               :to="`/user/profile/${user.id}/follower`"
               class="nav-link"
-              :class="{
-                'text-info': $route.path.includes(`${user.id}/follower`),
-                'text-secondary': !$route.path.includes(`${user.id}/follower`)
-              }"
             >
               <h3>팔로우</h3>
             </RouterLink>
@@ -68,12 +52,21 @@ const user = ref(null)
 const route = useRoute()
 const userId = ref(route.params.userId)
 const loggedInUserId = ref(localStorage.getItem('userPk'))
-console.log(loggedInUserId.value)
-console.log(userId.value)
 
 const isCurrentUser = computed(() => {
   return loggedInUserId.value === userId.value
 })
+
+const fetchUserProfile = async () => {
+  try {
+    let idToFetch = isCurrentUser.value ? loggedInUserId.value : userId.value;
+    const response = await axios.get(`http://127.0.0.1:8000/profile/${idToFetch}/`);
+    user.value = response.data;
+  } catch (error) {
+    alert(error);
+    throw error;
+  }
+};
 
 onBeforeRouteUpdate((to, from, next) => {
   if (to.params.userId !== from.params.userId) {
@@ -91,21 +84,6 @@ onBeforeRouteUpdate((to, from, next) => {
   }
 })
 
-const fetchUserProfile = async () => {
-  try {
-    let idToFetch = isCurrentUser.value ? loggedInUserId.value : userId.value;
-    console.log(idToFetch);
-    const response = await axios.get(`http://127.0.0.1:8000/profile/${idToFetch}/`);
-    console.log(response.data);
-    user.value = response.data; // user에 response.data를 할당
-    console.log(user.value)
-  } catch (error) {
-    alert(error);
-    throw error; // throw를 통해 호출자에게 에러를 전파합니다.
-  }
-};
-
-
 onMounted(fetchUserProfile)
 </script>
 
@@ -117,4 +95,18 @@ onMounted(fetchUserProfile)
   padding: 20px;
   margin: 0 auto;
 }
+
+
+.nav-link h3 {
+  color: white;
+}
+.nav-link h3:hover {
+  color: rgb(213, 169, 255);
+  font-weight: bolder;
+  margin-top: -5px;
+  margin-left: -3px;
+  text-shadow: 10px 10px 10px #000;
+}
+
+
 </style>
