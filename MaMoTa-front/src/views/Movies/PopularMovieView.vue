@@ -63,6 +63,7 @@ const next = () => {
   color: white;
 }
 .carousel-container {
+  margin-top: 25px;
   position: relative;
   width: 100%;
 }
