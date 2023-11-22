@@ -79,13 +79,19 @@ h1 {
 
 .input {
   width: calc(100% - 20px);
+  margin-top: 20px;
   height: 32px;
   padding: 12px;
   border: none;
+  background-color: black;
   border-radius: 16px;
   box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
-  outline: none;
+  border: 2px solid rgb(233, 42, 233);
   font-size: 16px;
+}
+.input::placeholder {
+  color: white;
+  text-align: center;
 }
 
 .input:invalid {

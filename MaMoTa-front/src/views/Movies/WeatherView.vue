@@ -13,7 +13,7 @@
       <font-awesome-icon :icon="['fas', 'sun']" spin size="2xl" style="color: #fef5be;" />
     </div>
     <div v-else-if="weatherStatus === 'Clouds'" @click="handleWeatherIconClick('Clouds')">
-      <font-awesome-icon :icon="['fas', 'cloud']" size="2xl" beat />
+      <font-awesome-icon :icon="['fas', 'cloud']" beat-fade size="2xl" style="color: #0055ff;" />
     </div>
     <div v-else-if="weatherStatus === 'Mist'" @click="handleWeatherIconClick('Mist')">
       <font-awesome-icon :icon="['fas', 'smog']" beat-fade size="2xl" style="color: #ffffff;" />    

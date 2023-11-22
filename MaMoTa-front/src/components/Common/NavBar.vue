@@ -26,7 +26,6 @@
           <li class="nav-item">
             <RouterLink :to="{ name: 'community' }" class="router-link" active-class="active-tab">Community</RouterLink>
           </li>
-
           <!-- 로그인 됐으면 -->
 
           <li class="nav-item">

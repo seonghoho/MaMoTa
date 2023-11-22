@@ -3,10 +3,12 @@ import { defineStore } from 'pinia'
 
 export const useMusicStore = defineStore('music', () => {
  
-  const videos = [
-    'https://www.youtube.com/embed/WwNvVQhsd6I',
-    'https://www.youtube.com/embed/iObGpqXKBdY',
+  const audios = [
+    'src/assets/audios/Homura(炎)-LiSA.mp3',
+    'src/assets/audios/Cant Take My Eyes off You.mp3',
+    'src/assets/audios/See You Again.mp3',
+    'src/assets/audios/Rewrite The Stars.mp3',
   ];
 
-  return { videos }
+  return { audios }
 },{ persist: true })

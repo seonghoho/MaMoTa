@@ -1,11 +1,5 @@
 <template>
   <div class="music-player">
-    <div class="controls">
-      <button @click="playPrevious" class="control-button">
-        <font-awesome-icon :icon="['fas', 'backward']" style="color: #e92ae9;" />
-      </button>
-    </div>
-
     <div class="video-container">
       <iframe
         ref="videoIframe"
@@ -14,64 +8,71 @@
         :src="currentVideo"
         frameborder="0"
         allowfullscreen
+        :isPlaying="true"
         class="video-iframe"
       ></iframe>
-    </div>
-
     <div class="controls">
-      <button @click="playNext" class="control-button">
-        <font-awesome-icon :icon="['fas', 'forward']" style="color: #e92ae9;" />
+      <button @click="playPrevious" class="control-button">
+        <font-awesome-icon :icon="['fas', 'backward']" size="xl" style="color: white;" />
       </button>
+      
+      <div class="controls">
+      <div class="current-audio"><strong>{{ getCurrentAudioTitle() }}</strong></div>
+    </div>
+      <button @click="playNext" class="control-button foward">
+        <font-awesome-icon :icon="['fas', 'forward']" size="xl" style="color: white;" />
+      </button>
+    </div>
+    
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useMusicStore } from '@/stores/music';
 
 const store = useMusicStore();
 
-const videos = store.videos;
+const audios = store.audios;
 const isPlaying = ref(false);
 const videoIframe = ref(null);
 
 let currentIndex = 0;
 
-const currentVideo = ref(videos[currentIndex]);
+const currentVideo = ref(audios[currentIndex]);
 
 const playNext = () => {
-  currentIndex = (currentIndex + 1) % videos.length;
-  console.log(currentIndex)
-  currentVideo.value = videos[currentIndex];
+  currentIndex = (currentIndex + 1) % audios.length;
+  currentVideo.value = audios[currentIndex];
   isPlaying.value = true;
 };
 
 const playPrevious = () => {
-  currentIndex = (currentIndex - 1 + videos.length) % videos.length;
-  console.log(currentIndex)
-  currentVideo.value = videos[currentIndex];
+  currentIndex = (currentIndex - 1 + audios.length) % audios.length;
+  currentVideo.value = audios[currentIndex];
   isPlaying.value = true;
 };
 
 
+const getCurrentAudioTitle = () => {
+  return audios[currentIndex].replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, '');
+};
+
+
 onMounted(() => {
-  // Add event listener for messages from the iframe
   window.addEventListener('message', handleIframeMessages);
 
-  // Add event listener for iframe 'ended' event
   videoIframe.value.addEventListener('ended', () => {
     playNext();
   });
 });
 
 const handleIframeMessages = (event) => {
-  // Check if the message is from the iframe
   if (event.source !== videoIframe.value.contentWindow) {
     return;
   }
 
-  // Handle messages from the iframe
   const data = JSON.parse(event.data);
   if (data.event === 'pause') {
     isPlaying.value = false;
@@ -82,37 +83,43 @@ const handleIframeMessages = (event) => {
 </script>
 
 <style scoped>
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 .music-player {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 100%; /* Initial max-width set to 100% */
+  margin-bottom: 20px;
+  width: 470px;
   text-align: center;
   padding: 10px;
+  color: white;
   border: 2px solid rgb(233, 42, 233);
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 999;
+  background: url('@/assets/Images/musicbackground.gif') no-repeat;
+  background-position: -10%;
+  background-size: cover;
 }
 
-@media (min-width: 30em) {
-  .music-player {
-    max-width: 30vw;
-  }
+.foward {
+  margin-left: 20px;
 }
-
 .controls {
   display: flex;
-  justify-content: space-between;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-right: 50px;
 }
-
 .control-button {
   background-color: transparent;
-  color: #e92ae9;
+  color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -122,21 +129,32 @@ const handleIframeMessages = (event) => {
 
 .video-container {
   position: relative;
-  width: 40%;
+  width: 100%;
   height: 0;
-  padding-bottom: 14.25%; /* 16:9 비율을 유지하기 위한 값 */
+  padding-bottom: 14.25%; 
   margin: auto;
   transform: translateY(-60%);
+  margin-top: 20px; /* 아래로 내리기 위한 여백 */
 }
-
 .video-iframe {
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 70%;
   border: none;
-  min-height: 50px; /* 최소 높이 설정 (조절 가능) */
+  min-height: 50px;
+  margin-top: 20px;
   transform: translateY(50%);
+  visibility: hidden;
+}
+
+.current-audio {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 0px;
+  font-size: 20px;
+  transform: translateY(-40%);
 }
 </style>
