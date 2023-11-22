@@ -1,6 +1,6 @@
 <template>
   <div class="card h-100">
-    <RouterLink :to="{ name: 'MovieDetailView', params: { moviePk: movie.id || movie.pk } }">
+    <RouterLink :to="{ name: 'movie', params: { id: movie.id || movie.pk } }">
       <img :src="getImageUrl(movie.poster_path)" class="card-img-top" alt="..." />
       <div class="card-body text-center">
         <h5 class="card-title">{{ getFormattedTitle }}</h5>
@@ -16,13 +16,13 @@ const props = defineProps({
   movie: Object
 })
 
-// const getImageUrl = (path) => {
-//   // 이미지가 없는경우 예외처리
-//   if (!path) {
-//     return
-//   }
-//   return `https://image.tmdb.org/t/p/w500${path}`
-// }
+const getImageUrl = (path) => {
+  // 이미지가 없는경우 예외처리
+  if (!path) {
+    return
+  }
+  return `https://image.tmdb.org/t/p/w500${path}`
+}
 
 const getFormattedTitle = computed(() => {
   const title = props.movie.title || props.movie.name

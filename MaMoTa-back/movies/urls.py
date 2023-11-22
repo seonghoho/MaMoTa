@@ -8,6 +8,8 @@ urlpatterns = [
     path('<int:movie_pk>/', views.movie_detail),
     
 
+    path('<int:movie_pk>/addlist/', views.add_list),
+    
     
     # 명대사 주소
     path('<int:movie_pk>/famous_lines/', views.famous_line_list),
