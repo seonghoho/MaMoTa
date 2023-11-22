@@ -19,7 +19,10 @@ const alertMessage = () => {
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
     confirmButtonText: '로그아웃',
-    cancelButtonText: '취소'
+    cancelButtonText: '취소',
+    // 보라색
+    background: '#D1C4E9',
+    
   }).then((result) => {
     // 로그아웃 Yes , No 두 경우 모두다 home으로 이동
     if (result.isConfirmed) {
