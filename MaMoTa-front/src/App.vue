@@ -96,7 +96,5 @@ h2 {
 .btn-close {
   background-color: rgb(233, 42, 233);
 }
-@font-face{
-font-family:'DNFBitBitv2';
-font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')}
+
 </style>
