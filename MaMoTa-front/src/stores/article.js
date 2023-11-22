@@ -47,7 +47,7 @@ export const useArticleStore = defineStore('post', () => {
     .catch(err => console.log(err))
   }
 
-  const createArticle = function ({rate, title, content, movie,view_count}) {
+  const createArticle = function ({rate, title, content, movie,view_count, movie_title}) {
     console.log(`${token}`)
     axios({
       method: 'post',
@@ -57,7 +57,8 @@ export const useArticleStore = defineStore('post', () => {
         title,
         content,
         movie,
-        view_count
+        view_count,
+        movie_title,
 
       },
       headers: {

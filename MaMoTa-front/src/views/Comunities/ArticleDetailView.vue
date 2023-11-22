@@ -12,6 +12,7 @@
     <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
     <div class="post-info">
       <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p>
+      
       <p class="post-title">글 제목:{{ store.detailArticle.data.title }}</p>
     </div>
     <div @click.stop="goProfile(store.detailArticle.data.user)">

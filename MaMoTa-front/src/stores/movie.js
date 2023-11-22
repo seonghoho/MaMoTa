@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
 export const useMovieStore = defineStore('movie', () => {
  
@@ -24,5 +25,22 @@ export const useMovieStore = defineStore('movie', () => {
     {"id":10752,"name":"전쟁"},
     {"id":37,"name":"서부"}]}
 
-  return { genre }
+    const movies = ref([
+
+    ])
+    const API_URL = 'http://127.0.0.1:8000/'
+
+    const getMovies = () => {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/`
+      })
+        .then((res) => {
+          movies.value = res.data
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  return { genre, movies, getMovies }
 },{ persist: true })
