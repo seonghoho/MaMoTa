@@ -40,7 +40,10 @@
 
 
     <div class="separator"></div>
-    <RouterLink :to="{ name: 'articleCreate', query: { movie_title: `${ movie.title }`} }">
+    <RouterLink 
+    :to="{ name: 'articleCreate', query: { movie_title: `${ movie.title }`} }"
+    class="router-link"
+    >
       게시글 작성
     </RouterLink>
     <div class="separator"></div>
@@ -219,6 +222,12 @@ onMounted(fetchVideo);
 </script>
 
 <style>
+.router-link {
+  text-decoration: none;
+  color: black;
+  margin-right: 15px;
+}
+
 .poster {
   max-width: 300px;
   max-height: 450px;

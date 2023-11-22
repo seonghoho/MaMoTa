@@ -33,7 +33,7 @@
       data-bs-toggle="modal"
       data-bs-target="#MusicModal"
       aria-controls="MusicModal"
-      style="position: fixed; bottom: 0; right: 15px; cursor: pointer;"
+      style="position: fixed; bottom: 0; right: 30px; cursor: pointer;"
     >
       <img class="rounded-circle icon" src="@/assets/Images/PlayButton.gif" alt="Ai_Icon">
     </div>

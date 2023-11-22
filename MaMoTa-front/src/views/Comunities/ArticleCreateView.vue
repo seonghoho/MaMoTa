@@ -27,11 +27,8 @@
         </option>
       </select>
 
-      <!-- 수정 필요한 부분 -->
       <label for="movie_title" class="form-label">영화:</label>
       <input type="text" name="movie_title" id="movie_title" class="form-input" v-model.trim="movie_title" >
-
-<!-- :value="$route.query.movie_title || ''" -->
       <label for="content" class="form-label">내용:</label>
       <textarea name="content" id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
 
