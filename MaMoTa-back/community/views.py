@@ -25,7 +25,7 @@ def article_list(request):
 
 # 게시글 생성
 @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def article_create(request):
     serializer = ArticleSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
@@ -116,7 +116,6 @@ def comment_create(request, article_pk):
 def comment_delete(request, article_pk, comment_pk):
     article = Article.objects.get(pk=article_pk)
     comment = article.comment_set.get(pk=comment_pk)
-
     if request.user == comment.user:
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

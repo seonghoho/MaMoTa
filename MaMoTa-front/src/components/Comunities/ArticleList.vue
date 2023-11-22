@@ -10,7 +10,6 @@
       v-for="article in paginatedArticles"
       :key="article.id"
       class="article_list"
-      @click="goDetail(article.id)"
       >
       <!-- {{ article }} 객체확인용 -->
       <!-- <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p> -->
@@ -28,10 +27,17 @@
       <p>게시글 생성일{{ article.created_at }}</p>
       <p>게시글 수정일{{ article.updated_at }}</p>
       <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p>
-      <!-- <P>좋아요 개수</P> -->
-      <!-- <p>조회수 : {{ article.view_count }}</p> -->
+
+      <Like
+      :article="article"
+      />
+      <p @click.stop=goLike(article.id)   class="blue">      
+        {{ article.like_users.includes(userStore.userData.pk) ? '좋아요 취소' : '좋아요' }} </p>
+        <p>{{article.like_users.length}}</p>
         <hr>
       </div>
+
+
       <div v-else>
         데이터 로딩 중...
       </div>
@@ -59,7 +65,7 @@
 </template>
 
 <script setup>
-
+import  Like  from '@/components/Comunities/Like.vue'
 import { RouterLink } from 'vue-router'
 import { ref,computed,onMounted } from 'vue';
 import { useArticleStore } from '@/stores/article';
@@ -84,6 +90,15 @@ const goDetail = (id) => {
 const goProfile = (userId) => {
   router.push({name:'userProfile', params:{userId: userId}})
 }
+
+
+
+// 좋아요 클릭함수
+const goLike = (articleId) => {
+  store.likeArticle(articleId)
+}
+
+
 
 
 // 페이지 처링
@@ -125,14 +140,18 @@ const totalPages = computed(() => {
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value += 1;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value -= 1;
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
+
+
 </script>
 
 <style scoped>
@@ -143,5 +162,10 @@ const prevPage = () => {
 .selected {
   font-weight: bold;
   text-decoration: underline;
+}
+.blue {
+  color: black;
+  background-color: blue;
+  width: 10%;
 }
 </style>
