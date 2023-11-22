@@ -1,16 +1,9 @@
 [
   {
     "model": "movies.genre",
-    "pk": 80,
+    "pk": 28,
     "fields": {
-      "name": "범죄"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 35,
-    "fields": {
-      "name": "코미디"
+      "name": "액션"
     }
   },
   {
@@ -22,20 +15,6 @@
   },
   {
     "model": "movies.genre",
-    "pk": 28,
-    "fields": {
-      "name": "액션"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 878,
-    "fields": {
-      "name": "SF"
-    }
-  },
-  {
-    "model": "movies.genre",
     "pk": 16,
     "fields": {
       "name": "애니메이션"
@@ -43,9 +22,23 @@
   },
   {
     "model": "movies.genre",
-    "pk": 10751,
+    "pk": 35,
     "fields": {
-      "name": "가족"
+      "name": "코미디"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 80,
+    "fields": {
+      "name": "범죄"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 99,
+    "fields": {
+      "name": "다큐멘터리"
     }
   },
   {
@@ -57,9 +50,37 @@
   },
   {
     "model": "movies.genre",
-    "pk": 10749,
+    "pk": 10751,
     "fields": {
-      "name": "로맨스"
+      "name": "가족"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 14,
+    "fields": {
+      "name": "판타지"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 36,
+    "fields": {
+      "name": "역사"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 27,
+    "fields": {
+      "name": "공포"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 10402,
+    "fields": {
+      "name": "음악"
     }
   },
   {
@@ -71,9 +92,23 @@
   },
   {
     "model": "movies.genre",
-    "pk": 14,
+    "pk": 10749,
     "fields": {
-      "name": "판타지"
+      "name": "로맨스"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 878,
+    "fields": {
+      "name": "SF"
+    }
+  },
+  {
+    "model": "movies.genre",
+    "pk": 10770,
+    "fields": {
+      "name": "TV 영화"
     }
   },
   {
@@ -92,44 +127,9 @@
   },
   {
     "model": "movies.genre",
-    "pk": 10402,
-    "fields": {
-      "name": "음악"
-    }
-  },
-  {
-    "model": "movies.genre",
     "pk": 37,
     "fields": {
       "name": "서부"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 10770,
-    "fields": {
-      "name": "TV 영화"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 27,
-    "fields": {
-      "name": "공포"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 36,
-    "fields": {
-      "name": "역사"
-    }
-  },
-  {
-    "model": "movies.genre",
-    "pk": 99,
-    "fields": {
-      "name": "다큐멘터리"
     }
   }
 ]

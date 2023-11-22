@@ -1,8 +1,8 @@
 <template>
-  <div class="container mt-5">
-    <div class="row justify-content-center">
+  <div class="container mt-5 signup_form">
+    <div class="row justify-content-center signup">
       <div class="col-md-6">
-        <h2 class="text-center mb-4">회원가입</h2>
+        <h2 class="text-center mb-4 signup_header">회원가입</h2>
         <div class="mb-3">
           <label for="username" class="form-label">이메일</label>
           <input
@@ -10,7 +10,7 @@
             type="username"
             class="form-control"
             id="username"
-            placeholder="이메일을 적어주세요"
+            placeholder="MaMoTa@ssafy.com"
           />
         </div>
         <div class="mb-3">
@@ -20,7 +20,7 @@
             type="email"
             class="form-control"
             id="email"
-            placeholder="name@example.com"
+            placeholder="MaMoTa@ssafy.com"
           />
         </div>
         <div class="mb-4">
@@ -173,6 +173,21 @@ const signUp = () => {
 </script>
 
 <style>
+.signup_header {
+  color: violet;
+  font-weight: 550;
+}
+
+.signup {
+  color: violet;
+}
+
+.signup_form {
+  background-color: rgba(0, 0, 0, 0.45);
+  border-radius: 50px;
+  padding: 20px;
+}
+
 .text-center {
   text-decoration: white;
 }

@@ -12,7 +12,7 @@
             type="username"
             class="form-control"
             id="username"
-            placeholder="you@example.com"
+            placeholder="MaMoTa@ssafy.com"
           />
         </div>
         <div class="mb-3">
