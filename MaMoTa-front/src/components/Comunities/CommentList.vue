@@ -2,31 +2,36 @@
 
 <template>
   <li>
-    <h3>야 댓글좀</h3>
     <!-- {{ comment }}댓글 개체 확인 -->
     <!-- <p>{{ comment.article }}</p> -->
 
-    <span class="comment-id">{{ comment.id }} {{ comment.username }}</span>
+    <span class="comment-id"> {{ comment.username }}</span>
     <span class="comment-content">{{ comment.content }}</span>
 
-    
-    <!--댓글 삭제부분<button 
-      v-if="comment.user.username === authStore.user.username"
-      @click="commentDelete"
+    <div>
+      <p>데이터 확인용~삭제예정</p>
+      <p>{{ comment }}</p>
+      <p>{{ comment.article }}</p>
+      <p>{{ comment.id }}</p>
+      <!-- <p>{{ authStore.userData.pk }}</p> -->
+    </div>
+    <button 
+      v-if="comment.user === authStore.userData.pk"
+      @click="store.commentDelete(comment.article, comment.id)"
     >
       🗑
-    </button> -->
+    </button>
   </li>
 </template>
 
 <script setup>
-// import { useCommentStore } from '@/stores/comments';
-// import { useAuthStore } from '@/stores/auth';
-// const authStore = useAuthStore()
-// const store = useCommentStore()
+import { useCommentStore } from '@/stores/comments';
+import { useUserStore } from '@/stores/userStore';
+const authStore = useUserStore()
+const store = useCommentStore()
 
-// const commentDelete = () => {
-//   store.commentDelete(comment.article, comment.id)
+// const commentDelete = (a,b) => {
+//   store.commentDelete(a,b)
 // }
 
 
