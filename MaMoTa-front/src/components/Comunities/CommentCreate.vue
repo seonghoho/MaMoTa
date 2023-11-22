@@ -9,9 +9,9 @@
 </template>
 
 <script setup>
-// import { useCommentStore } from '@/stores/comments.js'
+import { useCommentStore } from '@/stores/comments.js'
 import { ref } from 'vue';
-// const store = useCommentStore()
+const store = useCommentStore()
 const props = defineProps({
   articlePk: Number
 })
@@ -19,6 +19,7 @@ const content = ref('')
 const createComment = function () {
   console.log(props)
   store.commentCreate(props.articlePk, content.value)
+  content.value = ''
 }
 </script>
 
