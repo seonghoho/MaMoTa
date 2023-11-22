@@ -25,15 +25,15 @@
 
 
 
-    <!-- 버튼 수정중 -->
+    <!-- 좋아요 버튼 -->
 
     <button
       :class="{ 'btn-outline-info': isPicked, 'btn-info': !isPicked }"
       class="btn mt-5 mb-5"
-      style="width: 500px"
+      style="width: 400px"
       @click="addToMyPickList"
     >
-      {{ isPicked ? 'Unpick' : 'Pick' }}
+      {{ isPicked ? '좋아요 취소' : '좋아요' }}
     </button>
 
     <!-- 여기까지 -->
@@ -79,6 +79,7 @@
   </div>
 </template>
 
+
 <script setup>
 import { defineProps, ref, onMounted } from 'vue';
 import axios from 'axios';
@@ -86,72 +87,16 @@ import { RouterLink } from 'vue-router';
 import { useMovieStore } from '@/stores/movie'
 
 
-
-
-
-
-
-
-//////////////////// 수정중 ////////////////////
-
+//////////////// 좋아요 관련///////////////
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 import { usePickStore } from '@/stores/pickListStore'
+
+import { addListMovie } from '@/apis/movieApi'
 // import { useArticleStore } from '@/stores/articleStore'
 
-const router = useRouter()
-
-const userStore = useUserStore()
-const pickStore = usePickStore()
-// const articleStore = useArticleStore()
-
-// onMounted(() => {
-//   if (userStore.isLogin) {
-//     pickStore.initializePickList()
-//   }
-//   articleStore.initializeArticles(props.movie.id)
-// })
-
-// pick logic
-const isPicked = computed(() => {
-  if (userStore.isLogin && pickStore.pickList) {
-    return pickStore.pickList.some((m) => m.id === props.movie.id)
-  } else {
-    return false
-  }
-})
-
-const addToMyPickList = () => {
-  if (!userStore.isLogin) {
-    const userConfirmation = window.confirm(
-      '로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?'
-    )
-    if (userConfirmation) {
-      router.push({ name: 'userLogin' })
-    }
-    return
-  }
-
-  addListMovie(props.movie.id || props.movie.pk)
-    .then((response) => {
-      pickStore.addPick(props.movie)
-    })
-    .catch((error) => {
-      console.error('Error adding to list', error)
-    })
-}
-
-
-
-//////////////////// 수정중 ////////////////////
-
-
-
-
-
-
-
+/////////////////////////////////////////
 
 
 const store = useMovieStore();
@@ -216,6 +161,52 @@ const fetchVideo = () => {
 // console.log(actorCredit)
 // console.log(videos)
 
+
+/////////////좋아요 구현//////////////////
+
+const router = useRouter()
+
+const userStore = useUserStore()
+const pickStore = usePickStore()
+// const articleStore = useArticleStore()
+
+// onMounted(() => {
+//   if (userStore.isLogin) {
+//     pickStore.initializePickList()
+//   }
+//   articleStore.initializeArticles(props.movie.id)
+// })
+
+// pick logic
+const isPicked = computed(() => {
+  if (userStore.isLogin && pickStore.pickList) {
+    return pickStore.pickList.some((m) => m.id === props.movie.id)
+  } else {
+    return false
+  }
+})
+
+const addToMyPickList = () => {
+  if (!userStore.isLogin) {
+    const userConfirmation = window.confirm(
+      '로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?'
+    )
+    if (userConfirmation) {
+      router.push({ name: 'userLogin' })
+    }
+    return
+  }
+
+  addListMovie(props.movie.id || props.movie.pk)
+    .then((response) => {
+      pickStore.addPick(props.movie)
+    })
+    .catch((error) => {
+      console.error('Error adding to list', error)
+    })
+}
+
+/////////////////////////////////////////
 
 onMounted(fetchCredit);
 onMounted(fetchVideo);

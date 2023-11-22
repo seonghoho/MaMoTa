@@ -109,11 +109,11 @@ class ProfileSerializer(serializers.ModelSerializer):
                 'title',
                 'overview',
                 'poster_path',
-                'release_date',
+                # 'release_date',
                 'like_users',
             )
 
-    # like_articles = ArticleSerializer(many=True)
+    like_articles = ArticleSerializer(many=True)
     followers = FollowFollowingSerializer(many=True, read_only=True)
     followings = FollowFollowingSerializer(many=True, read_only=True)
     follower_count = serializers.IntegerField(

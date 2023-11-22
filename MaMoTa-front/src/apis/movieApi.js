@@ -14,12 +14,18 @@ export const getMovieDetail = (moviePk) => {
 }
 
 
+
+
+
+
+
 // 사용자의 영화 Pick API
 export const addListMovie = (moviePk) => {
   const token = window.localStorage.getItem('token')
-
-  return axios.post(
-    `${API_URL}/movies/${moviePk}/addlist/`,
+  // console.log(moviePk)
+  // console.log(token)
+  return axios
+  .post(`${API_URL}/movies/${moviePk}/addlist/`,
     {},
     {
       headers: {
@@ -28,6 +34,11 @@ export const addListMovie = (moviePk) => {
     }
   )
 }
+
+
+
+
+
 
 // 영화 article List 조회
 export const fetchMovieArticles = (moviePk) => {
