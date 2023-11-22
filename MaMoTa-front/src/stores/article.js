@@ -100,5 +100,21 @@ export const useArticleStore = defineStore('post', () => {
   }
   
 
-  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle,updateArticle, deleteArticle}
+  const likeArticle = function(pk){
+    axios({
+      method: 'get',
+      url:`http://127.0.0.1:8000/community/${pk}/like/`,
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+    // .then(res =>{console.log(res)} )
+    .then(getArticleList() )
+
+
+    
+
+  }
+
+  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle,updateArticle, deleteArticle, likeArticle}
 })
