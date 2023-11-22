@@ -10,7 +10,6 @@
   <div v-if="store.detailArticle.data" class="post-details">
     <h1>게시글 상세 정보</h1>
     <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
-
     <div class="post-info">
       <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p>
       <p class="post-title">글 제목:{{ store.detailArticle.data.title }}</p>
@@ -25,6 +24,9 @@
     </div>
     <hr>
     <p class="post-content">글 내용:{{ store.detailArticle.data.content }}</p>
+
+    <p>좋아요 개수 {{ store.detailArticle.data.like_users.length }}</p>
+
     <!-- <p>댓글 개수 {{ store.detailArticle.data.comment_set }}</p> -->
     
     <!-- <p>{{ store.detailArticle.data.user }}</p>
