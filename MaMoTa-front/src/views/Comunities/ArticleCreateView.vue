@@ -1,7 +1,7 @@
 
 <template>
   <div class="create-article-page">
-    <h1>게시글 생성 페이지</h1>
+    <h1 class="title">게시글 생성 페이지</h1>
     <form @submit.prevent="createArticle" class="article-form">
     <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
 
@@ -28,7 +28,7 @@
       </select>
 
       <label for="movie" class="form-label">영화:</label>
-      <input type="text" name="movie" v-model="movie" class="form-input">
+      <input type="text" name="movie" class="form-input" :value="$route.query.movie_title || ''">
 
 
       <label for="content" class="form-label">내용:</label>
@@ -45,8 +45,9 @@ import { ref } from 'vue';
 // import { useCategoryStore } from '@/stores/categories'
 import { useArticleStore } from '@/stores/article'
 // import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 const router = useRouter()
+const route = useRoute()
 const title = ref('')
 const content = ref('')
 // const category = ref(1)
@@ -80,9 +81,10 @@ const createArticle = function () {
   padding: 20px;
 }
 
-h1 {
+.title {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: white;
 }
 
 .article-form {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="navbar-container">
     <nav class="navbar navbar-expand-lg navbar-dark" data-bs-theme="dark">
       <div class="left-section">
         <RouterLink :to="{ name: 'search' }" class="search">
@@ -77,7 +77,18 @@ const search = ref(searchSrc)
 
 <style scoped>
 .navbar {
-  border: 2px solid rgb(233, 42, 233);
+  top: 0;
+  width: 100%;
+  background-color: rgba(26, 26, 26, 0.5);
+  border: inset rgba(233, 42, 233);
+  z-index: 1000;
+}
+
+.navbar-container {
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .router-link {
@@ -87,7 +98,7 @@ const search = ref(searchSrc)
 }
 
 .logo {
-  width: 65px;
+  width: 130px;
 }
 
 .active-tab {

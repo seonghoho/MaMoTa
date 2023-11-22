@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="poster-container">
+    <div class="poster-container" :style="`backgroundImage:url('${getImageUrl(movie.backdrop_path)}')`">
       <img :src="getImageUrl(movie.poster_path)" class="card-img-top poster" alt="#">
       <div class="movie-info">
         <h1>{{ movie.title }}</h1>
@@ -22,6 +22,10 @@
         </div>
       </div>
     </div>
+    <div class="separator"></div>
+    <RouterLink :to="{ name: 'articleCreate', query: { movie_title: `${ movie.title }`} }">
+      게시글 작성
+    </RouterLink>
     <div class="separator"></div>
     <div class="trailer">
       <h3>예고편</h3>
@@ -58,8 +62,8 @@
 <script setup>
 import { defineProps, ref, onMounted } from 'vue';
 import axios from 'axios';
+import { RouterLink } from 'vue-router';
 import { useMovieStore } from '@/stores/movie'
-import NowMovieCard from '@/components/Movies/NowMovieCard.vue';
 
 const store = useMovieStore();
 

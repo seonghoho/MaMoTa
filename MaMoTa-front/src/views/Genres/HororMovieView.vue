@@ -46,7 +46,7 @@
   onMounted(() => {
     fetchMovie();
   });
-  console.log(movies)
+
   const prev = () => {
     movies.value.push(movies.value.shift());
   };

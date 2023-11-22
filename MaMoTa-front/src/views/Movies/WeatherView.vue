@@ -9,8 +9,14 @@
     <div v-else-if="weatherStatus === 'Clear'" @click="handleWeatherIconClick('Clear')">
       <font-awesome-icon :icon="['fas', 'sun']" spin size="2xl" style="color: #fef5be;" />
     </div>
+    <div v-else-if="weatherStatus === 'Sunny'" @click="handleWeatherIconClick('Sunny')">
+      <font-awesome-icon :icon="['fas', 'sun']" spin size="2xl" style="color: #fef5be;" />
+    </div>
     <div v-else-if="weatherStatus === 'Clouds'" @click="handleWeatherIconClick('Clouds')">
       <font-awesome-icon :icon="['fas', 'cloud']" size="2xl" beat />
+    </div>
+    <div v-else-if="weatherStatus === 'Mist'" @click="handleWeatherIconClick('Mist')">
+      <font-awesome-icon :icon="['fas', 'smog']" beat-fade size="2xl" style="color: #ffffff;" />    
     </div>
   </div>
 </template>
@@ -27,6 +33,7 @@ const recommendedMovie = ref(null);
 const weatherStatus = ref('');
 const route = useRoute();
 const router = useRouter();
+console.log(weatherStatus)
 
 const fetchWeather = async () => {
   const url = `http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${weatherApiKey}`;
@@ -42,6 +49,10 @@ const fetchWeather = async () => {
 
 const selectGenreByWeather = (weather) => {
   switch (weather) {
+    case 'Mist':
+      return 80
+    case 'Sunny':
+      return 35
     case 'Rain':
       return 27;
     case 'Snow':

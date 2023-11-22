@@ -2,7 +2,7 @@
   <div class="app">
     <NavBar />
     <TopButton />
-    <MusicPlayer />
+    <!-- <MusicPlayer /> -->
     <RouterView />
     <div
       class="fixed mb-2"
