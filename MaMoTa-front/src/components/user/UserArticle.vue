@@ -6,7 +6,7 @@
     >
       <div class="col" v-for="article in user.articles" :key="article.id">
       <UserArticleCard :article="article" />
-    </div>  
+      </div>  
     </div>
     <div v-else class="d-flex justify-content-center align-items-center mt-5">
       <p class="review_text">📋작성한 리뷰가 없습니다.😥</p>
