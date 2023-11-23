@@ -8,40 +8,22 @@
         v-for="article in paginatedArticles"
         :key="article.id"
         class="article_list"
-
       >
-      <!-- @click="goDetail(article.id)" -->
-
-        <!-- {{ article }} 객체확인용 -->
-        <!-- <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p> -->
-        <!-- <RouterLink  :to="`/user/profile/${article.user}`"
-              class="router-link"
-              >
-              {{ article.username }}
-            
-            </RouterLink> 라우터링크로 유저 프로필가는 부분 구현 삭제예정 -->
-
-        <p></p>
-        <!-- <div @click.stop="goProfile(article.user)">
-          {{ article.username }} 이 부분 누르면 유저 프로필로~
-        </div>
-        <p></p>
-        <p>글쓴이가 준 평점 {{ article.rate }}</p>
-        <p>게시글 생성일{{ article.created_at }}</p>
-        <p>게시글 수정일{{ article.updated_at }}</p>
-        <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p> -->
+        <!-- 게시글 내용 출력 부분 -->
+        <h3>{{ article.title }}</h3>
+        <!-- 내용이 길 경우에 대비하여 일부만 출력하거나 스타일을 조절할 수 있습니다. -->
 
         <Like :article="article" />
         <div class="like-button">
           <font-awesome-icon
-          @click.stop="goLike(article.id)"
+            @click.stop="goLike(article.id)"
             :icon="['fas', 'thumbs-up']"
             beat
             size="2xl"
             v-if="!article.like_users.includes(userStore.userData.pk)"
           />
           <font-awesome-icon
-          @click.stop="goLike(article.id)"
+            @click.stop="goLike(article.id)"
             :icon="['fas', 'heart']"
             bounce
             size="2xl"
@@ -49,7 +31,6 @@
             v-else
           />
         </div>
-
 
         <h3 class="like-count">{{ article.like_users.length }}</h3>
         <hr>
@@ -60,9 +41,9 @@
       </div>
     </div>
 
-    <!-- 로딩영역 추가 삭제예정-->
     <div>
-      <button @click="prevPage" :disabled="currentPage == 1">이전</button>
+      <!-- 페이지 이동 버튼 -->
+      <button @click="prevPage" :disabled="currentPage === 1">이전</button>
 
       <span v-for="page in totalPages" :key="page">
         <button
@@ -73,7 +54,7 @@
         </button>
       </span>
 
-      <button @click="nextPage" :disabled="currentPage == totalPages">다음</button>
+      <button @click="nextPage" :disabled="currentPage === totalPages">다음</button>
     </div>
   </div>
 </template>
@@ -99,10 +80,6 @@ onMounted(() => {
 
 const goProfile = (userId) => {
   router.push({ name: 'userProfile', params: { userId: userId } })
-}
-// 상세페이지가기
-const goDetail = (id) => {
-  router.push({name:'detail', params:{id: id}})
 }
 
 const goLike = (articleId) => {
@@ -168,11 +145,12 @@ const prevPage = () => {
 
 .article_list {
   color: white;
-  width: 30%; /* 한 줄에 3개의 아이템이 표시되도록 조정 */
-  margin-bottom: 16px; /* 각 아이템 아래 간격 조정 */
+  width: calc(33.33% - 16px); /* 한 줄에 3개의 아이템이 표시되도록 조정 */
+  margin-bottom: 16px;
+  min-height: 150px;
+  box-sizing: border-box;
 }
 
-/* 선택된 페이지에 대한 스타일링 */
 .selected {
   font-weight: bold;
   text-decoration: underline;
@@ -181,13 +159,9 @@ const prevPage = () => {
 .like-button {
   margin-top: 25px;
 }
+
 .like-count {
   margin-top: 5px;
   margin-left: 15px;
-}
-.blue {
-  color: black;
-  background-color: blue;
-  width: 10%;
 }
 </style>
