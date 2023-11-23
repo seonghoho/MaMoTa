@@ -127,7 +127,7 @@ const signUpUser = (payload) => {
 
 
 
-            router.push({ name: "community" });
+            router.push({ name: "home" });
           })
           .catch((err) => {
             console.error(err);
