@@ -57,7 +57,7 @@
             <span v-if="article.content.length > 80">....</span>
           </div>
           <div> </div>
-          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-light btn-sm mt-1" style="background-color: #d3ffea">
+          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-light btn-sm mt-2" style="background-color: #d3ffea; border: 2px solid gray;">
             상세 보기
           </RouterLink>
         </div>
@@ -79,18 +79,20 @@
       </div>
       <div class="card-section" :class="{ 'is-active': currentState === 'contact' }">
         <div class="card-content">
-          <div class="card-subtitle">글작성자</div>
+          <div class="card-subtitle">작성자</div>
           <p>{{ article.username }}</p>
-          <div class="card-subtitle">글작성일</div>
-          <p>{{ article.created_at.slice(0,19) }}</p>
+          <div class="card-subtitle">작성일</div>
+          <p>{{ formatDateTime(article.created_at).slice(0,12) }}</p>
+          <p>{{ formatDateTime(article.created_at).slice(14,28) }}</p>
 
-          <div class="card-subtitle">글수정일</div>
-          <p>{{ article.updated_at.slice(0,19) }}</p>
-          <p>{{ article.user }}</p>
+          <div class="card-subtitle">수정일</div>
+          <p>{{ formatDateTime(article.updated_at).slice(0,12) }}</p>
+          <p>{{ formatDateTime(article.updated_at).slice(14,28) }}</p>
+          <!-- <p>{{ article.user }}</p> -->
           <!-- <RouterLink :to="{ name: 'userProfile', params: { id: article.user } }" class="btn btn-light btn-sm mt-1">
             프로필
           </RouterLink> -->
-          <div @click="goProfile(article.user)" class="btn btn-light btn-sm mt-1"> 프로필</div>
+          <div @click="goProfile(article.user)" class="btn btn-light btn-sm mt-1" style="background-color: #d3ffea; border: 2px solid gray;"> 프로필</div>
 
         </div>
       </div>
@@ -140,6 +142,22 @@ const likeEmpty = computed(() => {
 })
 
 
+// 시간 출력 형식 수정
+const formatDateTime = (dateTimeString) => {
+  const options = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    timeZoneName: 'short'
+  };
+
+  const formattedDateTime = new Date(dateTimeString).toLocaleString('ko-KR', options);
+  return formattedDateTime;
+};
+
 
 const currentState = ref('about'); // 초기 섹션 설정
 const coverImageUrl = `/src/assets/Images/rateemoji/back_emoji_${article.rate}.png`;
@@ -178,6 +196,7 @@ body {
 
 .card {
   max-width: 340px;
+  /* height: 570px; */
   margin: auto;
   overflow-y: auto;
   position: relative;
@@ -194,10 +213,10 @@ body {
 
 .card[data-state="#about"] {
   height: 450px;
-
-  .card-main {
-    padding-top: 0;
   }
+  .card[data-state="#about"] .card-main {
+    padding-top: 0;
+
 }
 
 .card[data-state="#contact"] {
@@ -208,7 +227,7 @@ body {
   height: 550px;
 }
 
-.card.is-active {
+.card .is-active {
   .card-header {
     height: 80px;
   }
@@ -402,8 +421,8 @@ body {
   left: 0;
   text-align: center;
   background-color: #d3ffea;
-
-  button {
+}
+.card-buttons button {
     flex: 1 1 auto;
     user-select: none;
     background: 0;
@@ -417,17 +436,18 @@ body {
     font-weight: 500;
     outline: 0;
     border-bottom: 3px solid transparent;
-
-    &.is-active,
-    &:hover {
+    background-color: #d3ffea;
+}
+.card-buttons .is-active,
+.card-buttons :hover {
       color: #2b2c48;
-      border-bottom: 3px solid #8a84ff;
+      border-bottom: 10px solid #938dff;
       background: linear-gradient(to bottom,
           rgba(127, 199, 231, 0) 0%,
-          rgba(207, 204, 255, 0.2) 44%,
-          rgba(211, 226, 255, 0.4) 100%);
-    }
-  }
+          rgba(200, 196, 255, 0.2) 44%,
+          rgba(164, 107, 255, 0.4) 100%);
+    
+  
 }
 
 .card-section {

@@ -6,11 +6,6 @@
         <ul class="list-group mb-4" v-if="user.followers && user.followers.length">
           <li v-for="follower in user.followers" :key="follower.id" class="list-group-item">
             <RouterLink :to="`/user/profile/${follower.id}/info`">
-              <!-- <img
-                :src="follower.profile_pic ? userProfilePic(follower.profile_pic) : AvatarSrc"
-                class="profile-pic"
-                alt="Profile Picture"
-              /> -->
               <span class="follower-following-name">
                 {{ follower.username.split('@')[0] }}
               </span>
@@ -23,29 +18,14 @@
         <ul class="list-group mb-4" v-if="user.followings && user.followings.length">
           <li v-for="following in user.followings" :key="following.id" class="list-group-item">
             <RouterLink :to="`/user/profile/${following.id}/info`">
-              <!-- <img
-                :src="following.profile_pic ? userProfilePic(following.profile_pic) : AvatarSrc"
-                class="profile-pic"
-                alt="Profile Picture"
-              /> -->
               <span class="follower-following-name"> {{ following.username.split('@')[0] }} </span>
             </RouterLink>
           </li>
         </ul>
       </div>
     </div>
-    <button
-      v-show="!isCurrentUser"
-      :class="isFollowing ? 'btn btn-outline-info mb-5 unfollow_button' : 'btn btn-info mb-5 follow_button'"
-      @click="followUnfollow"
-      style="width: 140px"
-    >
-      <i
-        :class="isFollowing ? 'bi bi-person-dash' : 'bi bi-person-plus'"
-        style="font-size: 1.25rem; vertical-align: middle; margin-right: 1rem"
-      ></i>
-      {{ isFollowing ? '언팔로우' : '팔로우' }}
-    </button>
+
+   
   </div>
 </template>
 

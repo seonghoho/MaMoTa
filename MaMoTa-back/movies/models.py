@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
-import datetime
 
+# import datetime
 
 # class Actor(models.Model):
 #     name = models.CharField(max_length=50, null=False)
@@ -37,7 +37,6 @@ class Movie(models.Model):
     vote_count = models.IntegerField(null=True)
     # words = models.TextField(null=True)
     
-    
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name='like_movies'
     )
@@ -46,32 +45,32 @@ class Movie(models.Model):
         return self.title
 
 
-# 명대사
-class FamousLine(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='famous_lines',
-    )
-    movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name='famous_lines'
-    )
-    content = models.CharField(max_length=300)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# # 명대사
+# class FamousLine(models.Model):
+#     user = models.ForeignKey(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE,
+#         related_name='famous_lines',
+#     )
+#     movie = models.ForeignKey(
+#         Movie, on_delete=models.CASCADE, related_name='famous_lines'
+#     )
+#     content = models.CharField(max_length=300)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
 
 
 
-# 한 줄 리뷰
-class Review(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='reviews',
-    )
-    movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name='reviews'
-    )
-    content = models.CharField(max_length=300)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+# # 한 줄 리뷰
+# class Review(models.Model):
+#     user = models.ForeignKey(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE,
+#         related_name='reviews',
+#     )
+#     movie = models.ForeignKey(
+#         Movie, on_delete=models.CASCADE, related_name='reviews'
+#     )
+#     content = models.CharField(max_length=300)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
