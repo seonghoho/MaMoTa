@@ -98,7 +98,7 @@ const search = ref(searchSrc)
 }
 
 .logo {
-  width: 130px;
+  width: 75px;
 }
 
 .active-tab {
