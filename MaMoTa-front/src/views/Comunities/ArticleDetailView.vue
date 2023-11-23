@@ -28,15 +28,13 @@
 
     <p>좋아요 개수 {{ store.detailArticle.data.like_users.length }}</p>
 
-    <!-- <p>댓글 개수 {{ store.detailArticle.data.comment_set }}</p> -->
+
     
-    <!-- <p>{{ store.detailArticle.data.user }}</p>
-    <p>{{ authStore }}</p> pk확인부분! 확인용 -->
+
     <span
       v-if="store.detailArticle.data.user === authStore.userData.pk"
     >
-      <!-- <p>여기야여기야!</p> -->
-      <button @click="router.push({name:'articleUpdate', params:{pk:store.detailArticle.data.id}})">수정</button>
+      <button @click="router.push({name:'articleUpdate', params:{pk:store.detailArticle.data.id}})">게시글수정</button>
       <button @click="store.deleteArticle(store.detailArticle.data.id)">🗑</button>
       <p>{{ store.detailArticle.data.id }}</p>
     </span>
