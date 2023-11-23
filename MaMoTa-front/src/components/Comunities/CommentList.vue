@@ -9,10 +9,6 @@
     <span class="comment-content">{{ comment.content }}</span>
 
     <div>
-      <p>데이터 확인용~삭제예정</p>
-      <p>{{ comment }}</p>
-      <p>{{ comment.article }}</p>
-      <p>{{ comment.id }}</p>
       <!-- <p>{{ authStore.userData.pk }}</p> -->
     </div>
     <button 
