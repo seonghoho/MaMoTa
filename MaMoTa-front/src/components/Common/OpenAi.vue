@@ -15,9 +15,6 @@
           </div>
         </button>
       </div>
-      <div class="card">
-        <pre>{{ res }}</pre>
-      </div>
     </div>
   </div>
 </template>
@@ -25,18 +22,6 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-
-const OpenAiKey = import.meta.env.VITE_OPEN_API_KEY;
-const OrgId = import.meta.env.VITE_ORG_ID;
-
-const http = axios.create({
-  baseURL: 'https://api.openai.com/v1/chat',
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${OpenAiKey}`, 
-    'OpenAI-Organization': `${OrgId}`,
-  }
-});
 
 const content = ref('');
 const BTN_TEXT = 'Submit 🚀';
@@ -46,27 +31,8 @@ const btnText = ref(BTN_TEXT);
 const askAi = async () => {
   btnText.value = 'Thinking...🤔';
 
-  const tokenCount = content.value.split(' ').length;
-
-  if (tokenCount > 20) {
-    alert('질문이 너무 복잡합니다!');
-    btnText.value = BTN_TEXT;
-    return;
-  }
-
-  try {
-    const response = await http.post('/completions', {
-      "model": "gpt-3.5-turbo",
-      "messages": [{"role": "user", "content": content.value}],
-      "temperature": 0.7
-    });
-
-    res.value =  response.data.choices[0].message.content;
-  } catch (error) {
-    console.log(error);
-  } finally {
-    btnText.value = BTN_TEXT;
-  }
+  const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(content.value)}`;
+  window.location.href = searchUrl;
 };
 
 </script>

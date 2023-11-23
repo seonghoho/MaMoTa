@@ -22,7 +22,9 @@
       <div
         class="card-cover"
         :style="{ backgroundImage: `url('${coverImageUrl}')` }"
+
       ></div>
+
       <img class="card-avatar" :src="avatarImageUrl" alt="avatar" />
       <h1 class="card-fullname">{{ fullName }}</h1>
       <h2 class="card-jobtitle">{{ jobTitle }}</h2>
@@ -30,11 +32,45 @@
     <div class="card-main">
       <div class="card-section" :class="{ 'is-active': currentState === 'about' }">
         <div class="card-content">
-          <div class="card-subtitle">소개</div>
+
+          <div class="card-subtitle">영화</div>
+          <p></p>
+          <p>{{ article }}</p>
+          <div class="card-subtitle">평점</div>
           <p class="card-desc">
-            어떤 문신이 적힌 스텀타운 아트 파티 시라차 젠트리파이 해시태그 지능형
-            읽기 가능한 슐리츠 브루클린 방해합니다.
+            <div class="star-rating">
+          <template v-for="n in Math.floor(article.rate)">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </template>
+          <template v-if="article.rate % 1 !== 0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </template>
+        </div>
           </p>
+          <p></p>
+          <div class="card-subtitle">한줄평</div>
+          <p></p>
+          <p>{{ article.content }}</p>
         </div>
         <div class="card-social">
           <a href="#"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -66,12 +102,11 @@
       </div>
     </div>
     <div class="card-buttons">
-      <button @click="changeSection('about')" :class="{ 'is-active': currentState === 'about' }">소개</button>
-      <button @click="changeSection('experience')" :class="{ 'is-active': currentState === 'experience' }">경력</button>
-      <button @click="changeSection('contact')" :class="{ 'is-active': currentState === 'contact' }">연락처</button>
+      <button @click="changeSection('about')" :class="{ 'is-active': currentState === 'about' }">영화리뷰</button>
+      <button @click="changeSection('experience')" :class="{ 'is-active': currentState === 'experience' }">영화내용</button>
+      <button @click="changeSection('contact')" :class="{ 'is-active': currentState === 'contact' }">유저정보</button>
     </div>
   </div>
-
 
 
 </template>
@@ -106,8 +141,9 @@ const likeEmpty = computed(() => {
 
 
 const currentState = ref('about'); // 초기 섹션 설정
-const coverImageUrl = 'https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80';
-const avatarImageUrl = 'https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80';
+const coverImageUrl = `/src/assets/Images/rateemoji/back_emoji_${article.rate}.png`;
+// const avatarImageUrl = 'https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80';
+const avatarImageUrl = `/src/assets/Images/rateemoji/emoji_${article.rate}.png`
 const fullName = 'William Rocheald';
 const jobTitle = 'UI Developer';
 
@@ -500,6 +536,19 @@ body {
   font-family: "Jost", sans-serif;
   transition: 0.3s;
 }
-</style>
 
+
+
+.star-rating {
+  display: flex;
+  color: #f8ce0b; /* 별 색상 지정, 원하는 색상으로 변경 가능 */
+}
+
+.star-rating svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  margin-right: 2px; /* 별 간격 조정 */
+}
+</style>
 
