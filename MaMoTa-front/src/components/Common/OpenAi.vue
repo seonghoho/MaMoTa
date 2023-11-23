@@ -2,7 +2,10 @@
   <div class="ai">
     <h3>🍿 찾으시는 영화가 있나요?</h3>
     <div class="chat">
-      <input class="input" placeholder="뭐든지 물어봐주세요! 🌽" v-model="content">
+      <input class="input" 
+      placeholder="뭐든지 물어봐주세요! 🌽" 
+      v-model="content"
+       v-on:keyup.enter="askAi">
       <div class="button-block">
         <button type="button" @click="askAi" class="btn">
           <strong>{{ btnText }}</strong>
@@ -38,7 +41,6 @@ const askAi = async () => {
 </script>
 
 <style scoped>
-
 h1 {
   margin-bottom: 64px;
 }
@@ -56,6 +58,7 @@ h1 {
   font-size: 16px;
   color: white;
 }
+
 .input::placeholder {
   color: white;
   text-align: center;
@@ -70,6 +73,7 @@ h1 {
   25% {
     transform: translateX(5px);
   }
+
   50% {
     transform: translateX(-5px);
   }
@@ -127,7 +131,8 @@ button svg {
   margin-top: 32px;
 }
 
-.card span, .card pre {
+.card span,
+.card pre {
   z-index: 1;
   color: white;
   font-size: 16px;
@@ -150,13 +155,14 @@ button svg {
   ;
   inset: 5px;
   border-radius: 16px;
-}  
+}
 
 .button-block {
   display: flex;
   align-items: center;
   justify-content: end;
 }
+
 .btn {
   display: flex;
   justify-content: center;
@@ -170,7 +176,7 @@ button svg {
   transition: 0.5s;
   animation: gradient_301 5s ease infinite;
   border: double 4px transparent;
-  background-image: linear-gradient(#212121, #212121),  linear-gradient(137.48deg, #ffdb3b 10%,#FE53BB 45%, #8F51EA 67%, #0044ff 87%);
+  background-image: linear-gradient(#212121, #212121), linear-gradient(137.48deg, #ffdb3b 10%, #FE53BB 45%, #8F51EA 67%, #0044ff 87%);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -322,4 +328,5 @@ strong {
     transform: scale(0.75);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
-}</style>
+}
+</style>

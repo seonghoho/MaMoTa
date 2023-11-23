@@ -1,29 +1,8 @@
-좋아요 부분 잘 안 되어서 삭제할 예정
-
 
 <template>
-  <!-- <div v-if="likeEmpty"> -->
-    
-<!-- 
-    <p @click.stop=goLike(article.id)   class="blue">      
-        좋아요 취소 </p>
-        <p>{{article.like_users.length}}</p> -->
-
-
-  <!-- </div> -->
-  <!-- <div v-else>
-    <p> 좋아요</p>
-    <p>{{article.like_users.length}}</p>
-
-  </div> -->
-
   <div class="card" :data-state="currentState">
     <div class="card-header">
-      <div
-        class="card-cover"
-        :style="{ backgroundImage: `url('${coverImageUrl}')` }"
-
-      ></div>
+      <div class="card-cover" :style="{ backgroundImage: `url('${coverImageUrl}')` }"></div>
 
       <img class="card-avatar" :src="avatarImageUrl" alt="avatar" />
       <h1 class="card-fullname">{{ fullName }}</h1>
@@ -34,47 +13,40 @@
         <div class="card-content">
 
           <div class="card-subtitle">영화</div>
+          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-primary">
+            상세 보기
+          </RouterLink>
           <p></p>
-          <p>{{ article }}</p>
+          <p>{{ article.title }}</p>
           <div class="card-subtitle">평점</div>
           <p class="card-desc">
-            <div class="star-rating">
-          <template v-for="n in Math.floor(article.rate)">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-          </template>
-          <template v-if="article.rate % 1 !== 0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-          </template>
-        </div>
+          <div class="star-rating">
+            <template v-for="n in Math.floor(article.rate)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </template>
+            <template v-if="article.rate % 1 !== 0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </template>
+          </div>
           </p>
           <p></p>
-          <div class="card-subtitle">한줄평</div>
+          <div class="card-subtitle">리뷰</div>
           <p></p>
           <p>{{ article.content }}</p>
         </div>
         <div class="card-social">
           <a href="#"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z" /></svg></a>
+              <path
+                d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z" />
+            </svg></a>
           <!-- 나머지 소셜 미디어 아이콘 추가 -->
         </div>
       </div>
@@ -91,9 +63,11 @@
           <div class="card-subtitle">연락처</div>
           <div class="card-contact-wrapper">
             <div class="card-contact">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" /></svg>
+                <circle cx="12" cy="10" r="3" />
+              </svg>
               Algonquin Rd, Three Oaks Vintage, MI, 49128
             </div>
             <!-- 나머지 연락처 정보 추가 -->
@@ -103,12 +77,14 @@
     </div>
     <div class="card-buttons">
       <button @click="changeSection('about')" :class="{ 'is-active': currentState === 'about' }">영화리뷰</button>
-      <button @click="changeSection('experience')" :class="{ 'is-active': currentState === 'experience' }">영화내용</button>
+      <button>
+        <RouterLink :to="{ name: 'search', query: { movieTitle: article.movie_title } }" class="router-link">
+          영화 정보
+        </RouterLink>
+      </button>
       <button @click="changeSection('contact')" :class="{ 'is-active': currentState === 'contact' }">유저정보</button>
     </div>
   </div>
-
-
 </template>
 
 <script setup>
@@ -126,7 +102,6 @@ const userStore = useUserStore()
 
 
 const { article } = defineProps(['article'])
-
 // 좋아요 클릭함수
 const goLike = (articleId) => {
   store.likeArticle(articleId)
@@ -135,7 +110,7 @@ const goLike = (articleId) => {
 console.log(article.like_users)
 
 const likeEmpty = computed(() => {
-  return article.like_users.length >0 && article.like_users.includes(userStore.userData.pk) ?  true : false
+  return article.like_users.length > 0 && article.like_users.includes(userStore.userData.pk) ? true : false
 })
 
 
@@ -151,6 +126,7 @@ const changeSection = (section) => {
   currentState.value = section;
 };
 
+
 </script>
 
 <style scoped>
@@ -159,6 +135,7 @@ const changeSection = (section) => {
 * {
   box-sizing: border-box;
 }
+
 body {
   color: #2b2c48;
   font-family: "Jost", sans-serif;
@@ -191,6 +168,7 @@ body {
 
 .card[data-state="#about"] {
   height: 450px;
+
   .card-main {
     padding-top: 0;
   }
@@ -333,17 +311,24 @@ body {
   font-family: "DM Sans", sans-serif;
 }
 
+.router-link {
+  text-decoration: none;
+  color: black;
+}
+
 .card-social {
   display: flex;
   align-items: center;
   padding: 0 20px;
   margin-bottom: 30px;
+
   svg {
     fill: rgb(165, 181, 206);
     width: 16px;
     display: block;
     transition: 0.3s;
   }
+
   a {
     color: #8797a1;
     height: 32px;
@@ -396,18 +381,17 @@ body {
     &:hover {
       color: #2b2c48;
       border-bottom: 3px solid #8a84ff;
-      background: linear-gradient(
-        to bottom,
-        rgba(127, 199, 231, 0) 0%,
-        rgba(207, 204, 255, 0.2) 44%,
-        rgba(211, 226, 255, 0.4) 100%
-      );
+      background: linear-gradient(to bottom,
+          rgba(127, 199, 231, 0) 0%,
+          rgba(207, 204, 255, 0.2) 44%,
+          rgba(211, 226, 255, 0.4) 100%);
     }
   }
 }
 
 .card-section {
   display: none;
+
   &.is-active {
     display: block;
     animation: fadeIn 0.6s both;
@@ -419,6 +403,7 @@ body {
     opacity: 0;
     transform: translatey(40px);
   }
+
   100% {
     opacity: 1;
   }
@@ -427,12 +412,11 @@ body {
 .card-timeline {
   margin-top: 30px;
   position: relative;
+
   &:after {
-    background: linear-gradient(
-      to top,
-      rgba(134, 214, 243, 0) 0%,
-      rgba(81, 106, 204, 1) 100%
-    );
+    background: linear-gradient(to top,
+        rgba(134, 214, 243, 0) 0%,
+        rgba(81, 106, 204, 1) 100%);
     content: "";
     left: 42px;
     width: 2px;
@@ -449,6 +433,7 @@ body {
   padding-right: 20px;
   padding-bottom: 30px;
   z-index: 1;
+
   &:last-child {
     padding-bottom: 5px;
   }
@@ -467,11 +452,9 @@ body {
     text-indent: -35px;
     border-radius: 50%;
     color: rgba(#868686, 0.7);
-    background: linear-gradient(
-      to bottom,
-      lighten(#516acc, 20%) 0%,
-      #516acc 100%
-    );
+    background: linear-gradient(to bottom,
+        lighten(#516acc, 20%) 0%,
+        #516acc 100%);
   }
 }
 
@@ -501,7 +484,7 @@ body {
   line-height: 1.6;
   cursor: pointer;
 
-  & + & {
+  &+& {
     margin-top: 16px;
   }
 
@@ -519,11 +502,9 @@ body {
 .contact-me {
   border: 0;
   outline: none;
-  background: linear-gradient(
-    to right,
-    rgba(83, 200, 239, 0.8) 0%,
-    rgba(81, 106, 204, 0.8) 96%
-  );
+  background: linear-gradient(to right,
+      rgba(83, 200, 239, 0.8) 0%,
+      rgba(81, 106, 204, 0.8) 96%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   color: #fff;
   padding: 12px 16px;
@@ -541,14 +522,16 @@ body {
 
 .star-rating {
   display: flex;
-  color: #f8ce0b; /* 별 색상 지정, 원하는 색상으로 변경 가능 */
+  color: #f8ce0b;
+  /* 별 색상 지정, 원하는 색상으로 변경 가능 */
 }
 
 .star-rating svg {
   width: 20px;
   height: 20px;
   fill: currentColor;
-  margin-right: 2px; /* 별 간격 조정 */
+  margin-right: 2px;
+  /* 별 간격 조정 */
 }
 </style>
 

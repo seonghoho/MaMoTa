@@ -97,4 +97,15 @@ h2 {
   background-color: rgb(233, 42, 233);
 }
 
+@font-face {
+    font-family: 'Giants-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Giants-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+* {
+  font-family:'Giants-Bold';
+}
+
 </style>
