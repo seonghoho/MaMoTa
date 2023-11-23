@@ -5,19 +5,30 @@
       <div class="card-cover" :style="{ backgroundImage: `url('${coverImageUrl}')` }"></div>
 
       <img class="card-avatar" :src="avatarImageUrl" alt="avatar" />
-      <h1 class="card-fullname">{{ fullName }}</h1>
-      <h2 class="card-jobtitle">{{ jobTitle }}</h2>
+
+      <h1 class="card-feel" v-if="article.rate===1"> 별로에요!</h1>
+      <h1 class="card-feel" v-if="article.rate===2"> 조금아쉬워요..</h1>
+      <h1 class="card-feel" v-if="article.rate===3"> 보통이에요</h1>
+      <h1 class="card-feel" v-if="article.rate===4"> 추천해요ㅎㅎ</h1>
+      <h1 class="card-feel" v-if="article.rate===5"> 완전 재밌어요!</h1>
+
+
+      <!-- <h1 class="card-fullname">{{ fullName }}</h1> -->
+      <h2 class="card-jobtitle" v-if="article.rate===1">화가난다..!</h2>
+      <h2 class="card-jobtitle" v-if="article.rate===2">재밌는거 없나?</h2>
+      <h2 class="card-jobtitle" v-if="article.rate===3">이 정도면 괜찮아</h2>
+      <h2 class="card-jobtitle" v-if="article.rate===4">혼자 보기 아까워</h2>
+      <h2 class="card-jobtitle" v-if="article.rate===5">꼭 보세요 다들..!</h2>
     </div>
     <div class="card-main">
       <div class="card-section" :class="{ 'is-active': currentState === 'about' }">
         <div class="card-content">
 
           <div class="card-subtitle">영화</div>
-          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-primary">
-            상세 보기
-          </RouterLink>
+          <p>{{ article.movie_title }}</p>
+
           <p></p>
-          <p>{{ article.title }}</p>
+          <!-- <p>{{ article.title }}</p> -->
           <div class="card-subtitle">평점</div>
           <p class="card-desc">
           <div class="star-rating">
@@ -40,7 +51,15 @@
           <p></p>
           <div class="card-subtitle">리뷰</div>
           <p></p>
-          <p>{{ article.content }}</p>
+
+          <div>
+            {{ article.content.slice(0, 80) }}
+            <span v-if="article.content.length > 80">....</span>
+          </div>
+          <div> </div>
+          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-light btn-sm mt-1" style="background-color: #d3ffea">
+            상세 보기
+          </RouterLink>
         </div>
         <div class="card-social">
           <a href="#"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -60,18 +79,19 @@
       </div>
       <div class="card-section" :class="{ 'is-active': currentState === 'contact' }">
         <div class="card-content">
-          <div class="card-subtitle">연락처</div>
-          <div class="card-contact-wrapper">
-            <div class="card-contact">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Algonquin Rd, Three Oaks Vintage, MI, 49128
-            </div>
-            <!-- 나머지 연락처 정보 추가 -->
-          </div>
+          <div class="card-subtitle">글작성자</div>
+          <p>{{ article.username }}</p>
+          <div class="card-subtitle">글작성일</div>
+          <p>{{ article.created_at.slice(0,19) }}</p>
+
+          <div class="card-subtitle">글수정일</div>
+          <p>{{ article.updated_at.slice(0,19) }}</p>
+          <p>{{ article.user }}</p>
+          <!-- <RouterLink :to="{ name: 'userProfile', params: { id: article.user } }" class="btn btn-light btn-sm mt-1">
+            프로필
+          </RouterLink> -->
+          <div @click="goProfile(article.user)" class="btn btn-light btn-sm mt-1"> 프로필</div>
+
         </div>
       </div>
     </div>
@@ -79,7 +99,7 @@
       <button @click="changeSection('about')" :class="{ 'is-active': currentState === 'about' }">영화리뷰</button>
       <button>
         <RouterLink :to="{ name: 'search', query: { movieTitle: article.movie_title } }" class="router-link">
-          영화 정보
+           영화정보
         </RouterLink>
       </button>
       <button @click="changeSection('contact')" :class="{ 'is-active': currentState === 'contact' }">유저정보</button>
@@ -89,17 +109,23 @@
 
 <script setup>
 
-
+import { useRouter,RouterLink } from 'vue-router';
 import { computed } from '@vue/reactivity';
 import { useUserStore } from '@/stores/userStore';
 import { useArticleStore } from '@/stores/article';
 import { ref } from 'vue';
+
+const router = useRouter()
 
 
 const store = useArticleStore()
 const userStore = useUserStore()
 // const likeEmpty = ref(false);
 
+const goProfile = (userId) => {
+  console.log(userId)
+  router.push({ name: 'userProfile', params: { userId: userId } })
+}
 
 const { article } = defineProps(['article'])
 // 좋아요 클릭함수
@@ -120,7 +146,6 @@ const coverImageUrl = `/src/assets/Images/rateemoji/back_emoji_${article.rate}.p
 // const avatarImageUrl = 'https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80';
 const avatarImageUrl = `/src/assets/Images/rateemoji/emoji_${article.rate}.png`
 const fullName = 'William Rocheald';
-const jobTitle = 'UI Developer';
 
 const changeSection = (section) => {
   currentState.value = section;
@@ -164,6 +189,7 @@ body {
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+  background-color: #d3ffea;
 }
 
 .card[data-state="#about"] {
@@ -256,10 +282,22 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(-64px);
+  transform: translateX(-50%);
+  animation: bounce 0.5s infinite alternate;
+  margin-bottom: 50px;
 }
 
-.card-fullname {
+@keyframes bounce {
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  0% {
+    transform: translateY(-20px) translateX(-50%);
+  }
+}
+
+
+.card-feel {
   position: absolute;
   bottom: 0;
   font-size: 22px;
@@ -269,6 +307,7 @@ body {
   transform: translateY(-10px) translateX(-50%);
   left: 50%;
 }
+
 
 .card-jobtitle {
   position: absolute;
@@ -361,6 +400,8 @@ body {
   position: sticky;
   bottom: 0;
   left: 0;
+  text-align: center;
+  background-color: #d3ffea;
 
   button {
     flex: 1 1 auto;
