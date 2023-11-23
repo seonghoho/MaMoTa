@@ -74,7 +74,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useMovieStore } from '@/stores/movie';
 const authStore = useUserStore()
 const movieStore = useMovieStore()
-const movie = movieStore.movie
+// const movie = movieStore.movie
 
 const route = useRoute()
 const store = useArticleStore()
@@ -85,12 +85,12 @@ const router = useRouter()
 // console.log(store.detailArticle.data.movie_titletitle)
 
 // 데이터연결
-onMounted(() => {
-  // console.log(store.detailArticle.data)
-  // console.log(route.params.id)
-  store.getDetailArticle(route.params.id)
-  movieStore.getMovie('오펜하이머')
-})
+// onMounted(() => {
+//   // console.log(store.detailArticle.data)
+//   // console.log(route.params.id)
+//   store.getDetailArticle(route.params.id)
+//   movieStore.getMovie('오펜하이머')
+// })
 
 
 // 프로필 가는 부분

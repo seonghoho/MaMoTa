@@ -27,23 +27,23 @@ export const useMovieStore = defineStore('movie', () => {
       { "id": 37, "name": "서부" }]
   }
 
-  const movie = ref([
+  // const movie = ref([
 
-  ])
-  const API_URL = 'http://127.0.0.1:8000/'
+  // ])
+  // const API_URL = 'http://127.0.0.1:8000/'
 
-  const getMovie = (movie_title) => {
-    axios({
-      method: 'get',
-      url: `${API_URL}/movies/`
-    })
-      .then((res) => {
-        movie.value = res.data.filter(item => item.title === movie_title);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getMovie = (movie_title) => {
+  //   axios({
+  //     method: 'get',
+  //     url: `${API_URL}/movies/`
+  //   })
+  //     .then((res) => {
+  //       movie.value = res.data.filter(item => item.title === movie_title);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
   
-  return { genre, movie, getMovie }
+  return { genre }
 }, { persist: true })
