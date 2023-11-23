@@ -17,6 +17,9 @@
       <div class="like-count-info mb-2">
         <strong>팔로워 수: {{ user.follower_count }}</strong>
       </div>
+      <div class="like-count-info mb-2">
+        <strong>팔로잉 수: {{ user.following_count }}</strong>
+      </div>
 
     </div>
   </div>
