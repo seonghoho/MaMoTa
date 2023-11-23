@@ -5,5 +5,5 @@ from .models import *
 admin.site.register(Movie)
 # admin.site.register(Actor)
 admin.site.register(Genre)
-admin.site.register(FamousLine)
-admin.site.register(Review)
+# admin.site.register(FamousLine)
+# admin.site.register(Review)

@@ -49,58 +49,58 @@ class MovieSerializer(serializers.ModelSerializer):
         )
 
 
-# 명대사
-class FamousLineSerializer(serializers.ModelSerializer):
-    class UserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = User
-            fields = ('pk',)
+# # 명대사
+# class FamousLineSerializer(serializers.ModelSerializer):
+#     class UserSerializer(serializers.ModelSerializer):
+#         class Meta:
+#             model = User
+#             fields = ('pk',)
 
-    user = UserSerializer(read_only=True)
+#     user = UserSerializer(read_only=True)
 
-    class MovieSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Movie
-            # fields = ('pk', 'username', 'profile_pic')
-            fields = ('pk',)
+#     class MovieSerializer(serializers.ModelSerializer):
+#         class Meta:
+#             model = Movie
+#             # fields = ('pk', 'username', 'profile_pic')
+#             fields = ('pk',)
 
-    class Meta:
-        model = FamousLine
-        fields = (
-            'pk',
-            'user',
-            'movie',
-            'content',
-            'created_at',
-            'updated_at',
-        )
-        read_only_fields = ('user','movie',)
+#     class Meta:
+#         model = FamousLine
+#         fields = (
+#             'pk',
+#             'user',
+#             'movie',
+#             'content',
+#             'created_at',
+#             'updated_at',
+#         )
+#         read_only_fields = ('user','movie',)
 
 
 
-# 리뷰
-class ReviewSerializer(serializers.ModelSerializer):
-    class UserSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = User
-            # fields = ('pk', 'username', 'profile_pic')
-            fields = ('pk',)
+# # 리뷰
+# class ReviewSerializer(serializers.ModelSerializer):
+#     class UserSerializer(serializers.ModelSerializer):
+#         class Meta:
+#             model = User
+#             # fields = ('pk', 'username', 'profile_pic')
+#             fields = ('pk',)
 
-    user = UserSerializer(read_only=True)
+#     user = UserSerializer(read_only=True)
 
-    class MovieSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Movie
-            fields = ('pk',)
+#     class MovieSerializer(serializers.ModelSerializer):
+#         class Meta:
+#             model = Movie
+#             fields = ('pk',)
 
-    class Meta:
-        model = Review
-        fields = (
-            'pk',
-            'user',
-            'movie',
-            'content',
-            'created_at',
-            'updated_at',
-        )
-        read_only_fields = ('movie',)
+#     class Meta:
+#         model = Review
+#         fields = (
+#             'pk',
+#             'user',
+#             'movie',
+#             'content',
+#             'created_at',
+#             'updated_at',
+#         )
+#         read_only_fields = ('movie',)
