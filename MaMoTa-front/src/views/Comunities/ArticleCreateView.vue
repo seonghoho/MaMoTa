@@ -22,8 +22,8 @@
       <label for="rate" class="form-label">평점 선택:</label>
       <select name="rate" id="rate" v-model="rate" class="form-select">
       <!-- 0.0부터 5.0까지 0.5 단위로 옵션 생성 -->
-        <option v-for="i in 10" :key="i/2" :value="(i/2).toFixed(1)">
-        {{ (i/2).toFixed(1) }}
+        <option v-for="i in 5" :key="i" :value="(i).toFixed(1)">
+        {{ (i).toFixed(1) }}
         </option>
       </select>
 
