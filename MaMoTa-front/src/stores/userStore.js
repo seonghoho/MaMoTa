@@ -27,13 +27,14 @@ const signUpUser = (payload) => {
       // response가 존재하고, response.status가 존재하며 204인 경우
       if (response && response.status === 204) {
         Swal.fire({
-          title: "회원가입 완료. \n 로그인 하시겠습니까?",
+          title: "회원가입 완료. \n 여행을 떠나시겠습니까?",
           icon: "success",
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
+          confirmButtonColor: "#810CA8",
+          cancelButtonColor: "#FA2FB5",
           confirmButtonText: "네",
           cancelButtonText: "아니요",
+          background: '#D1C4E9',
         }).then((result) => {
           if (result.isConfirmed) {
             router.push({ name: "userLogin" });
@@ -48,12 +49,14 @@ const signUpUser = (payload) => {
       // 여기서 error에 대한 처리를 추가할 수 있습니다.
     });
 };
+
+
     // 로그인 성공
     const loginUser = (payload) => {
       loginApi(payload)
         .then((response) => {
           if (response.data.key) {
-            console.log(response)
+            // console.log(response)
             token.value = response.data.key;
             isLogin.value = true;
             window.localStorage.setItem("token", token.value);
@@ -64,6 +67,7 @@ const signUpUser = (payload) => {
               icon: "error",
               confirmButtonColor: "#682cd48c",
               confirmButtonText: "확인",
+              background: '#D1C4E9',
             });
           }
         })
@@ -73,6 +77,7 @@ const signUpUser = (payload) => {
             icon: "error",
             confirmButtonColor: "#682cd48c",
             confirmButtonText: "확인",
+            background: '#D1C4E9',
           });
         });
     };
@@ -83,6 +88,45 @@ const signUpUser = (payload) => {
           .then((res) => {
             setCurrentUser(res.data);
             window.localStorage.setItem("userPk", res.data.pk);
+
+
+
+
+            // Swal.fire({
+            //   title: "로그인된건가?",
+            //   icon: "success",
+            //   confirmButtonColor: "#682cd48c",
+            //   confirmButtonText: "확인",
+            // });
+
+
+            let timerInterval;
+            Swal.fire({
+              title: "원하는 영화를 찾아 떠나보아요!",
+              html: "영화 찾으러 떠나기 <b></b> 초 전..🚀",
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                  timer.textContent = `${Math.ceil(Swal.getTimerLeft() / 1000)}`;
+                }, 100);
+              },
+              willClose: () => {
+                clearInterval(timerInterval);
+              }
+            }).then((result) => {
+              /* Read more about handling dismissals below */
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+              }
+            });
+
+
+
+
+
             router.push({ name: "community" });
           })
           .catch((err) => {
