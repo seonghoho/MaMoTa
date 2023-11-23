@@ -1,7 +1,9 @@
 <template>
   <div class="grid-container">
     <h1> </h1>
-    <RouterLink :to="{ name: 'articleCreate' }"> 게시글 생성</RouterLink>
+    <!-- <RouterLink :to="{ name: 'articleCreate' }"> 게시글 생성</RouterLink> -->
+    <button @click="navigateToArticleCreate" class="create_button">게시글 생성</button>
+
     <div class="grid">
       <div
         v-if="productIsEmpty"
@@ -78,6 +80,9 @@ onMounted(() => {
   store.getArticleList()
 })
 
+const navigateToArticleCreate = () => {
+  router.push({ name: 'articleCreate' });
+};
 
 
 const goLike = (articleId) => {
@@ -129,6 +134,15 @@ const prevPage = () => {
 </script>
 
 <style scoped>
+.create_button {
+  width: 340px;
+  height: 40px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.2);
+  background-color: #d3ffea ;
+
+}
 .grid-container {
   display: flex;
   flex-direction: column;
