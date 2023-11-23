@@ -8,9 +8,10 @@
         v-for="article in paginatedArticles"
         :key="article.id"
         class="article_list"
-        @click="goDetail(article.id)"
 
       >
+      <!-- @click="goDetail(article.id)" -->
+
         <!-- {{ article }} 객체확인용 -->
         <!-- <p>게시글 순서{{ article.id }} 관련 영화 제목{{ article.movie.title }}</p> -->
         <!-- <RouterLink  :to="`/user/profile/${article.user}`"

@@ -8,15 +8,11 @@
 
   <div v-if="store.detailArticle.data" class="post-details">
     <h1>게시글 상세 정보</h1>
-    <ArticleMovieCard     
-    :key="movie.id"
-    :movie="movie"
-    class="card"
-    />
     <router-link :to="{ name: 'community' }" class="back-button btn btn-primary">뒤로 가기</router-link>
     <div class="post-info">
       <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p>
       <p class="post-title">영화 제목: {{ store.detailArticle.data.movie_title }}</p>
+      <RouterLink :to="{ name: 'search', query: { movieTitle: store.detailArticle.data.movie_title } }" class="btn btn-primary">영화 정보 보기</RouterLink>
       <p class="post-title">글 제목:{{ store.detailArticle.data.title }}</p>
     </div>
     <div @click.stop="goProfile(store.detailArticle.data.user)">
@@ -74,23 +70,18 @@ import { useArticleStore } from '@/stores/article';
 import { useUserStore } from '@/stores/userStore'
 import { useMovieStore } from '@/stores/movie';
 const authStore = useUserStore()
-const movieStore = useMovieStore()
-const movie = movieStore.movie
 
 const route = useRoute()
 const store = useArticleStore()
 const router = useRouter()
-
 // 수정 및 삭제 태그 추가 부분
 
-// console.log(store.detailArticle.data.movie_titletitle)
 
 // 데이터연결
 onMounted(() => {
   // console.log(store.detailArticle.data)
   // console.log(route.params.id)
   store.getDetailArticle(route.params.id)
-  movieStore.getMovie('오펜하이머')
 })
 
 

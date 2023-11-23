@@ -4,9 +4,11 @@
       <img :src="getImageUrl(movie.poster_path)" class="card-img-top poster" alt="#">
       <div class="movie-info">
         <h1>{{ movie.title }}</h1>
+
         <div>
           <p>개봉일 : {{ movie.release_date }}</p>
           <p>🔥 {{ movie.vote_average }} / 10</p>
+
         </div>
 
         <h3>장르</h3>
@@ -23,41 +25,32 @@
       </div>
     </div>
 
+    <div class="like">
+      <!-- 좋아요 버튼 -->
+      <div class="like-button">
+        <span @click="addToMyPickList" v-if="isPicked">
+          <font-awesome-icon :icon="['fas', 'heart']" bounce size="2xl" style="color: #ff1900;" />
+        </span>
+        <span @click="addToMyPickList" v-else>
+          <font-awesome-icon :icon="['fas', 'thumbs-up']" beat size="2xl" />
+        </span>
+      </div>
 
+      <!-- 여기까지 -->
+      <RouterLink :to="{ name: 'articleCreate', query: { movie_title: `${movie.title}` } }"
+        class="router-link">
+        <font-awesome-icon :icon="['fas', 'pen-to-square']" size="2xl" style="color: #fec64d;" />      
+      </RouterLink>
+    </div>
 
-    <!-- 좋아요 버튼 -->
-
-    <button
-      :class="{ 'btn-outline-info': isPicked, 'btn-info': !isPicked }"
-      class="btn mt-5 mb-5"
-      style="width: 400px"
-      @click="addToMyPickList"
-    >
-      {{ isPicked ? '좋아요 취소' : '좋아요' }}
-    </button>
-
-    <!-- 여기까지 -->
-
-
-    <div class="separator"></div>
-    <RouterLink 
-    :to="{ name: 'articleCreate', query: { movie_title: `${ movie.title }`} }"
-    class="router-link"
-    >
-      게시글 작성
-    </RouterLink>
     <div class="separator"></div>
     <div class="trailer">
       <h3>예고편</h3>
       <div class="iframe-container">
-      <iframe 
-      width="1080" 
-      height="720" 
-      :src="`https://www.youtube.com/embed/${videoKey}`" 
-      title="YouTube video player" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-      allowfullscreen></iframe>
+        <iframe width="1080" height="720" :src="`https://www.youtube.com/embed/${videoKey}`" title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
       </div>
     </div>
     <div class="separator"></div>
@@ -149,7 +142,7 @@ const fetchVideo = () => {
   axios.get(url, { headers })
     .then((response) => {
       videos.value = response.data.results[0];
-      videoKey.value = videos.value?.key || ''; 
+      videoKey.value = videos.value?.key || '';
     })
     .catch((err) => {
       console.log('Axios Error: ' + err.message);
@@ -215,7 +208,7 @@ onMounted(fetchVideo);
 <style>
 .router-link {
   text-decoration: none;
-  color: black;
+  color: white;
   margin-right: 15px;
 }
 
@@ -231,9 +224,18 @@ onMounted(fetchVideo);
   color: white !important;
 }
 
+.like {
+  display: flex;
+  justify-content: space-between;
+}
+
 .profile {
   max-width: 150px;
   max-height: 275px;
+}
+
+.like {
+  margin-top : 20px;
 }
 
 .actors {
@@ -262,6 +264,10 @@ onMounted(fetchVideo);
   margin: 20px 0;
 }
 
+.like-button {
+  margin-left: 15px;
+}
+
 .poster-container {
   display: flex;
   align-items: center;
@@ -285,6 +291,7 @@ onMounted(fetchVideo);
 .trailer {
   margin-top: 15px;
   position: relative;
+  color: white;
 }
 
 .iframe-container {
@@ -297,7 +304,6 @@ iframe {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0; 
+  top: 0;
 }
-
 </style>

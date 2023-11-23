@@ -18,6 +18,8 @@
     <div v-else-if="weatherStatus === 'Mist'" @click="handleWeatherIconClick('Mist')">
       <font-awesome-icon :icon="['fas', 'smog']" beat-fade size="2xl" style="color: #ffffff;" />    
     </div>
+    <div v-else-if="weatherStatus === 'Haze'" @click="handleWeatherIconClick('Haze')">
+      <font-awesome-icon :icon="['fass', 'smog']" fade size="2xl" style="color: #e17b70;" />    </div>
   </div>
 </template>
 
@@ -51,6 +53,8 @@ const selectGenreByWeather = (weather) => {
   switch (weather) {
     case 'Mist':
       return 80
+    case 'Haze':
+      return 10752
     case 'Sunny':
       return 35
     case 'Rain':
