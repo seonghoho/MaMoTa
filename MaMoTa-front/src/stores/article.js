@@ -47,7 +47,7 @@ export const useArticleStore = defineStore('post', () => {
     .catch(err => console.log(err))
   }
 
-  const createArticle = function ({rate, title, content, movie,view_count}) {
+  const createArticle = function ({rate, title, content, movie,view_count, movie_title}) {
     console.log(`${token}`)
     axios({
       method: 'post',
@@ -57,7 +57,8 @@ export const useArticleStore = defineStore('post', () => {
         title,
         content,
         movie,
-        view_count
+        view_count,
+        movie_title,
 
       },
       headers: {
@@ -116,5 +117,20 @@ export const useArticleStore = defineStore('post', () => {
 
   }
 
-  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle,updateArticle, deleteArticle, likeArticle}
+  const movieArticles = ref([]);
+
+  const getMovieArticles = (movie_title) => {
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:8000/community/',
+    })
+      .then((res) => {
+        // movieArticles.value = res.data.filter(item => item.movie_title === movie_title);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return { articleList, getArticleList, detailArticle, getDetailArticle, createArticle,updateArticle, deleteArticle, likeArticle, movieArticles, getMovieArticles}
 })

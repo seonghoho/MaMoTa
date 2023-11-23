@@ -33,7 +33,7 @@
       data-bs-toggle="modal"
       data-bs-target="#MusicModal"
       aria-controls="MusicModal"
-      style="position: fixed; bottom: 0; right: 15px; cursor: pointer;"
+      style="position: fixed; bottom: 0; right: 30px; cursor: pointer;"
     >
       <img class="rounded-circle icon" src="@/assets/Images/PlayButton.gif" alt="Ai_Icon">
     </div>
@@ -96,7 +96,5 @@ h2 {
 .btn-close {
   background-color: rgb(233, 42, 233);
 }
-@font-face{
-font-family:'DNFBitBitv2';
-font-style:normal;font-weight:400;src:url('//cdn.df.nexon.com/img/common/font/DNFBitBitv2.otf')format('opentype')}
+
 </style>

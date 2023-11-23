@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from .serializers import (
     MovieListSerializer,
     MovieSerializer,
-    MovieGenreSerializer,
+    # MovieGenreSerializer,
     FamousLineSerializer,
     ReviewSerializer
 )
@@ -23,12 +23,7 @@ from .models import Movie, FamousLine, Review
 def movie_list(request):
     if request.method == 'GET':
         movies = Movie.objects.all()
-        paginator = Paginator(movies, 20)
-
-        page = request.GET.get('page', 1)
-        page_movies = paginator.get_page(page)
-
-        serializer = MovieListSerializer(page_movies, many=True)
+        serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
 
 

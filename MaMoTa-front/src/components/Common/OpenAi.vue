@@ -88,6 +88,7 @@ h1 {
   box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
   border: 2px solid rgb(233, 42, 233);
   font-size: 16px;
+  color: white;
 }
 .input::placeholder {
   color: white;

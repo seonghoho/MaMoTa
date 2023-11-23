@@ -8,20 +8,13 @@ User = get_user_model()
 class MovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ('pk', 'title', 'vote_average', 'vote_count', 'poster_path')
+        fields = '__all__'
 
 
 class TopMovieListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        exclude = (
-            'popularity',
-            'tagline',
-            'words',
-            'budget',
-            'revenue',
-            'runtime',
-        )
+        exclude = ('popularity', )
 
 
 # 단일 영화 상세 정보
@@ -38,32 +31,22 @@ class MovieSerializer(serializers.ModelSerializer):
             model = Genre
             fields = ('name',)
 
-    class ActorSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Actor
-            fields = ('pk', 'name', 'profile_path')
+    # class ActorSerializer(serializers.ModelSerializer):
+    #     class Meta:
+    #         model = Actor
+    #         fields = ('pk', 'name', 'profile_path')
 
-    genres = GenreSerializer(read_only=True, many=True)
-    actors = ActorSerializer(read_only=True, many=True)
+    # genres = GenreSerializer(read_only=True, many=True)
+    # actors = ActorSerializer(read_only=True, many=True)
     like_movies = UserSerializer(read_only=True, many=True)
     
     class Meta:
         model = Movie
         exclude = (
             'popularity',
-            'tagline',
             'vote_count',
-            'words',
             'like_users',
         )
-
-
-# 날씨 기반 추천 장르 영화
-class MovieGenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Movie
-        fields = ('pk', 'title', 'overview', 'poster_path', 'release_date')
-
 
 
 # 명대사

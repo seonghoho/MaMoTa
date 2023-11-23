@@ -26,16 +26,17 @@
           <li class="nav-item">
             <RouterLink :to="{ name: 'community' }" class="router-link" active-class="active-tab">Community</RouterLink>
           </li>
+
           <!-- 로그인 됐으면 -->
 
           <li class="nav-item">
-            <RouterLink v-if="userStore.token" :to="`/user/profile/${userStore.userData.pk}`" class="router-link"
+            <RouterLink v-if="userStore.isLogin" :to="`/user/profile/${userStore.userData.pk}`" class="router-link"
               active-class="active-tab">
               Profile
             </RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink v-if="userStore.token" to="/logout" class="router-link" active-class="active-tab">
+            <RouterLink v-if="userStore.isLogin" to="/logout" class="router-link" active-class="active-tab">
               Logout
             </RouterLink>
           </li>
@@ -43,12 +44,12 @@
           <!-- 로그인 안 된 상태이면 -->
 
           <li class="nav-item">
-            <RouterLink v-if="!userStore.token" to="/user/login" class="router-link" active-class="active-tab">
+            <RouterLink v-if="!userStore.isLogin" to="/user/login" class="router-link" active-class="active-tab">
               Login
             </RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink v-if="!userStore.token" to="/user/signup" class="router-link" active-class="active-tab">
+            <RouterLink v-if="!userStore.isLogin" to="/user/signup" class="router-link" active-class="active-tab">
               Signup
             </RouterLink>
           </li>

@@ -4,14 +4,19 @@
   <div>
     <h1>게시글 상세페이지에 온걸 환영해 ^^</h1>
 
-
   </div>
 
   <div v-if="store.detailArticle.data" class="post-details">
     <h1>게시글 상세 정보</h1>
-    <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
+    <ArticleMovieCard     
+    :key="movie.id"
+    :movie="movie"
+    class="card"
+    />
+    <router-link :to="{ name: 'community' }" class="back-button btn btn-primary">뒤로 가기</router-link>
     <div class="post-info">
       <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p>
+      <p class="post-title">영화 제목: {{ store.detailArticle.data.movie_title }}</p>
       <p class="post-title">글 제목:{{ store.detailArticle.data.title }}</p>
     </div>
     <div @click.stop="goProfile(store.detailArticle.data.user)">
@@ -61,12 +66,15 @@
 <script setup>
 import CommentCreate from '@/components/Comunities/CommentCreate.vue';
 import CommentList from '@/components/Comunities/CommentList.vue';
+import ArticleMovieCard from '@/components/Movies/ArticleMovieCard.vue'
 import { onMounted } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
 import { useArticleStore } from '@/stores/article';
 import { useUserStore } from '@/stores/userStore'
+import { useMovieStore } from '@/stores/movie';
 const authStore = useUserStore()
-
+const movieStore = useMovieStore()
+// const movie = movieStore.movie
 
 const route = useRoute()
 const store = useArticleStore()
@@ -74,13 +82,16 @@ const router = useRouter()
 
 // 수정 및 삭제 태그 추가 부분
 
+// console.log(store.detailArticle.data.movie_titletitle)
 
 // 데이터연결
-onMounted(() => {
-  console.log(store.detailArticle.data)
-  console.log(route.params.id)
-  store.getDetailArticle(route.params.id)
-})
+// onMounted(() => {
+//   // console.log(store.detailArticle.data)
+//   // console.log(route.params.id)
+//   store.getDetailArticle(route.params.id)
+//   movieStore.getMovie('오펜하이머')
+// })
+
 
 // 프로필 가는 부분
 const goProfile = (userId) => {
@@ -90,6 +101,10 @@ const goProfile = (userId) => {
 </script>
 
 <style lang="scss" scoped>
+.card {
+  width: 60%;
+  margin: auto;
+}
 .post-details {
   max-width: 600px;
   margin: 0 auto;

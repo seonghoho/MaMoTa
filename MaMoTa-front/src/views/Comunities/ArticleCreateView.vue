@@ -27,10 +27,8 @@
         </option>
       </select>
 
-      <label for="movie" class="form-label">영화:</label>
-      <input type="text" name="movie" class="form-input" :value="$route.query.movie_title || ''">
-
-
+      <label for="movie_title" class="form-label">영화:</label>
+      <input type="text" name="movie_title" id="movie_title" class="form-input" v-model.trim="movie_title" >
       <label for="content" class="form-label">내용:</label>
       <textarea name="content" id="content" cols="30" rows="10" v-model="content" class="form-textarea"></textarea>
 
@@ -53,6 +51,7 @@ const content = ref('')
 // const category = ref(1)
 const rate = ref('')
 const movie = ref('')
+const movie_title = ref('')
 const articleStore = useArticleStore()
 // const categoryStore = useCategoryStore()
 
@@ -67,7 +66,8 @@ const createArticle = function () {
     content: content.value,
     // category: category.value
     rate: rate.value,
-    movie: movie.value
+    movie: movie.value,
+    movie_title: movie_title.value
   }
   articleStore.createArticle(article)
   router.push({name: 'community'})

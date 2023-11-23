@@ -9,6 +9,7 @@ class Article(models.Model):
     # movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="movie_articles")
     rate = models.FloatField(validators=[MinValueValidator(0), MaxValueValidator(10)])
     title = models.CharField(max_length=100)
+    movie_title = models.CharField(max_length=100, default='')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

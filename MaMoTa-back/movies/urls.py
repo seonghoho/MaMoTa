@@ -7,9 +7,9 @@ urlpatterns = [
     path('', views.movie_list),
     path('<int:movie_pk>/', views.movie_detail),
     
-    # 추천 알고리즘
-    # path('recommended/<int:genre_pk>/', views.recommended),
+
     path('<int:movie_pk>/addlist/', views.add_list),
+    
     
     # 명대사 주소
     path('<int:movie_pk>/famous_lines/', views.famous_line_list),
