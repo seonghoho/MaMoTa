@@ -48,7 +48,17 @@ const getFormattedTitle = computed(() => {
 
 .movie-card {
   background-color: black;
+  border-radius: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  
 }
+
+.movie-card:hover {
+  transform: translateY(-15px); /* 왼쪽 위 대각선으로 -5px만큼 이동하여 튀어나오는 효과 생성 */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3); /* 테두리에 그림자 추가 */
+}
+
+
 
 .card-overview {
   color: black;
