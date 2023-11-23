@@ -1,6 +1,6 @@
 <template>
   <div class="grid-container">
-    <h1>게시물 리스트 뷰</h1>
+    <h1> </h1>
     <RouterLink :to="{ name: 'articleCreate' }"> 게시글 생성</RouterLink>
     <div class="grid">
       <div
@@ -10,7 +10,7 @@
         class="article_list"
       >
         <!-- 게시글 내용 출력 부분 -->
-        <h3>{{ article.title }}</h3>
+        <!-- <h3>{{ article.title }}</h3> -->
         <!-- 내용이 길 경우에 대비하여 일부만 출력하거나 스타일을 조절할 수 있습니다. -->
 
         <Like :article="article" />
@@ -78,9 +78,7 @@ onMounted(() => {
   store.getArticleList()
 })
 
-const goProfile = (userId) => {
-  router.push({ name: 'userProfile', params: { userId: userId } })
-}
+
 
 const goLike = (articleId) => {
   store.likeArticle(articleId)
