@@ -11,6 +11,7 @@
             class="form-control"
             id="username"
             placeholder="MaMoTa@ssafy.com"
+            :class="{ 'filled': username }"
           />
         </div>
         <div class="mb-3">
@@ -21,28 +22,42 @@
             class="form-control"
             id="email"
             placeholder="MaMoTa@ssafy.com"
+            :class="{ 'filled': email }"
           />
         </div>
         <div class="mb-4">
           <label for="password1" class="form-label">비밀번호</label>
-          <input
-            v-model="password1"
-            type="password"
-            class="form-control"
-            id="password1"
-            placeholder="비밀번호"
-          />
+          <div class="input-group">
+            <input
+              v-model="password1"
+              type="password"
+              class="form-control"
+              id="password1"
+              placeholder="비밀번호"
+              :class="{ 'filled': password1 }"
+              
+            />
+            <button class="btn btn-outline-secondary" type="button" @click="togglePasswordVisibility1">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
         </div>
         <div class="mb-4">
           <label for="password2" class="form-label">비밀번호 확인</label>
-          <input
-            v-model="password2"
-            @keyup.enter="signUp"
-            type="password"
-            class="form-control"
-            id="password2"
-            placeholder="비밀번호 확인"
-          />
+          <div class="input-group">
+            <input
+              v-model="password2"
+              @keyup.enter="signUp"
+              type="password"
+              class="form-control"
+              id="password2"
+              placeholder="비밀번호 확인"
+              :class="{ 'filled': password2 }"
+            />
+            <button class="btn btn-outline-secondary" type="button" @click="togglePasswordVisibility2">
+              <i class="bi bi-eye"></i>
+            </button>
+          </div>
         </div>
         <div class="mb-4">
           <label for="nickname" class="form-label">별명</label>
@@ -52,33 +67,17 @@
             class="form-control"
             id="nickname"
             placeholder="별명"
+            :class="{ 'filled': nickname }"
           />
         </div>
-        <!-- <div class="mb-4">
-          <label for="first_name" class="form-label">성</label>
-          <input
-            v-model="first_name"
-            type="first_name"
-            class="form-control"
-            id="first_name"
-            placeholder="성"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="last_name" class="form-label">이름</label>
-          <input
-            v-model="last_name"
-            type="last_name"
-            class="form-control"
-            id="last_name"
-            placeholder="이름"
-          />
-        </div> -->
+
         <div class="d-grid">
-          <button @click="signUp" class="btn btn-info mt-4">회원가입</button>
+          <button @click="signUp" class="custom-btn btn btn-info mt-4">회원가입</button>
+        </div>
+        
         </div>
       </div>
-    </div>
+      <br><br><br><br><br><br><br><br><br>
   </div>
 </template>
 
@@ -93,9 +92,6 @@ const email = ref(null)
 const password1 = ref(null)
 const password2 = ref(null)
 const nickname = ref(null)
-// const first_name = ref(null)
-// const last_name = ref(null)
-
 const userStore = useUserStore();
 
 
@@ -103,10 +99,14 @@ const alertMessage = (msg) => {
   const result = Swal.fire({
     title: `${msg}`,
     icon: "error",
-    confirmButtonColor: "#682cd48c",
-    confirmButtonText: "확인",
+    confirmButtonColor: "#E384FF",
+    confirmButtonText: " 확인 ",
+    padding: "3em",
+    background: "rgba(256,256,256,0.9)",
+    backdrop: "rgba(0,0,123,0.4) url('/src/assets/Images/nyan_cat.gif')  center top",
   });
 };
+
 
 const signUp = () => {
   if (!username.value) {
@@ -149,14 +149,6 @@ const signUp = () => {
     alertMessage("닉네임을 입력해주세요.");
     return;
   }
-  // if (!first_name.value) {
-  //   alertMessage("성을 입력해주세요.");
-  //   return;
-  // }
-  // if (!last_name.value) {
-  //   alertMessage("이름을 입력해주세요.");
-  //   return;
-  // }
 
   const payload = {
     username: username.value,
@@ -168,8 +160,29 @@ const signUp = () => {
     // last_name: last_name.value
   };
 
+  // 배경색 변경 코드 추가
+  document.getElementById('app').style.backgroundColor = 'transparent';
+
   userStore.signUpUser(payload);
 };
+
+
+
+// 비밀번호 가시성 토글
+const togglePasswordVisibility1 = () => {
+  const passwordInput = document.getElementById('password1');
+  const passwordType = passwordInput.type === 'password' ? 'text' : 'password';
+  passwordInput.type = passwordType;
+};
+
+const togglePasswordVisibility2 = () => {
+  const passwordInput = document.getElementById('password2');
+  const passwordType = passwordInput.type === 'password' ? 'text' : 'password';
+  passwordInput.type = passwordType;
+};
+
+
+
 </script>
 
 <style>
@@ -191,4 +204,26 @@ const signUp = () => {
 .text-center {
   text-decoration: white;
 }
+
+
+
+/* 제출버튼 */
+.custom-btn {
+  background-color: #E384FF;
+  border-color: #E384FF;
+}
+
+.custom-btn:hover {
+  background-color: #865DFF;
+  border-color: #865DFF;
+}
+
+.form-control:focus {
+  background-color: #FFA3FD;
+}
+
+/* .form-control.filled {
+  background-color: #FFA3FD;
+} */
+
 </style>

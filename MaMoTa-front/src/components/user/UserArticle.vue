@@ -9,7 +9,7 @@
     </div>  
     </div>
     <div v-else class="d-flex justify-content-center align-items-center mt-5">
-      <p class="text-muted">작성한 리뷰가 없습니다.</p>
+      <p class="review_text">📋작성한 리뷰가 없습니다.😥</p>
     </div>
   </div>
 </template>
@@ -26,10 +26,10 @@ const props = defineProps(['user', 'isCurrentUser'])
 
 
 <style scoped>
-.like-movie-info {
+/* .like-movie-info {
   width: 80%;
   padding: 20px;
-}
+} */
 
 .like-movie-info .text-muted {
   font-size: 1.2rem;
@@ -37,5 +37,15 @@ const props = defineProps(['user', 'isCurrentUser'])
 
 .user-article-card {
   cursor: pointer;
+}
+
+.review_text {
+  background-color: rgba(0, 0, 0, 0.5); 
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  font-size: 25px;
+  font-weight: 550;
 }
 </style>

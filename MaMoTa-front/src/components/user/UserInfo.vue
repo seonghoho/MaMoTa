@@ -12,7 +12,7 @@
         <strong>리뷰 수: {{ user.articles_count }}</strong>
       </div>
       <div class="like-count-info mb-2">
-        <strong>좋아요 수: {{ user.like_count }}</strong>
+        <strong>좋아요 누른 영화 수: {{ user.like_movies_count }}</strong>
       </div>
       <div class="like-count-info mb-2">
         <strong>팔로워 수: {{ user.follower_count }}</strong>

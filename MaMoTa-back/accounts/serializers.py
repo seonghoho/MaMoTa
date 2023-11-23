@@ -127,6 +127,9 @@ class ProfileSerializer(serializers.ModelSerializer):
     articles_count = serializers.IntegerField(
         source='articles.count', read_only=True
     )
+    like_movies_count = serializers.IntegerField(
+        source='like_movies.count', read_only=True
+    )
     like_count = serializers.IntegerField(default=0)
 
     class Meta:

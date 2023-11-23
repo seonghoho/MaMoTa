@@ -16,12 +16,14 @@ const alertMessage = () => {
     title: '로그아웃 하시겠습니까?',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
+    confirmButtonColor: '#810CA8',
+    cancelButtonColor: '#FA2FB5',
     confirmButtonText: '로그아웃',
     cancelButtonText: '취소',
     // 보라색
     background: '#D1C4E9',
+    backdrop: "rgba(0,0,123,0.4) url('/src/assets/Images/nyan_cat.gif')  center top",
+
     
   }).then((result) => {
     // 로그아웃 Yes , No 두 경우 모두다 home으로 이동
