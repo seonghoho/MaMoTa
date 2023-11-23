@@ -22,22 +22,36 @@
             </RouterLink> 라우터링크로 유저 프로필가는 부분 구현 삭제예정 -->
 
         <p></p>
-        <div @click.stop="goProfile(article.user)">
+        <!-- <div @click.stop="goProfile(article.user)">
           {{ article.username }} 이 부분 누르면 유저 프로필로~
         </div>
         <p></p>
         <p>글쓴이가 준 평점 {{ article.rate }}</p>
         <p>게시글 생성일{{ article.created_at }}</p>
         <p>게시글 수정일{{ article.updated_at }}</p>
-        <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p>
+        <p>댓글 개수 {{ article.comment_count }} 끝에 배치 필요</p> -->
 
         <Like :article="article" />
-        <p @click.stop="goLike(article.id)" class="blue">
-          {{ article.like_users.includes(userStore.userData.pk)
-            ? '좋아요 취소'
-            : '좋아요' }}
-        </p>
-        <p>{{ article.like_users.length }}</p>
+        <div class="like-button">
+          <font-awesome-icon
+          @click.stop="goLike(article.id)"
+            :icon="['fas', 'thumbs-up']"
+            beat
+            size="2xl"
+            v-if="!article.like_users.includes(userStore.userData.pk)"
+          />
+          <font-awesome-icon
+          @click.stop="goLike(article.id)"
+            :icon="['fas', 'heart']"
+            bounce
+            size="2xl"
+            style="color: #ff1900;"
+            v-else
+          />
+        </div>
+
+
+        <h3 class="like-count">{{ article.like_users.length }}</h3>
         <hr>
       </div>
 
@@ -164,6 +178,13 @@ const prevPage = () => {
   text-decoration: underline;
 }
 
+.like-button {
+  margin-top: 25px;
+}
+.like-count {
+  margin-top: 5px;
+  margin-left: 15px;
+}
 .blue {
   color: black;
   background-color: blue;

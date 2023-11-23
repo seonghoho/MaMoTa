@@ -63,7 +63,6 @@
 <script setup>
 import CommentCreate from '@/components/Comunities/CommentCreate.vue';
 import CommentList from '@/components/Comunities/CommentList.vue';
-import ArticleMovieCard from '@/components/Movies/ArticleMovieCard.vue'
 import { onMounted } from 'vue';
 import { useRoute,useRouter } from 'vue-router';
 import { useArticleStore } from '@/stores/article';

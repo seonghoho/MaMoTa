@@ -13,8 +13,11 @@
         <div class="card-content">
 
           <div class="card-subtitle">영화</div>
+          <RouterLink :to="{ name: 'detail', params: { id: article.id } }" class="btn btn-primary">
+            상세 보기
+          </RouterLink>
           <p></p>
-          <p>{{ article }}</p>
+          <p>{{ article.title }}</p>
           <div class="card-subtitle">평점</div>
           <p class="card-desc">
           <div class="star-rating">
@@ -76,7 +79,7 @@
       <button @click="changeSection('about')" :class="{ 'is-active': currentState === 'about' }">영화리뷰</button>
       <button>
         <RouterLink :to="{ name: 'search', query: { movieTitle: article.movie_title } }" class="router-link">
-          영화 정보 보기
+          영화 정보
         </RouterLink>
       </button>
       <button @click="changeSection('contact')" :class="{ 'is-active': currentState === 'contact' }">유저정보</button>
@@ -122,6 +125,7 @@ const jobTitle = 'UI Developer';
 const changeSection = (section) => {
   currentState.value = section;
 };
+
 
 </script>
 
@@ -311,6 +315,7 @@ body {
   text-decoration: none;
   color: black;
 }
+
 .card-social {
   display: flex;
   align-items: center;
