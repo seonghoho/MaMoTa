@@ -414,29 +414,29 @@ body {
 
 .card-buttons {
   display: flex;
-  background-color: #fff;
   margin-top: auto;
   position: sticky;
   bottom: 0;
   left: 0;
   text-align: center;
   background-color: #d3ffea;
+  
 }
 .card-buttons button {
     flex: 1 1 auto;
     user-select: none;
     background: 0;
-    font-size: 13px;
+    font-size: 14px;
     border: 0;
     padding: 15px 5px;
     cursor: pointer;
     color: #5c5c6d;
     transition: 0.3s;
-    font-family: "Jost", sans-serif;
-    font-weight: 500;
+    /* font-family: "Jost", sans-serif; */
     outline: 0;
     border-bottom: 3px solid transparent;
     background-color: #d3ffea;
+    font-weight: 400;
 }
 .card-buttons .is-active,
 .card-buttons :hover {
