@@ -3,7 +3,7 @@
   <div class="create-article-page">
     <h1 class="title">게시글 생성 페이지</h1>
     <form @submit.prevent="createArticle" class="article-form">
-    <router-link :to="{ name: 'community' }" class="back-button">뒤로 가기</router-link>
+    <button @click="goBack" class="back-button">뒤로 가기</button>
 
       <!-- <label for="category" class="form-label">카테고리 선택:</label>
       <select name="category" id="category" v-model="category" class="form-select">
@@ -72,13 +72,32 @@ const createArticle = function () {
   articleStore.createArticle(article)
   router.push({name: 'community'})
 }
+const goBack = function () {
+  router.push({name: 'community'})
+}
+
 </script>
 
 <style scoped>
+
+.back-button {
+  background-color: #E384FF; 
+  color: #865DFF;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.back-button:hover {
+  background-color: #865DFF; 
+  color: #E384FF;
+}
+
 .create-article-page {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  color: violet;
 }
 
 .title {
@@ -88,9 +107,9 @@ const createArticle = function () {
 }
 
 .article-form {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  background-color: rgba(79, 50, 103, 0.6);
+  /* border: 1px solid #ccc; */
+  border-radius: 20px;
   padding: 20px;
 }
 
@@ -109,15 +128,17 @@ const createArticle = function () {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
+  background-color: #bba6fa;
 }
 
 .submit-button {
   display: block;
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bolder;
+  background-color: #E384FF;
+  color: #865DFF;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -125,6 +146,7 @@ const createArticle = function () {
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background-color: #865DFF;
+  color: #E384FF;
 }
 </style>
