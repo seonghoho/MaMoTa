@@ -98,6 +98,7 @@ const goBack = function () {
   margin: 0 auto;
   padding: 20px;
   color: violet;
+  margin-top: 80px;
 }
 
 .title {

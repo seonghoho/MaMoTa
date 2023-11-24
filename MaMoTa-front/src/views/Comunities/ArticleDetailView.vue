@@ -1,7 +1,7 @@
 <!-- 데이터 상세 페이지 뷰 작성 -->
 
 <template>
-
+  <div class="box"></div>
 
   <div class="card" :data-state="currentState" v-if="a">
       <div class="card-header">
@@ -125,6 +125,9 @@ const goProfile = (userId) => {
 </script>
 
 <style lang="scss" scoped>
+.box {
+  height: 100px;
+}
 .card {
   width: 60%;
   margin: auto;
