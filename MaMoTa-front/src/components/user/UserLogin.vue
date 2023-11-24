@@ -98,7 +98,7 @@ const togglePasswordVisibility = () => {
   font-weight: bolder;
   width: 400px;
 
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(79, 50, 103, 0.6);
   border-radius: 50px;
   padding: 50px;
 
