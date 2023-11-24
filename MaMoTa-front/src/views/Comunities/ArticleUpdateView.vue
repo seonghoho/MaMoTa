@@ -62,6 +62,8 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    color: violet;
+    margin-top: 80px;
   }
   
   h1 {
@@ -70,9 +72,9 @@
   }
   
   .article-form {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: rgba(79, 50, 103, 0.6);
+  /* border: 1px solid #ccc; */
+    border-radius: 20px;
     padding: 20px;
   }
   
@@ -91,15 +93,18 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: #bba6fa;
+
   }
   
   .submit-button {
     display: block;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: #fff;
+    padding: 8px;
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #E384FF;
+    color: #865DFF;
     border: none;
     border-radius: 5px;
     cursor: pointer;

@@ -6,6 +6,7 @@
     <!-- <p>{{ comment.article }}</p> -->
 
     <span class="comment-id"> {{ comment.username }}</span>
+    <br>
     <span class="comment-content">{{ comment.content }}</span>
 
     <div>
