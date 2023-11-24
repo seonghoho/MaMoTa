@@ -200,10 +200,10 @@ Ost Player 구현하여 사용자에게 영화를 간접적으로 추천 ✔
 
 #### **[프로필 페이지]**
 
-![profile](README.assets/Profile_user.png)<br>
-![profile](README.assets/Profile_like_movie.png)<br>
-![profile](README.assets/Profile_like_article.png)<br>
-![profile](README.assets/Profile_follow.png)<br>
+![profile](README.assets/Profile_user.PNG)<br>
+![profile](README.assets/Profile_like_movie.PNG)<br>
+![profile](README.assets/Profile_like_article.PNG)<br>
+![profile](README.assets/Profile_follow.PNG)<br>
 
 
 - 회원 프로필, 좋아요 한 영화, 작성한 게시글, 팔로우/팔로잉 

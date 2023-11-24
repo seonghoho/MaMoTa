@@ -11,7 +11,6 @@
     <HororMovieView />
     <CriminalMovieView />
     <WarMovieView />
-    <TopButton />
   </div>
 </template>
 
