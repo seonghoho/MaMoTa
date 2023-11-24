@@ -117,7 +117,7 @@ Ost Player 구현하여 사용자에게 영화를 간접적으로 추천 ✔
 
 ### **[OST Player]**
 
-![OST](README.assets/ost.png)
+![OST](README.assets/OST.png)
 
 - OST Player로 추천 페이지에 대한 흥미를 유발
 
