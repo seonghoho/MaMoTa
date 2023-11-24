@@ -22,12 +22,12 @@
   <div v-if="store.detailArticle.data" class="post-details" :style="{ backgroundImage: `url(/src/assets/Images/rateemoji/back_emoji_${store.detailArticle.data.rate}.png)` }">
     <p></p>
     <!-- <h1>게시글 상세 정보</h1> -->
-    <router-link :to="{ name: 'community' }" class="back-button btn btn-primary btn-sm">뒤로 가기</router-link>
+    <router-link :to="{ name: 'community' }" class="back-button btn btn-outline-dark btn-sm" style="font-weight: bolder; border-width: 2px;" >뒤로 가기</router-link>
     <div class="post-info">
 
       <!-- <p class="post-id">{{ store.detailArticle.data.id }} 번 글</p> -->
       <p class="post-title">영화 제목: {{ store.detailArticle.data.movie_title }}</p>
-      <RouterLink :to="{ name: 'search', query: { movieTitle: store.detailArticle.data.movie_title } }" class="btn btn-primary btn-sm">영화 정보 보기</RouterLink>
+      <RouterLink :to="{ name: 'search', query: { movieTitle: store.detailArticle.data.movie_title } }" class="back-button btn btn-outline-dark btn-sm" style="font-weight: bolder; border-width: 2px;" >영화 정보 보기</RouterLink>
       <p class="post-title">제목:{{ store.detailArticle.data.title }}</p>
     </div>
     <div @click.stop="goProfile(store.detailArticle.data.user)">

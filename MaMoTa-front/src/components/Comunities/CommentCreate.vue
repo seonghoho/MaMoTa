@@ -3,8 +3,8 @@
 <template>
   <form @submit.prevent="createComment">
     <label for="content">내용 : </label>
-    <input type="text" name="content" id="content" v-model="content">
-    <button>댓글 작성</button>
+    <input type="text" class="transparent-input mt-1" name="content" id="content" style="border: 2px solid black; border-radius: 3px; " placeholder="댓글을 입력하세요." v-model="content">
+    <button class="back-button btn btn-outline-dark btn-sm ms-1" style="font-weight: bolder; border-width: 2px; ">댓글 작성</button>
   </form>
 </template>
 
@@ -23,6 +23,10 @@ const createComment = function () {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
+.transparent-input {
+  background-color: transparent;
+  border: 1px solid #ced4da; /* 선택적으로 테두리 추가 */
+}
 </style>

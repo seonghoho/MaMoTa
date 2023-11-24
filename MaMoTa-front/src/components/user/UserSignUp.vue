@@ -193,12 +193,16 @@ const togglePasswordVisibility2 = () => {
 
 .signup {
   color: violet;
+  margin-left: -100px;
+  margin-right: -100px;
 }
 
 .signup_form {
   background-color: rgba(0, 0, 0, 0.45);
   border-radius: 50px;
-  padding: 20px;
+  padding-top: 20px;
+  width: 700px;
+  height: 650px;
 }
 
 .text-center {
@@ -222,8 +226,6 @@ const togglePasswordVisibility2 = () => {
   background-color: #FFA3FD;
 }
 
-/* .form-control.filled {
-  background-color: #FFA3FD;
-} */
+
 
 </style>
