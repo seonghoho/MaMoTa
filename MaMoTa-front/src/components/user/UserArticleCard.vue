@@ -33,7 +33,7 @@ const props = defineProps({
 // const avatarImageUrl = `/src/assets/Images/rateemoji/emoji_${article.rate}.png`
 
 const formatContent = (content) => {
-  const cont = content.length > 13 ? content.slice(0, 13) + '...' : content
+  const cont = content.length > 10 ? content.slice(0, 10) + '...' : content
   return cont.replace(/\n/g, '<br />')
 }
 </script>
